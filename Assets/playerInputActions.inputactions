@@ -49,6 +49,15 @@
                     "processors": "",
                     "interactions": "",
                     "initialStateCheck": false
+                },
+                {
+                    "name": "Switch",
+                    "type": "Button",
+                    "id": "1dbd7129-5354-4ee9-a42e-eaa18d74f119",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
                 }
             ],
             "bindings": [
@@ -280,6 +289,17 @@
                     "processors": "",
                     "groups": ";Keyboard&Mouse",
                     "action": "Balloons",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "5aa37257-b318-4f17-ab23-4bd2723627e4",
+                    "path": "<Keyboard>/e",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Switch",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

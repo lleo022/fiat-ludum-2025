@@ -21,6 +21,8 @@ public class Movement : MonoBehaviour
 
     private bool jumping = false;
     private float original_gravity_scale = 0f;
+
+    private GameObject GameLogic;
     //private float timeJumping = 0f;
 
     private void Awake() //gets called as game starts up
@@ -57,6 +59,7 @@ public class Movement : MonoBehaviour
     void Start()
     {
         original_gravity_scale = rb.gravityScale;
+        GameLogic = GameObject.Find("GameLogic");
     }
 
     // Update is called once per frame
@@ -77,7 +80,6 @@ public class Movement : MonoBehaviour
         Debug.Log(context.control.name);
         if (context.control.name == "s")
         {
-            Debug.Log("Pressed S");
             JumpFinished(context); //cancel jump
             GetComponent<ClownPowers>().CancelBalloons(); //if ballooning, stop
 
@@ -87,14 +89,14 @@ public class Movement : MonoBehaviour
     {  
         if (context.control.name == "W")
         {
-            Debug.Log("W released");
             JumpFinished(context); //cancel jump
         }
 
     }
     private void Fire(InputAction.CallbackContext context)
     {
-        //Debug.Log("Fire!!");
+        //Debug.Log("Losing health");
+        //GameLogic.GetComponent<GameLogic>().hurtPlayer(1);
     }
     private void Jump(InputAction.CallbackContext context)
     {
@@ -118,12 +120,12 @@ public class Movement : MonoBehaviour
                 yield return new WaitForSeconds(waitBetweenJumps);
                 if (jumping) //extend jump
                 {
-                    Debug.Log("Extending jump");
+                    //Debug.Log("Extending jump");
                     //rb.linearVelocity += new Vector2(0, jumpSpeed*1/4);
                     original_gravity_scale = rb.gravityScale;
                     rb.gravityScale = original_gravity_scale*.5f;
                 }
-                Debug.Log("Jump!");
+                //Debug.Log("Jump!");
                 yield return new WaitForSeconds(maxJumpTime-waitBetweenJumps);
                 JumpFinished(context);
                 //rb.linearVelocity += new Vector2(0, jumpSpeed);
@@ -134,7 +136,7 @@ public class Movement : MonoBehaviour
 
     private void JumpFinished(InputAction.CallbackContext context)
     {
-        Debug.Log("Jump Finished");
+        //Debug.Log("Jump Finished");
         if (jumping) // if currently jumping
         {
             rb.linearVelocity = new Vector2(rb.linearVelocity.x, 0);

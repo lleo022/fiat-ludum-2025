@@ -136,6 +136,7 @@ MonoBehaviour:
   maxJumpTime: 2
   waitBetweenJumps: 0.2
   rb: {fileID: 4436105089436598108}
+  GameLogic: {fileID: 0}
 --- !u!61 &5111927998990758323
 BoxCollider2D:
   m_ObjectHideFlags: 0
