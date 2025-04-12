@@ -23,7 +23,8 @@ public class Movement : MonoBehaviour
     private float original_gravity_scale = 0f;
 
     private GameObject GameLogic;
-    //private float timeJumping = 0f;
+
+    public bool goingRight = true;
 
     private void Awake() //gets called as game starts up
     {
@@ -58,7 +59,7 @@ public class Movement : MonoBehaviour
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-        Debug.Log("Instantiated new movement script");
+        //Debug.Log("Instantiated new movement script");
         rb = GetComponent<Rigidbody2D>();
         original_gravity_scale = rb.gravityScale;
         GameLogic = GameObject.Find("GameLogic");
@@ -71,6 +72,13 @@ public class Movement : MonoBehaviour
 
         //OLD SYSTEM: movement_direction = new Vector2(Input.GetAxis("Horizontal"), Input.GetAxis("Vertical"));
         movement_direction = move.ReadValue<Vector2>();
+        if (goingRight)
+        {
+            GetComponent<SpriteRenderer>().flipX = false;
+        } else
+        {
+            GetComponent<SpriteRenderer>().flipX = true;
+        }
     }
 
     private void FixedUpdate()
@@ -86,6 +94,12 @@ public class Movement : MonoBehaviour
             JumpFinished(context); //cancel jump
             GetComponent<ClownPowers>().CancelBalloons(); //if ballooning, stop
 
+        } else if (context.control.name == "a")
+        {
+            goingRight = false;
+        } else if (context.control.name == "d")
+        {
+            goingRight = true;
         }
     }
     private void MoveSpecialFinished(InputAction.CallbackContext context)

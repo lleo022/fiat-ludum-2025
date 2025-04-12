@@ -36,6 +36,16 @@ public class GameLogic : MonoBehaviour
     private void Awake() //gets called as game starts up
     {
         playerControls = new PlayerInputActions();
+        playerHealth = maxPlayerHealth;
+        healthbar = healthBarUI.rootVisualElement.Q<VisualElement>("Healthbar");
+        currentHearts = healthbar.Query("Heart").ToList();
+
+        restartButton = gameOverUI.rootVisualElement.Q<Button>();
+        Debug.Log("Restart button name: " + restartButton.name);
+
+        gameOverUI.enabled = false;
+
+        currentHearts.Reverse(); // it comes out in the wrong order
     }
     private void OnEnable()
     {
@@ -44,12 +54,23 @@ public class GameLogic : MonoBehaviour
 
         switch_persona.Enable();
         switch_persona.performed += SwitchCallback;
+
+        //restartButton.clickable.clicked += RestartGame;
+        restartButton.RegisterCallback<PointerDownEvent>(onClick);
+        //PointerDownEvent 
     }
 
     private void OnDisable()
     {
         //playerControls.Disable();
         switch_persona.Disable();
+
+        //restartButton.Disable();
+    }
+
+    private void onClick(PointerDownEvent evt)
+    {
+        RestartGame();
     }
 
     private void RestartGame()
@@ -67,15 +88,7 @@ public class GameLogic : MonoBehaviour
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-        playerHealth = maxPlayerHealth;
-        healthbar = healthBarUI.rootVisualElement.Q<VisualElement>("Healthbar");
-        currentHearts = healthbar.Query("Heart").ToList();
-
-        restartButton = gameOverUI.rootVisualElement.Q<Button>();
-        restartButton.clicked += RestartGame;
-        gameOverUI.enabled = false;
-
-        currentHearts.Reverse(); // it comes out in the wrong order
+        
         Switch();
     }
     private void SwitchCallback(InputAction.CallbackContext context)
@@ -138,7 +151,7 @@ public class GameLogic : MonoBehaviour
     public void hurtPlayer(int amount)
     {
         playerHealth -= amount;
-        if (playerHealth < 0)
+        if (playerHealth <= 0)
         {
             playerHealth = 0;
             Death();
