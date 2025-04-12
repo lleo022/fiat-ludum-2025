@@ -14,6 +14,7 @@ GameObject:
   - component: {fileID: 6304641555789681467}
   - component: {fileID: 471967669734616547}
   - component: {fileID: -3512838064805733214}
+  - component: {fileID: 2629278460699421877}
   m_Layer: 0
   m_Name: business man
   m_TagString: Untagged
@@ -211,3 +212,16 @@ MonoBehaviour:
   m_DefaultActionMap: Player
   m_SplitScreenIndex: -1
   m_Camera: {fileID: 0}
+--- !u!114 &2629278460699421877
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4758412665456361629}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: deae8989956a16044b1456ce97c94b24, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  legal_documents: {fileID: 8542605250507991164, guid: d7246b07873fbc645b31e5b38b45af85, type: 3}

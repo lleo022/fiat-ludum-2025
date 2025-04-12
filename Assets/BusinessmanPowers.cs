@@ -36,7 +36,8 @@ public class BusinessmanPowers : MonoBehaviour
 
     private void LegalBinding(InputAction.CallbackContext context)
     {
-        GameObject new_docs = Instantiate(legal_documents, transform.position, Quaternion.identity);
+        Debug.Log("LegalBinding");
+        GameObject new_docs = Instantiate(legal_documents, gameObject.transform.position, Quaternion.identity);
         new_docs.GetComponent<Launch>().GameLogic = GameLogic;
         Vector2 facingDirection = new Vector2(-1, 0); //left
         if (GetComponent<Movement>().goingRight)

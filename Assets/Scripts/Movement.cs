@@ -54,6 +54,7 @@ public class Movement : MonoBehaviour
         //playerControls.Disable();
         move.Disable();
         fire.Disable();
+        jump.Disable();
     }
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
@@ -92,8 +93,10 @@ public class Movement : MonoBehaviour
         if (context.control.name == "s")
         {
             JumpFinished(context); //cancel jump
-            GetComponent<ClownPowers>().CancelBalloons(); //if ballooning, stop
-
+            if (GameLogic.GetComponent<GameLogic>().is_clown == true)
+            {
+                GetComponent<ClownPowers>().CancelBalloons(); //if ballooning, stop
+            }
         } else if (context.control.name == "a")
         {
             goingRight = false;
