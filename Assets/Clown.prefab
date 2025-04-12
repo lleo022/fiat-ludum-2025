@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: 5111927998990758323}
   - component: {fileID: 5003947382188299875}
   - component: {fileID: 8010665515470249429}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Clown
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -135,8 +135,7 @@ MonoBehaviour:
   jumpSpeed: 7
   maxJumpTime: 2
   waitBetweenJumps: 0.2
-  rb: {fileID: 4436105089436598108}
-  GameLogic: {fileID: 0}
+  goingRight: 1
 --- !u!61 &5111927998990758323
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -225,7 +224,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 753efa658f07358469e901600734481d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  rb: {fileID: 4436105089436598108}
   ballooning: 0
   balloonTimer: 3
   balloonSpeed: 1
