@@ -1,6 +1,7 @@
+using System.Runtime.CompilerServices;
 using UnityEngine;
 
-public class FunguyEnemy : MonoBehaviour
+public class Enemy : MonoBehaviour
 {
     [SerializeField] private float attackCooldown;
     [SerializeField] private float range;
@@ -11,10 +12,12 @@ public class FunguyEnemy : MonoBehaviour
     private float cooldownTimer;
 
     private Animator anim;
+    private GameObject GameLogic;
 
     private void Start()
     {
         anim = GetComponent<Animator>();
+        GameLogic = GameObject.Find("GameLogic");
     }
 
     // Update is called once per frame
@@ -48,6 +51,15 @@ public class FunguyEnemy : MonoBehaviour
         Gizmos.DrawWireCube(boxCollider.bounds.center + transform.right * range * transform.localScale.x * colliderDistance, 
             boxCollider.bounds.size);
     }
-}
 
+    private void damagePlayer()
+    {
+        if (!PlayerInSight())
+        {
+            GameLogic.GetComponent<GameLogic>().hurtPlayer(1);
+        }
+    }
+
+
+}
 

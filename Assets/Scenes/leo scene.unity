@@ -269,6 +269,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: ChildEnemyFungus
       objectReference: {fileID: 0}
+    - target: {fileID: 1524189597330966561, guid: 311974d880ac86f479013ef1489efd93, type: 3}
+      propertyPath: m_Layer
+      value: 8
+      objectReference: {fileID: 0}
     - target: {fileID: 1763824432428563184, guid: 311974d880ac86f479013ef1489efd93, type: 3}
       propertyPath: m_LocalScale.x
       value: 3
@@ -344,11 +348,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4435059472936319679, guid: a258ae19bc2d66c40832b0269204a647, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -4.63
+      value: -2.46
       objectReference: {fileID: 0}
     - target: {fileID: 4435059472936319679, guid: a258ae19bc2d66c40832b0269204a647, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -1.14
+      value: -1.16
       objectReference: {fileID: 0}
     - target: {fileID: 4435059472936319679, guid: a258ae19bc2d66c40832b0269204a647, type: 3}
       propertyPath: m_LocalPosition.z
@@ -573,11 +577,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6560351461048460568, guid: 6caf1ef7efb3c364f9e5102db439bc3a, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 1.11
+      value: 1.07
       objectReference: {fileID: 0}
     - target: {fileID: 6560351461048460568, guid: 6caf1ef7efb3c364f9e5102db439bc3a, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -1.19
+      value: -1.23
       objectReference: {fileID: 0}
     - target: {fileID: 6560351461048460568, guid: 6caf1ef7efb3c364f9e5102db439bc3a, type: 3}
       propertyPath: m_LocalPosition.z
@@ -626,7 +630,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 768871410648374288, guid: 4c0ea2a9b6f8cac48bac6e974beffeb4, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 1.37
+      value: 0.46
       objectReference: {fileID: 0}
     - target: {fileID: 768871410648374288, guid: 4c0ea2a9b6f8cac48bac6e974beffeb4, type: 3}
       propertyPath: m_LocalPosition.y
@@ -668,9 +672,33 @@ PrefabInstance:
       propertyPath: m_Name
       value: RealKid
       objectReference: {fileID: 0}
+    - target: {fileID: 6811564509777152887, guid: 4c0ea2a9b6f8cac48bac6e974beffeb4, type: 3}
+      propertyPath: m_Layer
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 8532742718691029675, guid: 4c0ea2a9b6f8cac48bac6e974beffeb4, type: 3}
+      propertyPath: range
+      value: 0.06
+      objectReference: {fileID: 0}
+    - target: {fileID: 8532742718691029675, guid: 4c0ea2a9b6f8cac48bac6e974beffeb4, type: 3}
+      propertyPath: damage
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8532742718691029675, guid: 4c0ea2a9b6f8cac48bac6e974beffeb4, type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8532742718691029675, guid: 4c0ea2a9b6f8cac48bac6e974beffeb4, type: 3}
+      propertyPath: attackCooldown
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 8532742718691029675, guid: 4c0ea2a9b6f8cac48bac6e974beffeb4, type: 3}
+      propertyPath: colliderDistance
+      value: 1.5
+      objectReference: {fileID: 0}
     - target: {fileID: 8532742718691029675, guid: 4c0ea2a9b6f8cac48bac6e974beffeb4, type: 3}
       propertyPath: playerLayer.m_Bits
-      value: 118
+      value: 264
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
