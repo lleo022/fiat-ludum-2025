@@ -25,9 +25,18 @@ public class FunguyEnemy : MonoBehaviour
 
     private bool PlayerInSight()
     {
-        RaycastHit2D hit  = Physics2D.BoxCast(boxCollider.bounds.center, 
-            boxCollider.bounds.size, 0, Vector2.left, 0, playerLayer);
-        return hit.collider != null;
+        // RaycastHit2D hit  = Physics2D.BoxCast(boxCollider.bounds.center + transform.right * range * transform.localScale.x, 
+        //     boxCollider.bounds.size, 0, Vector2.left, 0, playerLayer);
+        // return hit.collider != null;
+
+        return false;
+    }
+
+    private void OnDrawGizmos()
+    {
+        Gizmos.color = Color.red;
+      //  Gizmos.DrawWireCube(boxCollider.bounds.center + transform.right * range * transform.localScale.x,
+       //     boxCollider.bounds.size);
     }
 
 }
