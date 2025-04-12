@@ -11,13 +11,15 @@ public class BusinessmanPowers : MonoBehaviour
 
     public GameObject legal_documents;
 
-    private GameObject GameLogic;
+    //private GameObject GameLogic;
+
+    public float documentSpawnOffset = 5;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
 
     private void Awake()
     {
         playerControls = new PlayerInputActions();
-        GameLogic = GameObject.Find("GameLogic");
+        //GameLogic = GameObject.Find("GameLogic");
     }
     private void OnEnable()
     {
@@ -37,14 +39,12 @@ public class BusinessmanPowers : MonoBehaviour
     private void LegalBinding(InputAction.CallbackContext context)
     {
         Debug.Log("LegalBinding");
-        GameObject new_docs = Instantiate(legal_documents, gameObject.transform.position, Quaternion.identity);
-        new_docs.GetComponent<Launch>().GameLogic = GameLogic;
-        Vector2 facingDirection = new Vector2(-1, 0); //left
-        if (GetComponent<Movement>().goingRight)
-        {
-            facingDirection = new Vector2(1, 0); //right
-        }
-        new_docs.GetComponent<Launch>().faceDirection = facingDirection;
+        Vector3 spawnPos = gameObject.transform.position + new Vector3(0, documentSpawnOffset, 0);
+        Debug.Log("Pawn position: " + gameObject.transform.position + " | " + spawnPos);
+        GameObject new_docs = Instantiate(legal_documents, spawnPos, Quaternion.identity);
+        new_docs.GetComponent<Launch>().movement = GetComponent<Movement>();
+        
+       // new_docs.GetComponent<Launch>().faceDirection = facingDirection;
     }
 
     void Start()

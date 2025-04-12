@@ -225,3 +225,4 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   legal_documents: {fileID: 8542605250507991164, guid: d7246b07873fbc645b31e5b38b45af85, type: 3}
+  documentSpawnOffset: 0.3

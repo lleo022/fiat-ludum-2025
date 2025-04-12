@@ -112,7 +112,7 @@ Rigidbody2D:
     m_Bits: 0
   m_ExcludeLayers:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 4294967295
   m_Interpolate: 0
   m_SleepingMode: 1
   m_CollisionDetection: 0
@@ -175,6 +175,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3bb05e53e5fc5454bb50a202497609f6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  faceDirection: {x: 0, y: 0}
-  GameLogic: {fileID: 0}
-  launchVelocity: 10
+  movement: {fileID: 0}
+  launchVelocity: 2

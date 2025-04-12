@@ -1,9 +1,10 @@
 using UnityEngine;
+using System.Collections;
 
 public class Launch : MonoBehaviour
 {
-    public Vector2 faceDirection = new Vector2(0,0);
-    public GameObject GameLogic; //should be set by spawner
+    //public Vector2 faceDirection = new Vector2(0,0);
+    public Movement movement; //should be set by spawner
 
     public int launchVelocity = 5;
 
@@ -11,27 +12,31 @@ public class Launch : MonoBehaviour
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-        Debug.Log("Legal document start");
         rb = GetComponent<Rigidbody2D>();
-        rb.linearVelocity = new Vector2(faceDirection.x*launchVelocity, launchVelocity);
+        Vector2 facingDirection = new Vector2(-1, 0); //left
+        if (movement.goingRight)
+        {
+            facingDirection = new Vector2(1, 0); //right
+        }
+        Debug.Log("Legal document start");
+        rb.linearVelocity = new Vector2(facingDirection.x*launchVelocity, launchVelocity);
+        StartCoroutine(SelfDestruct());
+    }
+    private IEnumerator SelfDestruct()
+    {
+        yield return new WaitForSeconds(2);
+        Destroy(gameObject); // "gameObject" refers to itself
     }
 
-    // Update is called once per frame
-    void Update()
+    void OnCollisionEnter2D(Collision2D col)
     {
-        Debug.Log("Legal document updates");
-        RaycastHit2D hit = Physics2D.Raycast(transform.position, -Vector2.up);
-        if (hit)
+        if (col.collider.gameObject.layer == 8) 
         {
-            float distance = Mathf.Abs(hit.point.y - transform.position.y);
-            if (distance < .5f) //on the ground
-            {
-                //self-destruct
-                Debug.Log("destroying: " + distance);
-                Destroy(gameObject); // "gameObject" refers to itself
-            }
-
+            //if it collides with an enemy, also destroy
+            //enemy: layer 8
+            //projectiles: layer 7
+            Destroy(gameObject);
         }
-
+        
     }
 }
