@@ -8,11 +8,16 @@ public class BusinessmanPowers : MonoBehaviour
     private Rigidbody2D rb;
 
     private InputAction legalbinding;
+
+    public GameObject legal_documents;
+
+    private GameObject GameLogic;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
 
     private void Awake()
     {
         playerControls = new PlayerInputActions();
+        GameLogic = GameObject.Find("GameLogic");
     }
     private void OnEnable()
     {
@@ -31,7 +36,14 @@ public class BusinessmanPowers : MonoBehaviour
 
     private void LegalBinding(InputAction.CallbackContext context)
     {
-
+        GameObject new_docs = Instantiate(legal_documents, transform.position, Quaternion.identity);
+        new_docs.GetComponent<Launch>().GameLogic = GameLogic;
+        Vector2 facingDirection = new Vector2(-1, 0); //left
+        if (GetComponent<Movement>().goingRight)
+        {
+            facingDirection = new Vector2(1, 0); //right
+        }
+        new_docs.GetComponent<Launch>().faceDirection = facingDirection;
     }
 
     void Start()

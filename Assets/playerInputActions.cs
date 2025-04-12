@@ -144,6 +144,15 @@ public partial class @PlayerInputActions: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""LegalBinding"",
+                    ""type"": ""Button"",
+                    ""id"": ""86068b27-1fd4-4f70-9870-c826753dc631"",
+                    ""expectedControlType"": """",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -386,6 +395,17 @@ public partial class @PlayerInputActions: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""groups"": """",
                     ""action"": ""Switch"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""6e775a7c-a677-4ac8-bd22-465eabad7ae7"",
+                    ""path"": ""<Keyboard>/1"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""LegalBinding"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 }
@@ -1010,6 +1030,7 @@ public partial class @PlayerInputActions: IInputActionCollection2, IDisposable
         m_Player_Jump = m_Player.FindAction("Jump", throwIfNotFound: true);
         m_Player_Balloons = m_Player.FindAction("Balloons", throwIfNotFound: true);
         m_Player_Switch = m_Player.FindAction("Switch", throwIfNotFound: true);
+        m_Player_LegalBinding = m_Player.FindAction("LegalBinding", throwIfNotFound: true);
         // UI
         m_UI = asset.FindActionMap("UI", throwIfNotFound: true);
         m_UI_Navigate = m_UI.FindAction("Navigate", throwIfNotFound: true);
@@ -1110,6 +1131,7 @@ public partial class @PlayerInputActions: IInputActionCollection2, IDisposable
     private readonly InputAction m_Player_Jump;
     private readonly InputAction m_Player_Balloons;
     private readonly InputAction m_Player_Switch;
+    private readonly InputAction m_Player_LegalBinding;
     /// <summary>
     /// Provides access to input actions defined in input action map "Player".
     /// </summary>
@@ -1145,6 +1167,10 @@ public partial class @PlayerInputActions: IInputActionCollection2, IDisposable
         /// Provides access to the underlying input action "Player/Switch".
         /// </summary>
         public InputAction @Switch => m_Wrapper.m_Player_Switch;
+        /// <summary>
+        /// Provides access to the underlying input action "Player/LegalBinding".
+        /// </summary>
+        public InputAction @LegalBinding => m_Wrapper.m_Player_LegalBinding;
         /// <summary>
         /// Provides access to the underlying input action map instance.
         /// </summary>
@@ -1189,6 +1215,9 @@ public partial class @PlayerInputActions: IInputActionCollection2, IDisposable
             @Switch.started += instance.OnSwitch;
             @Switch.performed += instance.OnSwitch;
             @Switch.canceled += instance.OnSwitch;
+            @LegalBinding.started += instance.OnLegalBinding;
+            @LegalBinding.performed += instance.OnLegalBinding;
+            @LegalBinding.canceled += instance.OnLegalBinding;
         }
 
         /// <summary>
@@ -1218,6 +1247,9 @@ public partial class @PlayerInputActions: IInputActionCollection2, IDisposable
             @Switch.started -= instance.OnSwitch;
             @Switch.performed -= instance.OnSwitch;
             @Switch.canceled -= instance.OnSwitch;
+            @LegalBinding.started -= instance.OnLegalBinding;
+            @LegalBinding.performed -= instance.OnLegalBinding;
+            @LegalBinding.canceled -= instance.OnLegalBinding;
         }
 
         /// <summary>
@@ -1571,6 +1603,13 @@ public partial class @PlayerInputActions: IInputActionCollection2, IDisposable
         /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
         /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
         void OnSwitch(InputAction.CallbackContext context);
+        /// <summary>
+        /// Method invoked when associated input action "LegalBinding" is either <see cref="UnityEngine.InputSystem.InputAction.started" />, <see cref="UnityEngine.InputSystem.InputAction.performed" /> or <see cref="UnityEngine.InputSystem.InputAction.canceled" />.
+        /// </summary>
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.started" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
+        void OnLegalBinding(InputAction.CallbackContext context);
     }
     /// <summary>
     /// Interface to implement callback methods for all input action callbacks associated with input actions defined by "UI" which allows adding and removing callbacks.

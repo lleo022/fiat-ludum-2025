@@ -176,11 +176,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 750553d75710012408db1ace1ddc5726, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 3
-  jumpSpeed: 5
-  maxJumpTime: 1
-  waitBetweenJumps: 1
-  rb: {fileID: 0}
+  speed: 2
+  jumpSpeed: 7
+  maxJumpTime: 2
+  waitBetweenJumps: 0.2
+  goingRight: 1
 --- !u!114 &-3512838064805733214
 MonoBehaviour:
   m_ObjectHideFlags: 0
