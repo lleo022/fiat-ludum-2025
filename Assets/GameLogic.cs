@@ -17,7 +17,7 @@ public class GameLogic : MonoBehaviour
 
     public GameObject current_camera;
 
-    private bool is_clown = false; // true = clown, false = businessman
+    public bool is_clown = false; // true = clown, false = businessman
 
     public PlayerInputActions playerControls;
     //public int heart1, heart2, heart3;

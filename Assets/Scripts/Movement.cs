@@ -10,7 +10,7 @@ public class Movement : MonoBehaviour
     public float maxJumpTime = 1f;
     public float waitBetweenJumps = 1f;
 
-    public Rigidbody2D rb;
+    private Rigidbody2D rb;
     private Vector2 movement_direction = Vector2.zero;
 
     public PlayerInputActions playerControls;
@@ -58,8 +58,11 @@ public class Movement : MonoBehaviour
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
+        Debug.Log("Instantiated new movement script");
+        rb = GetComponent<Rigidbody2D>();
         original_gravity_scale = rb.gravityScale;
         GameLogic = GameObject.Find("GameLogic");
+        
     }
 
     // Update is called once per frame
@@ -77,7 +80,7 @@ public class Movement : MonoBehaviour
 
     private void MoveSpecial(InputAction.CallbackContext context)
     {
-        Debug.Log(context.control.name);
+        //Debug.Log(context.control.name);
         if (context.control.name == "s")
         {
             JumpFinished(context); //cancel jump
@@ -104,9 +107,13 @@ public class Movement : MonoBehaviour
     }
     private IEnumerator JumpCoroutine(InputAction.CallbackContext context)
     {
-        if (GetComponent<ClownPowers>().ballooning == true)
+        if (GameLogic.GetComponent<GameLogic>().is_clown == true)
         {
-            yield return null; //can't jump while using balloons power
+            //Debug.Log("Is clown");
+            if (GetComponent<ClownPowers>().ballooning == true)
+            {
+                yield return null; //can't jump while using balloons power
+            }
         }
         //make sure it is actually on the ground
         RaycastHit2D hit = Physics2D.Raycast(transform.position, -Vector2.up);
