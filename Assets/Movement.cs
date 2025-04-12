@@ -1,29 +1,147 @@
 using UnityEngine;
 using UnityEngine.InputSystem;
+using System.Collections;
 
 public class Movement : MonoBehaviour
 {
-    public float speed = 1;
+
+    public float speed = 2f;
+    public float jumpSpeed = 5f;
+    public float maxJumpTime = 1f;
+    public float waitBetweenJumps = 1f;
+
     public Rigidbody2D rb;
-    private Vector2 movement_direction;
+    private Vector2 movement_direction = Vector2.zero;
+
+    public PlayerInputActions playerControls;
+
+    private InputAction move;
+    private InputAction jump;
+    private InputAction fire;
+
+    private bool jumping = false;
+    private float original_gravity_scale = 0f;
+    //private float timeJumping = 0f;
+
+    private void Awake() //gets called as game starts up
+    {
+        playerControls = new PlayerInputActions();
+    }
+
+    private void OnEnable()
+    {
+        //playerControls.Enable();
+        fire = playerControls.Player.Fire;
+        move = playerControls.Player.Move;
+        jump = playerControls.Player.Jump;
+        move.Enable();
+        move.performed += MoveSpecial;
+        move.canceled += MoveSpecialFinished;
+
+        jump.Enable();
+        jump.performed += Jump;
+        jump.canceled += JumpFinished;
+
+        fire.Enable();
+        fire.performed += Fire; //call the function Fire() on fire.performed event
+    }
+
+    private void OnDisable()
+    {
+        //playerControls.Disable();
+        move.Disable();
+        fire.Disable();
+    }
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-        rb = GetComponent<Rigidbody2D>();
-        
+        original_gravity_scale = rb.gravityScale;
     }
 
     // Update is called once per frame
     void Update()
     {
 
-        movement_direction = new Vector2(Input.GetAxis("Horizontal"), Input.GetAxis("Vertical"));
+        //OLD SYSTEM: movement_direction = new Vector2(Input.GetAxis("Horizontal"), Input.GetAxis("Vertical"));
+        movement_direction = move.ReadValue<Vector2>();
     }
 
-    void FixedUpdate()
+    private void FixedUpdate()
     {
-        rb.linearVelocity = movement_direction * speed;
+        rb.linearVelocity = new Vector2(movement_direction.x * speed, rb.linearVelocity.y);
+    }
+
+    private void MoveSpecial(InputAction.CallbackContext context)
+    {
+        Debug.Log(context.control.name);
+        if (context.control.name == "s")
+        {
+            Debug.Log("Pressed S");
+            JumpFinished(context); //cancel jump
+            GetComponent<ClownPowers>().CancelBalloons(); //if ballooning, stop
+
+        }
+    }
+    private void MoveSpecialFinished(InputAction.CallbackContext context)
+    {  
+        if (context.control.name == "W")
+        {
+            Debug.Log("W released");
+            JumpFinished(context); //cancel jump
+        }
+
+    }
+    private void Fire(InputAction.CallbackContext context)
+    {
+        //Debug.Log("Fire!!");
+    }
+    private void Jump(InputAction.CallbackContext context)
+    {
+        StartCoroutine(JumpCoroutine(context));
+    }
+    private IEnumerator JumpCoroutine(InputAction.CallbackContext context)
+    {
+        if (GetComponent<ClownPowers>().ballooning == true)
+        {
+            yield return null; //can't jump while using balloons power
+        }
+        //make sure it is actually on the ground
+        RaycastHit2D hit = Physics2D.Raycast(transform.position, -Vector2.up);
+        if (hit)
+        {
+            float distance = Mathf.Abs(hit.point.y - transform.position.y);
+            if (distance < .5f)
+            {
+                jumping = true;
+                rb.linearVelocity += new Vector2(0, jumpSpeed); //small jump
+                yield return new WaitForSeconds(waitBetweenJumps);
+                if (jumping) //extend jump
+                {
+                    Debug.Log("Extending jump");
+                    //rb.linearVelocity += new Vector2(0, jumpSpeed*1/4);
+                    original_gravity_scale = rb.gravityScale;
+                    rb.gravityScale = original_gravity_scale*.5f;
+                }
+                Debug.Log("Jump!");
+                yield return new WaitForSeconds(maxJumpTime-waitBetweenJumps);
+                JumpFinished(context);
+                //rb.linearVelocity += new Vector2(0, jumpSpeed);
+            }
+            
+        }
+    }
+
+    private void JumpFinished(InputAction.CallbackContext context)
+    {
+        Debug.Log("Jump Finished");
+        if (jumping) // if currently jumping
+        {
+            rb.linearVelocity = new Vector2(rb.linearVelocity.x, 0);
+            rb.gravityScale = original_gravity_scale;
+            jumping = false;
+            
+        }
     }
 
 }
