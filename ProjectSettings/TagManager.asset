@@ -17,12 +17,16 @@ TagManager:
   - Enemy
   - Player
 <<<<<<< Updated upstream
-  - 
+<<<<<<< Updated upstream
 =======
   - PlayerProjectile
   - EnemyProjectile
 >>>>>>> Stashed changes
   - 
+=======
+  - PlayerProjectile
+  - EnemyProjectile
+>>>>>>> Stashed changes
   - 
   - 
   - 
