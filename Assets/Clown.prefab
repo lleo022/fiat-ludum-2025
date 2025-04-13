@@ -196,5 +196,12 @@ MonoBehaviour:
   ballooning: 0
   balloonTimer: 3
   balloonSpeed: 1
+<<<<<<< Updated upstream
   flying_sprite: {fileID: -2853595319269796747, guid: ec08fabde21b7a74b9326831624c6904, type: 3}
   walking_sprite: {fileID: -7078376115067969448, guid: 410523ced68f28a4e80acc14b54edef8, type: 3}
+=======
+  flowers_obj: {fileID: 2723775802625070449, guid: 70e24de6efa6dda40b0b0df9c0c3158b, type: 3}
+  flowersSpawnOffset: 0.3
+  flying_sprite: {fileID: -8788562764706791526, guid: ec08fabde21b7a74b9326831624c6904, type: 3}
+  walking_sprite: {fileID: 5873608809839702032, guid: 5abdbc74a5af0fe49b0257643f9861c2, type: 3}
+>>>>>>> Stashed changes

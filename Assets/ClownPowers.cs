@@ -11,7 +11,11 @@ public class ClownPowers : MonoBehaviour
     public float balloonTimer = 3f;
     public float balloonSpeed = 2f;
 
+    public GameObject flowers_obj;
+    public float flowersSpawnOffset = .3f;
+
     private InputAction balloons;
+    private InputAction flowers;
 
     private float original_gravity_scale = 2f;
 
@@ -28,15 +32,20 @@ public class ClownPowers : MonoBehaviour
     {
         //playerControls.Enable();
         balloons = playerControls.Player.Balloons;
+        flowers = playerControls.Player.Flowers;
 
         balloons.Enable();
         balloons.performed += Balloons;
+
+        flowers.Enable();
+        flowers.performed += Flowers;
     }
 
     private void OnDisable()
     {
         //playerControls.Disable();
         balloons.Disable();
+        flowers.Disable();
     }
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
@@ -49,6 +58,12 @@ public class ClownPowers : MonoBehaviour
     void Update()
     {
 
+    }
+
+    private void Flowers(InputAction.CallbackContext context)
+    {
+        Vector3 spawnPos = gameObject.transform.position + new Vector3(0, flowersSpawnOffset, 0);
+        GameObject new_flowers = Instantiate(flowers_obj, spawnPos, Quaternion.identity);
     }
 
     private void Balloons(InputAction.CallbackContext context)

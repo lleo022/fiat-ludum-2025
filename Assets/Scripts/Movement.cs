@@ -108,10 +108,10 @@ public class Movement : MonoBehaviour
     private void MoveSpecialFinished(InputAction.CallbackContext context)
     {
         //Debug.Log("Movespecialfinished " + context.control.name);
-        if (context.control.name == "w" || context.control.name == "space")
+        /*if (context.control.name == "w" || context.control.name == "space")
         {
             JumpFinished(context); //cancel jump
-        }
+        }*/
 
     }
     private void Fire(InputAction.CallbackContext context)

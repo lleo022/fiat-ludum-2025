@@ -6,11 +6,12 @@ public class BossProjectileScript : MonoBehaviour
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     private Rigidbody2D rb;
     public float projectileSpeed = 3f;
+
+    public GameObject GameLogic;
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
         //transform.forward is local forward vector
-        //Debug.Log("New projectile: forward direction = " + transform.up);
         rb.linearVelocity = new Vector3(transform.right.x * projectileSpeed, transform.right.y * projectileSpeed, 0);
         StartCoroutine(SelfDestruct());
     }
@@ -21,8 +22,19 @@ public class BossProjectileScript : MonoBehaviour
         Destroy(gameObject); // "gameObject" refers to itself
     }
 
-    // Update is called once per frame
-    void Update()
+    private void OnTriggerEnter2D(Collider2D col)
+    {
+        Debug.Log("Player collision: " + col.gameObject.layer);
+        if (col.gameObject.layer == 9) 
+        {//if hit player
+            //Debug.Log("Hit player: " + col);
+            GameLogic.GetComponent<GameLogic>().hurtPlayer(1);
+            Destroy(gameObject);
+        }
+    }
+
+        // Update is called once per frame
+        void Update()
     {
         
     }

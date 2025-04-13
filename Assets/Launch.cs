@@ -13,6 +13,7 @@ public class Launch : MonoBehaviour
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
+        gameObject.name = "LegalDocument(Copy)";
         rb = GetComponent<Rigidbody2D>();
         Vector2 facingDirection = new Vector2(-1, 0); //left
         if (movement.goingRight)
@@ -24,6 +25,7 @@ public class Launch : MonoBehaviour
 
         rb.linearVelocity = new Vector2(facingDirection.x * launchVelocity, launchVelocity);
         StartCoroutine(SelfDestruct());
+        
     }
 
     private IEnumerator SelfDestruct()

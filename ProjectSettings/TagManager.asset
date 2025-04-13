@@ -13,11 +13,15 @@ TagManager:
   - Water
   - UI
   - Ground
-  - PlayerProjectile
+  - 
   - Enemy
   - Player
+<<<<<<< Updated upstream
   - 
-  - 
+=======
+  - PlayerProjectile
+  - EnemyProjectile
+>>>>>>> Stashed changes
   - 
   - 
   - 

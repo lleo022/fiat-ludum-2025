@@ -18,7 +18,10 @@ public class DealCollisionDamage : MonoBehaviour
 
     private void OnCollisionEnter2D(Collision2D col)
     {
-        Debug.Log("Collided with death cube");
-        GameLogic.GetComponent<GameLogic>().hurtPlayer(1);
+        if (col.collider.gameObject.layer == 9) //if hit player
+        {
+            Debug.Log("Collided with death cube");
+            GameLogic.GetComponent<GameLogic>().hurtPlayer(1);
+        }
     }
 }

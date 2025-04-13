@@ -15,15 +15,6 @@
                     "initialStateCheck": true
                 },
                 {
-                    "name": "Look",
-                    "type": "Value",
-                    "id": "b380b2c8-4660-4230-af98-40b3d6ffc695",
-                    "expectedControlType": "Vector2",
-                    "processors": "",
-                    "interactions": "",
-                    "initialStateCheck": true
-                },
-                {
                     "name": "Jump",
                     "type": "Button",
                     "id": "48206038-6f0b-45b7-b049-5b950087958e",
@@ -54,6 +45,15 @@
                     "name": "LegalBinding",
                     "type": "Button",
                     "id": "86068b27-1fd4-4f70-9870-c826753dc631",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "Flowers",
+                    "type": "Button",
+                    "id": "337bbcd2-4f23-44fe-88d7-9f1d4f842163",
                     "expectedControlType": "",
                     "processors": "",
                     "interactions": "",
@@ -173,39 +173,6 @@
                 },
                 {
                     "name": "",
-                    "id": "c1f7a91b-d0fd-4a62-997e-7fb9b69bf235",
-                    "path": "<Gamepad>/rightStick",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": ";Gamepad",
-                    "action": "Look",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
-                    "id": "8c8e490b-c610-4785-884f-f04217b23ca4",
-                    "path": "<Pointer>/delta",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": ";Keyboard&Mouse;Touch",
-                    "action": "Look",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
-                    "id": "3e5f5442-8668-4b27-a940-df99bad7e831",
-                    "path": "<Joystick>/{Hatswitch}",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "Joystick",
-                    "action": "Look",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
                     "id": "92b4a474-b4ca-4f42-a28b-a6868629ff4b",
                     "path": "<Keyboard>/upArrow",
                     "interactions": "",
@@ -267,6 +234,17 @@
                     "processors": "",
                     "groups": "",
                     "action": "LegalBinding",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "fc29c725-1575-4534-9dac-be390300d264",
+                    "path": "<Keyboard>/2",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Flowers",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

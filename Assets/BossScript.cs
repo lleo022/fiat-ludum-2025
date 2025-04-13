@@ -1,13 +1,19 @@
 using UnityEngine;
 using System.Collections;
+using UnityEngine.UI;
+using System;
 
 public class BossScript : MonoBehaviour
 {
-    public int bossHealth = 100;
+    private float bossHealth = 100f;
+    public float maxBossHealth = 100f;
     public float bossMoveSpeed = 5f;
     public float smashSpeed = 10f;
     public float timeBetweenDirections = 2f;
     public float attackPeriod = 1f;
+    private GameObject GameLogic;
+
+    public Slider healthSlider;
 
     public GameObject projectile;
     public int projectileCount;
@@ -18,18 +24,42 @@ public class BossScript : MonoBehaviour
 
     private bool smashing = false;
     private bool smashing_moving = false;
+    private Vector3 original_position;
     private Vector3 target = new Vector3(0f,0f,0f);
+
+    public float stunTime = 3f;
+
+    private bool stunned = false;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
+        GameLogic = GameObject.Find("GameLogic");
         rb = GetComponent<Rigidbody2D>();
+        original_position = transform.position;
+        //healthSlider.SetActive(true);
+        returnToNormal();
+
+        bossHealth = maxBossHealth;
+        healthSlider.maxValue = maxBossHealth;
+        healthSlider.value = bossHealth;
+        
+    }
+
+    private void returnToNormal()
+    {
         StartCoroutine(MoveSideToSide());
-        StartCoroutine(AttackFrequently());
+        if (stage == 1)
+        {
+            StartCoroutine(Stage1());
+        } else if (stage == 2)
+        {
+            StartCoroutine(Stage2());
+        }
     }
 
     private IEnumerator MoveSideToSide()
     {
-        while (stage == 1 && smashing == false)
+        while (smashing == false && stunned == false)
         {
             rb.linearVelocity = new Vector3(1 * bossMoveSpeed, 0, 0);
             yield return new WaitForSeconds(timeBetweenDirections);
@@ -40,15 +70,32 @@ public class BossScript : MonoBehaviour
 
     }
 
-    private IEnumerator AttackFrequently()
+    private IEnumerator Stage1()
     {
-        while (stage == 1)
+        while (stage == 1 && stunned == false)
         {
             ProjectileAttack();
             yield return new WaitForSeconds(attackPeriod);
         }
 
 
+    }
+
+    private IEnumerator Stage2()
+    {
+        Debug.Log("Stage 2 start");
+        // every random amount of second, it will smash
+        while (stage == 2 && stunned == false)
+        {
+            Debug.Log("Waiting");
+            yield return new WaitForSeconds(UnityEngine.Random.Range(2f, 5f));
+            Debug.Log("Finished waiting");
+            target = GameLogic.GetComponent<GameLogic>().current_player.transform.position;
+            StartCoroutine(SmashAttack());
+            /*var e = SmashAttack();
+            while (e.MoveNext()) { } //waits till it's done?*/
+
+        }
     }
 
     private void ProjectileAttack()
@@ -69,14 +116,78 @@ public class BossScript : MonoBehaviour
 
             // Instantiate the item and set its position
             GameObject newProjectile = Instantiate(projectile, new Vector3(transform.position.x + x, transform.position.y + y, 0), rotation);
+            newProjectile.GetComponent<BossProjectileScript>().GameLogic = GameLogic;
         }
     }
 
-    private void SmashAttack()
+    private IEnumerator SmashAttack()
     {
-        smashing = true;
-        smashing_moving = true;
-        rb.linearVelocity = new Vector3(0, -1 * smashSpeed, 0);
+        if (smashing == false)
+        {
+            smashing = true;
+            smashing_moving = true;
+            //rb.linearVelocity = new Vector3(0, -1 * smashSpeed, 0);
+            while (smashing_moving == true)
+            {
+                yield return new WaitForSeconds(.05f);
+
+            }
+            yield return new WaitForSeconds(1f);
+            //change taregt back to original position
+            target = original_position;
+            smashing_moving = true;
+            while (smashing_moving == true)
+            {
+                yield return new WaitForSeconds(.1f);
+
+            }
+            smashing = false;
+            returnToNormal(); //go back to moving from side to side
+        }
+
+    }
+
+    private bool approachPosition()
+    {
+        var step = smashSpeed * Time.deltaTime; // calculate distance to move
+        transform.position = Vector3.MoveTowards(transform.position, target, step);
+
+        // Check if the position of the cube and sphere are approximately equal.
+        if (Vector3.Distance(transform.position, target) < 0.001f)
+        {
+            // Swap the position of the cylinder.
+            return false;
+        } else
+        {
+            return true;
+        }
+    }
+
+    private IEnumerator stun()
+    {
+        stunned = true;
+        yield return new WaitForSeconds(stunTime);
+        stunned = false;
+        returnToNormal();
+    }
+
+    private void OnTriggerEnter2D(Collider2D col)
+    {
+        Debug.Log("Collision: " + col.gameObject.name + " | " + col.gameObject.layer);
+        if (col.gameObject.layer == 10)
+        {
+            Debug.Log("Collision is layer 10");
+            //if hit by player
+            if (col.gameObject.name == "Flower(Copy)")
+            {
+                Debug.Log("Hit boss- boss script");
+                bossHealth = bossHealth - 10f;
+            } else if (col.gameObject.name == "LegalDocument(Copy)")
+            {
+                StartCoroutine(stun());
+            }
+
+        }
     }
 
     // Update is called once per frame
@@ -84,15 +195,15 @@ public class BossScript : MonoBehaviour
     {
         if (smashing_moving)
         {
-            var step = smashSpeed * Time.deltaTime; // calculate distance to move
-            transform.position = Vector3.MoveTowards(transform.position, target, step);
-
-            // Check if the position of the cube and sphere are approximately equal.
-            if (Vector3.Distance(transform.position, target) < 0.001f)
-            {
-                // Swap the position of the cylinder.
-                smashing_moving = false;
-            }
+            smashing_moving = approachPosition(); //will eventually become false
+        }
+        //float bossHealthPercent = bossHealth / maxBossHealth;
+        healthSlider.value = bossHealth;
+        //Debug.Log("boss health percent " + bossHealthPercent);
+        if ((bossHealth <= 50f) && (stage == 1))
+        {
+            stage = 2;
+            StartCoroutine(Stage2());
         }
     }
 }

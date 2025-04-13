@@ -1,10 +1,10 @@
 fileFormatVersion: 2
-guid: 58b83045e5e90eb42b8eb2a33ea8860d
+guid: e7f0bbb84fec06d49b73118d6febe063
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: -2286684558254154143
-    second: clown_flying_0
+      213: 7367808777163505026
+    second: sunflower_0
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -100,13 +100,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: clown_flying_0
+      name: sunflower_0
       rect:
         serializedVersion: 2
-        x: 0
-        y: 0
-        width: 410
-        height: 566
+        x: 25
+        y: 47
+        width: 350
+        height: 333
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -115,8 +115,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 16ed3e772801440e0800000000000000
-      internalID: -2286684558254154143
+      spriteID: 28df5d7eb07bf3660800000000000000
+      internalID: 7367808777163505026
       vertices: []
       indices: 
       edges: []
@@ -134,8 +134,7 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable:
-      clown_flying_0: -2286684558254154143
+    nameFileIdTable: {}
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

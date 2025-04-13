@@ -101,15 +101,6 @@ public partial class @PlayerInputActions: IInputActionCollection2, IDisposable
                     ""initialStateCheck"": true
                 },
                 {
-                    ""name"": ""Look"",
-                    ""type"": ""Value"",
-                    ""id"": ""b380b2c8-4660-4230-af98-40b3d6ffc695"",
-                    ""expectedControlType"": ""Vector2"",
-                    ""processors"": """",
-                    ""interactions"": """",
-                    ""initialStateCheck"": true
-                },
-                {
                     ""name"": ""Jump"",
                     ""type"": ""Button"",
                     ""id"": ""48206038-6f0b-45b7-b049-5b950087958e"",
@@ -140,6 +131,15 @@ public partial class @PlayerInputActions: IInputActionCollection2, IDisposable
                     ""name"": ""LegalBinding"",
                     ""type"": ""Button"",
                     ""id"": ""86068b27-1fd4-4f70-9870-c826753dc631"",
+                    ""expectedControlType"": """",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Flowers"",
+                    ""type"": ""Button"",
+                    ""id"": ""337bbcd2-4f23-44fe-88d7-9f1d4f842163"",
                     ""expectedControlType"": """",
                     ""processors"": """",
                     ""interactions"": """",
@@ -259,39 +259,6 @@ public partial class @PlayerInputActions: IInputActionCollection2, IDisposable
                 },
                 {
                     ""name"": """",
-                    ""id"": ""c1f7a91b-d0fd-4a62-997e-7fb9b69bf235"",
-                    ""path"": ""<Gamepad>/rightStick"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": "";Gamepad"",
-                    ""action"": ""Look"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": """",
-                    ""id"": ""8c8e490b-c610-4785-884f-f04217b23ca4"",
-                    ""path"": ""<Pointer>/delta"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": "";Keyboard&Mouse;Touch"",
-                    ""action"": ""Look"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": """",
-                    ""id"": ""3e5f5442-8668-4b27-a940-df99bad7e831"",
-                    ""path"": ""<Joystick>/{Hatswitch}"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": ""Joystick"",
-                    ""action"": ""Look"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": """",
                     ""id"": ""92b4a474-b4ca-4f42-a28b-a6868629ff4b"",
                     ""path"": ""<Keyboard>/upArrow"",
                     ""interactions"": """",
@@ -353,6 +320,17 @@ public partial class @PlayerInputActions: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""groups"": """",
                     ""action"": ""LegalBinding"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""fc29c725-1575-4534-9dac-be390300d264"",
+                    ""path"": ""<Keyboard>/2"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Flowers"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 }
@@ -431,11 +409,11 @@ public partial class @PlayerInputActions: IInputActionCollection2, IDisposable
         // Player
         m_Player = asset.FindActionMap("Player", throwIfNotFound: true);
         m_Player_Move = m_Player.FindAction("Move", throwIfNotFound: true);
-        m_Player_Look = m_Player.FindAction("Look", throwIfNotFound: true);
         m_Player_Jump = m_Player.FindAction("Jump", throwIfNotFound: true);
         m_Player_Balloons = m_Player.FindAction("Balloons", throwIfNotFound: true);
         m_Player_Switch = m_Player.FindAction("Switch", throwIfNotFound: true);
         m_Player_LegalBinding = m_Player.FindAction("LegalBinding", throwIfNotFound: true);
+        m_Player_Flowers = m_Player.FindAction("Flowers", throwIfNotFound: true);
         // UI
         m_UI = asset.FindActionMap("UI", throwIfNotFound: true);
     }
@@ -520,11 +498,11 @@ public partial class @PlayerInputActions: IInputActionCollection2, IDisposable
     private readonly InputActionMap m_Player;
     private List<IPlayerActions> m_PlayerActionsCallbackInterfaces = new List<IPlayerActions>();
     private readonly InputAction m_Player_Move;
-    private readonly InputAction m_Player_Look;
     private readonly InputAction m_Player_Jump;
     private readonly InputAction m_Player_Balloons;
     private readonly InputAction m_Player_Switch;
     private readonly InputAction m_Player_LegalBinding;
+    private readonly InputAction m_Player_Flowers;
     /// <summary>
     /// Provides access to input actions defined in input action map "Player".
     /// </summary>
@@ -541,10 +519,6 @@ public partial class @PlayerInputActions: IInputActionCollection2, IDisposable
         /// </summary>
         public InputAction @Move => m_Wrapper.m_Player_Move;
         /// <summary>
-        /// Provides access to the underlying input action "Player/Look".
-        /// </summary>
-        public InputAction @Look => m_Wrapper.m_Player_Look;
-        /// <summary>
         /// Provides access to the underlying input action "Player/Jump".
         /// </summary>
         public InputAction @Jump => m_Wrapper.m_Player_Jump;
@@ -560,6 +534,10 @@ public partial class @PlayerInputActions: IInputActionCollection2, IDisposable
         /// Provides access to the underlying input action "Player/LegalBinding".
         /// </summary>
         public InputAction @LegalBinding => m_Wrapper.m_Player_LegalBinding;
+        /// <summary>
+        /// Provides access to the underlying input action "Player/Flowers".
+        /// </summary>
+        public InputAction @Flowers => m_Wrapper.m_Player_Flowers;
         /// <summary>
         /// Provides access to the underlying input action map instance.
         /// </summary>
@@ -589,9 +567,6 @@ public partial class @PlayerInputActions: IInputActionCollection2, IDisposable
             @Move.started += instance.OnMove;
             @Move.performed += instance.OnMove;
             @Move.canceled += instance.OnMove;
-            @Look.started += instance.OnLook;
-            @Look.performed += instance.OnLook;
-            @Look.canceled += instance.OnLook;
             @Jump.started += instance.OnJump;
             @Jump.performed += instance.OnJump;
             @Jump.canceled += instance.OnJump;
@@ -604,6 +579,9 @@ public partial class @PlayerInputActions: IInputActionCollection2, IDisposable
             @LegalBinding.started += instance.OnLegalBinding;
             @LegalBinding.performed += instance.OnLegalBinding;
             @LegalBinding.canceled += instance.OnLegalBinding;
+            @Flowers.started += instance.OnFlowers;
+            @Flowers.performed += instance.OnFlowers;
+            @Flowers.canceled += instance.OnFlowers;
         }
 
         /// <summary>
@@ -618,9 +596,6 @@ public partial class @PlayerInputActions: IInputActionCollection2, IDisposable
             @Move.started -= instance.OnMove;
             @Move.performed -= instance.OnMove;
             @Move.canceled -= instance.OnMove;
-            @Look.started -= instance.OnLook;
-            @Look.performed -= instance.OnLook;
-            @Look.canceled -= instance.OnLook;
             @Jump.started -= instance.OnJump;
             @Jump.performed -= instance.OnJump;
             @Jump.canceled -= instance.OnJump;
@@ -633,6 +608,9 @@ public partial class @PlayerInputActions: IInputActionCollection2, IDisposable
             @LegalBinding.started -= instance.OnLegalBinding;
             @LegalBinding.performed -= instance.OnLegalBinding;
             @LegalBinding.canceled -= instance.OnLegalBinding;
+            @Flowers.started -= instance.OnFlowers;
+            @Flowers.performed -= instance.OnFlowers;
+            @Flowers.canceled -= instance.OnFlowers;
         }
 
         /// <summary>
@@ -831,13 +809,6 @@ public partial class @PlayerInputActions: IInputActionCollection2, IDisposable
         /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
         void OnMove(InputAction.CallbackContext context);
         /// <summary>
-        /// Method invoked when associated input action "Look" is either <see cref="UnityEngine.InputSystem.InputAction.started" />, <see cref="UnityEngine.InputSystem.InputAction.performed" /> or <see cref="UnityEngine.InputSystem.InputAction.canceled" />.
-        /// </summary>
-        /// <seealso cref="UnityEngine.InputSystem.InputAction.started" />
-        /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
-        /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
-        void OnLook(InputAction.CallbackContext context);
-        /// <summary>
         /// Method invoked when associated input action "Jump" is either <see cref="UnityEngine.InputSystem.InputAction.started" />, <see cref="UnityEngine.InputSystem.InputAction.performed" /> or <see cref="UnityEngine.InputSystem.InputAction.canceled" />.
         /// </summary>
         /// <seealso cref="UnityEngine.InputSystem.InputAction.started" />
@@ -865,6 +836,13 @@ public partial class @PlayerInputActions: IInputActionCollection2, IDisposable
         /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
         /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
         void OnLegalBinding(InputAction.CallbackContext context);
+        /// <summary>
+        /// Method invoked when associated input action "Flowers" is either <see cref="UnityEngine.InputSystem.InputAction.started" />, <see cref="UnityEngine.InputSystem.InputAction.performed" /> or <see cref="UnityEngine.InputSystem.InputAction.canceled" />.
+        /// </summary>
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.started" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
+        void OnFlowers(InputAction.CallbackContext context);
     }
     /// <summary>
     /// Interface to implement callback methods for all input action callbacks associated with input actions defined by "UI" which allows adding and removing callbacks.
