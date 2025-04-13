@@ -33,6 +33,9 @@ public class GameLogic : MonoBehaviour
 
     private List<VisualElement> currentHearts;
 
+    public Vector2 bossFightCameraOffset = new Vector2(0, 3);
+    public float bossFightCameraZoom = 6f;
+
     public bool CreativeMode = false;
 
     private void Awake() //gets called as game starts up
@@ -75,8 +78,8 @@ public class GameLogic : MonoBehaviour
 
     public IEnumerator BossFight()
     {
-        current_camera.GetComponent<FollowPlayer>().zoom = 5f;
-        current_camera.GetComponent<FollowPlayer>().offset = (new Vector2(0f, 1.5f));
+        current_camera.GetComponent<FollowPlayer>().zoom = bossFightCameraZoom;
+        current_camera.GetComponent<FollowPlayer>().offset = bossFightCameraOffset;
         
         yield return new WaitForSeconds(5); //5 second delay for testing purposes
         Instantiate(boss, current_player.transform.position+ new Vector3(-2f,5f,0f), Quaternion.identity);
