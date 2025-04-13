@@ -17,7 +17,7 @@ public class Movement : MonoBehaviour
 
     private InputAction move;
     private InputAction jump;
-    private InputAction fire;
+    //private InputAction fire;
 
     private bool jumping = false;
     private float original_gravity_scale = 0f;
@@ -34,7 +34,7 @@ public class Movement : MonoBehaviour
     private void OnEnable()
     {
         //playerControls.Enable();
-        fire = playerControls.Player.Fire;
+        //fire = playerControls.Player.Fire;
         move = playerControls.Player.Move;
         jump = playerControls.Player.Jump;
         move.Enable();
@@ -45,15 +45,15 @@ public class Movement : MonoBehaviour
         jump.performed += Jump;
         jump.canceled += JumpFinished;
 
-        fire.Enable();
-        fire.performed += Fire; //call the function Fire() on fire.performed event
+        //fire.Enable();
+        //fire.performed += Fire; //call the function Fire() on fire.performed event
     }
 
     private void OnDisable()
     {
         //playerControls.Disable();
         move.Disable();
-        fire.Disable();
+        //fire.Disable();
         jump.Disable();
     }
 
@@ -106,8 +106,9 @@ public class Movement : MonoBehaviour
         }
     }
     private void MoveSpecialFinished(InputAction.CallbackContext context)
-    {  
-        if (context.control.name == "W")
+    {
+        Debug.Log("Movespecialfinished " + context.control.name);
+        if (context.control.name == "W" || context.control.name == "space")
         {
             JumpFinished(context); //cancel jump
         }
@@ -120,6 +121,7 @@ public class Movement : MonoBehaviour
     }
     private void Jump(InputAction.CallbackContext context)
     {
+        
         StartCoroutine(JumpCoroutine(context));
     }
     private IEnumerator JumpCoroutine(InputAction.CallbackContext context)
@@ -140,6 +142,7 @@ public class Movement : MonoBehaviour
             if (distance < .5f)
             {
                 jumping = true;
+                    
                 rb.linearVelocity += new Vector2(0, jumpSpeed); //small jump
                 yield return new WaitForSeconds(waitBetweenJumps);
                 if (jumping) //extend jump
