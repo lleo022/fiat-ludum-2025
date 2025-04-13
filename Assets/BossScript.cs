@@ -35,6 +35,7 @@ public class BossScript : MonoBehaviour
 
     private bool stunned = false;
     private bool sideToSide = false;
+    private bool invulnerable = false;
 
     public float flowerDamage = 5;
 
@@ -44,7 +45,7 @@ public class BossScript : MonoBehaviour
     public void hurtBoss(float amount)
     {
         //Debug.Log("HurtBoss");
-        if (smashing == false)
+        if (smashing == false && invulnerable == false)
         {
             bossHealth -= amount;
         }
@@ -70,8 +71,12 @@ public class BossScript : MonoBehaviour
 
     private IEnumerator beginFight()
     {
-        string[] dialoguearr = { "I am here to annihilate you", "Stupid clown" };
-        GameLogic.GetComponent<DialogueScript>().dialogue(dialoguearr, "Mr. Boss");
+        string[] dialogue_Player = { "Mr. Boss...", "I quit!" };
+        string[] dialogue_Villain = { "Quit?", "...", "HAH HA HA", "You can't quit or else I'll FIRE YOU!!" };
+
+        GameLogic.GetComponent<DialogueScript>().dialogue(dialogue_Player, "You");
+        yield return new WaitUntil(() => GameLogic.GetComponent<DialogueScript>().dialogueUI.activeSelf == false);
+        GameLogic.GetComponent<DialogueScript>().dialogue(dialogue_Villain, "Mr. Boss");
         yield return new WaitUntil(() => GameLogic.GetComponent<DialogueScript>().dialogueUI.activeSelf == false); //wait till dialogue box is closed
         returnToNormal();
     }
@@ -105,8 +110,26 @@ public class BossScript : MonoBehaviour
                 sideToSide = true;
                 yield return new WaitUntil(() => sideToSide == false);
             }
+        } else
+        {
+            Debug.Log("Cant't return to normal: " + stunned + smashing);
         }
         
+    }
+
+    private IEnumerator Stage2Custcene()
+    {
+        stunned = true;
+        invulnerable = true;
+
+        string[] dialogue_Villain = { "Your attire is so... unprofessional." };
+        GameLogic.GetComponent<DialogueScript>().dialogue(dialogue_Villain, "Mr. Boss");
+        yield return new WaitUntil(() => GameLogic.GetComponent<DialogueScript>().dialogueUI.activeSelf == false); //wait till dialogue box is closed
+
+        stunned = false;
+        invulnerable = false;
+        returnToNormal();
+
     }
 
     private IEnumerator Stage1()
@@ -118,7 +141,7 @@ public class BossScript : MonoBehaviour
             if ((bossHealth <= 50f) && (stage == 1))
             {
                 stage = 2;
-                StartCoroutine(Stage2());
+                StartCoroutine(Stage2Custcene());
                 break;
             }
         }
@@ -132,10 +155,10 @@ public class BossScript : MonoBehaviour
         {
             target = GameLogic.GetComponent<GameLogic>().current_player.transform.position;
             stunned = true;
-            yield return new WaitForSeconds(1f);
+            yield return new WaitForSeconds(.5f);
             stunned = false;
             StartCoroutine(SmashAttack());
-            yield return new WaitForSeconds(UnityEngine.Random.Range(8f, 14f));
+            yield return new WaitForSeconds(UnityEngine.Random.Range(2f, 5f));
             if (bossHealth <= 0)
             {
                 GameLogic.GetComponent<GameLogic>().Victory();
@@ -181,13 +204,10 @@ public class BossScript : MonoBehaviour
             //rb.linearVelocity = new Vector3(0, -1 * smashSpeed, 0);
             yield return new WaitUntil(() => smashing_moving == false);
             yield return new WaitForSeconds(1f);
-            //change taregt back to original position
-            /*target = original_position;
-            smashing_moving = true;*/
             move_back_to_original = true;
             yield return new WaitUntil(() => move_back_to_original == false);
             smashing = false;
-            returnToNormal(); //go back to moving from side to side
+            StartCoroutine(MoveSideToSide()); //go back to moving from side to side
         }
 
     }

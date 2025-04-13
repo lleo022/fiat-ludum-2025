@@ -105,11 +105,11 @@ MonoBehaviour:
   maxBossHealth: 100
   bossMoveSpeed: 5
   smashSpeed: 20
-  timeBetweenDirections: 1
+  xRange: 4
   attackPeriod: 1
   healthSlider: {fileID: 0}
   projectile: {fileID: 7514985818184340166, guid: 4dc85ead2db03f148afdc43a90effdca, type: 3}
-  projectileCount: 5
+  projectileCount: 3
   radius: 0.5
   stage: 1
   stunTime: 3
