@@ -93,9 +93,8 @@ public class Launch : MonoBehaviour
                     }
 
                     // Now it's safe to destroy the enemy
-                    Destroy(enemy.gameObject);
-                    Debug.Log("Enemy destroyed: " + enemy.gameObject.name);
-
+                    enemy.OnDefeat();
+                    
                     // Destroy this projectile
                     Destroy(gameObject);
                     return;
