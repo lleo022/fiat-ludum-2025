@@ -54,7 +54,7 @@ public class Enemy : MonoBehaviour
 
     private void damagePlayer()
     {
-        if (!PlayerInSight())
+        if (PlayerInSight())
         {
             GameLogic.GetComponent<GameLogic>().hurtPlayer(1);
         }
