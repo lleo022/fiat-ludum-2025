@@ -77,7 +77,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 1878563467
-  m_SortingLayer: 1
+  m_SortingLayer: 0
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: a1f2d20a7edae1542aa9aa6d9398d44c, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -107,7 +107,7 @@ MonoBehaviour:
   smashSpeed: 10
   timeBetweenDirections: 1
   attackPeriod: 1
-  healthSlider: {fileID: 3921403313200131741, guid: 453a6a2d233bea341b3fb8fa42d351f8, type: 3}
+  healthSlider: {fileID: 2251235192122660365, guid: 768b935078f44fc408448a347c4503f1, type: 3}
   projectile: {fileID: 7514985818184340166, guid: 4dc85ead2db03f148afdc43a90effdca, type: 3}
   projectileCount: 5
   radius: 0.5

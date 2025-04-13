@@ -27,9 +27,9 @@ public class BossProjectileScript : MonoBehaviour
         Debug.Log("Player collision: " + col.gameObject.layer);
         if (col.gameObject.layer == 9) 
         {//if hit player
-            //Debug.Log("Hit player: " + col);
+            Debug.Log("Hit player: " + col);
             GameLogic.GetComponent<GameLogic>().hurtPlayer(1);
-            Destroy(gameObject);
+            //Destroy(gameObject);
         }
     }
 

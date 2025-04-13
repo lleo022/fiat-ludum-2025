@@ -2,6 +2,7 @@ using UnityEngine;
 using UnityEngine.UIElements;
 using UnityEngine.InputSystem;
 using System.Collections.Generic;
+using System.Collections;
 using static UnityEngine.GraphicsBuffer;
 using UnityEngine.SceneManagement;
 using Unity.VisualScripting;
@@ -15,17 +16,22 @@ public class GameLogic : MonoBehaviour
     public GameObject businessman;
     public GameObject clown;
     public GameObject current_player;
-
     public GameObject current_camera;
+
+    public GameObject boss;
 
     public bool is_clown = false; // true = clown, false = businessman
 
     public PlayerInputActions playerControls;
 
+    //three hearts
     public UIDocument healthBarUI;
     private VisualElement healthbar;
 
     public GameObject gameOverUI;
+    public GameObject victoryUI;
+
+    public GameObject bossFightUI;
 
     private InputAction switch_persona;
 
@@ -39,6 +45,8 @@ public class GameLogic : MonoBehaviour
         currentHearts = healthbar.Query("Heart").ToList();
 
         gameOverUI.SetActive(false);
+        victoryUI.SetActive(false);
+        bossFightUI.SetActive(false);
 
         currentHearts.Reverse(); // it comes out in the wrong order
     }
@@ -54,16 +62,32 @@ public class GameLogic : MonoBehaviour
     {
         switch_persona.Disable();
     }
+
+    public void Victory()
+    {
+        victoryUI.SetActive(true);
+    }
     private void Death()
     {
         current_player.SetActive(false);
         gameOverUI.SetActive(true);
+    }
+
+    public IEnumerator BossFight()
+    {
+        current_camera.GetComponent<FollowPlayer>().zoom = 5f;
+        current_camera.GetComponent<FollowPlayer>().offset = (new Vector2(0f, 1.5f));
+        
+        yield return new WaitForSeconds(5); //5 second delay for testing purposes
+        Instantiate(boss, current_player.transform.position+ new Vector3(-2f,5f,0f), Quaternion.identity);
+        bossFightUI.SetActive(true);
     }
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
         //restartButton.RegisterCallback<ClickEvent>(onClick);
         Switch();
+        StartCoroutine(BossFight());
     }
     private void SwitchCallback(InputAction.CallbackContext context)
     {

@@ -76,6 +76,12 @@ public class BossScript : MonoBehaviour
         {
             ProjectileAttack();
             yield return new WaitForSeconds(attackPeriod);
+            if ((bossHealth <= 50f) && (stage == 1))
+            {
+                stage = 2;
+                StartCoroutine(Stage2());
+                break;
+            }
         }
 
 
@@ -87,13 +93,14 @@ public class BossScript : MonoBehaviour
         // every random amount of second, it will smash
         while (stage == 2 && stunned == false)
         {
-            Debug.Log("Waiting");
-            yield return new WaitForSeconds(UnityEngine.Random.Range(2f, 5f));
-            Debug.Log("Finished waiting");
             target = GameLogic.GetComponent<GameLogic>().current_player.transform.position;
             StartCoroutine(SmashAttack());
-            /*var e = SmashAttack();
-            while (e.MoveNext()) { } //waits till it's done?*/
+            yield return new WaitForSeconds(UnityEngine.Random.Range(3f, 5f));
+            if (bossHealth <= 0)
+            {
+                GameLogic.GetComponent<GameLogic>().Victory();
+                Destroy(gameObject);
+            }
 
         }
     }
@@ -197,13 +204,10 @@ public class BossScript : MonoBehaviour
         {
             smashing_moving = approachPosition(); //will eventually become false
         }
-        //float bossHealthPercent = bossHealth / maxBossHealth;
-        healthSlider.value = bossHealth;
-        //Debug.Log("boss health percent " + bossHealthPercent);
-        if ((bossHealth <= 50f) && (stage == 1))
+        if (bossHealth >= 0)
         {
-            stage = 2;
-            StartCoroutine(Stage2());
+            healthSlider.value = bossHealth;
         }
+        
     }
 }
