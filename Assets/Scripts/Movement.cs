@@ -107,8 +107,8 @@ public class Movement : MonoBehaviour
     }
     private void MoveSpecialFinished(InputAction.CallbackContext context)
     {
-        Debug.Log("Movespecialfinished " + context.control.name);
-        if (context.control.name == "W" || context.control.name == "space")
+        //Debug.Log("Movespecialfinished " + context.control.name);
+        if (context.control.name == "w" || context.control.name == "space")
         {
             JumpFinished(context); //cancel jump
         }
