@@ -2,6 +2,8 @@ using UnityEngine;
 using System.Collections;
 using UnityEngine.UI;
 using System;
+using NUnit.Framework;
+using System.Collections.Generic;
 
 public class BossScript : MonoBehaviour
 {
@@ -30,6 +32,7 @@ public class BossScript : MonoBehaviour
     public float stunTime = 3f;
 
     private bool stunned = false;
+
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
@@ -37,12 +40,24 @@ public class BossScript : MonoBehaviour
         rb = GetComponent<Rigidbody2D>();
         original_position = transform.position;
         //healthSlider.SetActive(true);
-        returnToNormal();
+
+        StartCoroutine(beginFight());
 
         bossHealth = maxBossHealth;
         healthSlider.maxValue = maxBossHealth;
         healthSlider.value = bossHealth;
         
+    }
+
+    private IEnumerator beginFight()
+    {
+        string[] dialoguearr = { "I am here to annihilate you", "Stupid clown" };
+        GameLogic.GetComponent<DialogueScript>().dialogue(dialoguearr, "Mr. Boss");
+        while (GameLogic.GetComponent<DialogueScript>().dialogueUI.activeSelf == true)
+        {
+            yield return new WaitForSeconds(.1f);
+        }
+        returnToNormal();
     }
 
     private void returnToNormal()

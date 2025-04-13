@@ -6,12 +6,9 @@ public class FollowPlayer : MonoBehaviour
     public Transform player;
     public Vector2 offset;
     public float zoom = 3.28f;
-    private float minCameraZoom = .1f;
-    private float maxCameraZoom = 10f;
-    public float zoomSpeed = 1f;
 
     private Camera cam;
-
+    
     private void Start()
     {
         cam = GetComponent<Camera>();
@@ -26,8 +23,8 @@ public class FollowPlayer : MonoBehaviour
             Vector3 targetCamPosition = new Vector3(player.position.x + offset.x, player.position.y + offset.y, -10);
             transform.position = Vector3.SmoothDamp(transform.position, targetCamPosition, ref initial_velocity, timing);
 
-            Debug.Log("Changing zoom: " + cam.orthographicSize + " | " + zoom);
-            float initial_velocity2 = 0f;//zoomSpeed * Time.deltaTime;
+            //Debug.Log("Changing zoom: " + cam.orthographicSize + " | " + zoom);
+            float initial_velocity2 = 0f;
             float newSize = Mathf.SmoothDamp(cam.orthographicSize, zoom, ref initial_velocity2, timing);
             cam.orthographicSize = newSize;
         }

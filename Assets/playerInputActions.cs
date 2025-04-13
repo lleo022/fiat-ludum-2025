@@ -144,6 +144,15 @@ public partial class @PlayerInputActions: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""TurnOffDialogue"",
+                    ""type"": ""Button"",
+                    ""id"": ""764dba75-3f69-4a1f-8cab-7ce44d459e09"",
+                    ""expectedControlType"": """",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -333,6 +342,17 @@ public partial class @PlayerInputActions: IInputActionCollection2, IDisposable
                     ""action"": ""Flowers"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""d43fa5fb-ac43-418b-aa2f-37606b01e426"",
+                    ""path"": ""<Keyboard>/enter"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""TurnOffDialogue"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         },
@@ -414,6 +434,7 @@ public partial class @PlayerInputActions: IInputActionCollection2, IDisposable
         m_Player_Switch = m_Player.FindAction("Switch", throwIfNotFound: true);
         m_Player_LegalBinding = m_Player.FindAction("LegalBinding", throwIfNotFound: true);
         m_Player_Flowers = m_Player.FindAction("Flowers", throwIfNotFound: true);
+        m_Player_TurnOffDialogue = m_Player.FindAction("TurnOffDialogue", throwIfNotFound: true);
         // UI
         m_UI = asset.FindActionMap("UI", throwIfNotFound: true);
     }
@@ -503,6 +524,7 @@ public partial class @PlayerInputActions: IInputActionCollection2, IDisposable
     private readonly InputAction m_Player_Switch;
     private readonly InputAction m_Player_LegalBinding;
     private readonly InputAction m_Player_Flowers;
+    private readonly InputAction m_Player_TurnOffDialogue;
     /// <summary>
     /// Provides access to input actions defined in input action map "Player".
     /// </summary>
@@ -538,6 +560,10 @@ public partial class @PlayerInputActions: IInputActionCollection2, IDisposable
         /// Provides access to the underlying input action "Player/Flowers".
         /// </summary>
         public InputAction @Flowers => m_Wrapper.m_Player_Flowers;
+        /// <summary>
+        /// Provides access to the underlying input action "Player/TurnOffDialogue".
+        /// </summary>
+        public InputAction @TurnOffDialogue => m_Wrapper.m_Player_TurnOffDialogue;
         /// <summary>
         /// Provides access to the underlying input action map instance.
         /// </summary>
@@ -582,6 +608,9 @@ public partial class @PlayerInputActions: IInputActionCollection2, IDisposable
             @Flowers.started += instance.OnFlowers;
             @Flowers.performed += instance.OnFlowers;
             @Flowers.canceled += instance.OnFlowers;
+            @TurnOffDialogue.started += instance.OnTurnOffDialogue;
+            @TurnOffDialogue.performed += instance.OnTurnOffDialogue;
+            @TurnOffDialogue.canceled += instance.OnTurnOffDialogue;
         }
 
         /// <summary>
@@ -611,6 +640,9 @@ public partial class @PlayerInputActions: IInputActionCollection2, IDisposable
             @Flowers.started -= instance.OnFlowers;
             @Flowers.performed -= instance.OnFlowers;
             @Flowers.canceled -= instance.OnFlowers;
+            @TurnOffDialogue.started -= instance.OnTurnOffDialogue;
+            @TurnOffDialogue.performed -= instance.OnTurnOffDialogue;
+            @TurnOffDialogue.canceled -= instance.OnTurnOffDialogue;
         }
 
         /// <summary>
@@ -843,6 +875,13 @@ public partial class @PlayerInputActions: IInputActionCollection2, IDisposable
         /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
         /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
         void OnFlowers(InputAction.CallbackContext context);
+        /// <summary>
+        /// Method invoked when associated input action "TurnOffDialogue" is either <see cref="UnityEngine.InputSystem.InputAction.started" />, <see cref="UnityEngine.InputSystem.InputAction.performed" /> or <see cref="UnityEngine.InputSystem.InputAction.canceled" />.
+        /// </summary>
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.started" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
+        void OnTurnOffDialogue(InputAction.CallbackContext context);
     }
     /// <summary>
     /// Interface to implement callback methods for all input action callbacks associated with input actions defined by "UI" which allows adding and removing callbacks.
