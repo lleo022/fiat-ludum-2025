@@ -64,7 +64,7 @@ public class ClownPowers : MonoBehaviour
 
         //change sprite
         GetComponent<SpriteRenderer>().sprite = flying_sprite;
-        original_scale = transform.localScale;
+        original_scale = 6 * transform.localScale;
         transform.localScale = new Vector3(original_scale.x * .1f, original_scale.y * .1f, original_scale.z);
 
         original_gravity_scale = rb.gravityScale;
@@ -79,6 +79,6 @@ public class ClownPowers : MonoBehaviour
         rb.gravityScale = original_gravity_scale; //re-enable gravity
         ballooning = false;
         GetComponent<SpriteRenderer>().sprite = walking_sprite;
-        transform.localScale = original_scale;
+        transform.localScale = original_scale / 6;
     }
 }

@@ -1,6 +1,6 @@
 <ui:UXML xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" noNamespaceSchemaLocation="../UIElementsSchema/UIElements.xsd" editor-extension-mode="False">
     <Style src="project://database/Assets/playerGUI.uss?fileID=7433441132597879392&amp;guid=ee112b2c2fb577844bf4c7e44969b18a&amp;type=3#playerGUI" />
-    <ui:VisualElement name="Healthbar" style="flex-grow: 1; position: absolute; height: 108px; width: 313px; flex-direction: row; left: 38px; top: 30px;">
+    <ui:VisualElement name="Healthbar" style="flex-grow: 1; position: absolute; height: 50px; width: 150px; flex-direction: row; left: 38px; top: 30px;">
         <ui:VisualElement name="Heart" style="flex-grow: 1; background-image: url(&quot;project://database/Assets/heart-removebg-preview.png?fileID=2800000&amp;guid=fec5853b9eb50e84fbc2843f419c2650&amp;type=3#heart-removebg-preview&quot;);" />
         <ui:VisualElement name="Heart" style="flex-grow: 1; background-image: url(&quot;project://database/Assets/heart-removebg-preview.png?fileID=2800000&amp;guid=fec5853b9eb50e84fbc2843f419c2650&amp;type=3#heart-removebg-preview&quot;);" />
         <ui:VisualElement name="Heart" style="flex-grow: 1; background-image: url(&quot;project://database/Assets/heart-removebg-preview.png?fileID=2800000&amp;guid=fec5853b9eb50e84fbc2843f419c2650&amp;type=3#heart-removebg-preview&quot;);" />
