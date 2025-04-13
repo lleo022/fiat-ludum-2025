@@ -28,7 +28,7 @@ public class GameLogic : MonoBehaviour
     public GameObject victoryUI;
 
     public GameObject bossFightUI;
-    public UnityEngine.UI.Slider bossFightFightSlider;
+    public UnityEngine.UI.Slider bossFightSlider;
     private InputAction switch_persona;
 
     private List<VisualElement> currentHearts;
@@ -45,7 +45,8 @@ public class GameLogic : MonoBehaviour
         healthbar = healthBarUI.rootVisualElement.Q<VisualElement>("Healthbar");
         currentHearts = healthbar.Query("Heart").ToList();
 
-        bossFightFightSlider = bossFightUI.GetComponent<UnityEngine.UI.Slider>();
+        bossFightSlider = bossFightUI.GetComponent<UnityEngine.UI.Slider>();
+        Debug.Log("Got slider: " + bossFightSlider);
 
         gameOverUI.SetActive(false);
         victoryUI.SetActive(false);
@@ -83,7 +84,9 @@ public class GameLogic : MonoBehaviour
         
         yield return new WaitForSeconds(5); //5 second delay for testing purposes
         Instantiate(boss, current_player.transform.position+ new Vector3(-2f,5f,0f), Quaternion.identity);
-        boss.GetComponent<BossScript>().healthSlider = bossFightFightSlider;
+        boss.GetComponent<BossScript>().healthSlider = bossFightSlider;
+        Debug.Log("Set boss health slider: " + boss.GetComponent<BossScript>().healthSlider);
+
         bossFightUI.SetActive(true);
     }
     // Start is called once before the first execution of Update after the MonoBehaviour is created

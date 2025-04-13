@@ -70,6 +70,7 @@ public class ClownPowers : MonoBehaviour
     {
         if (ballooning == false)
         {
+            GetComponent<Movement>().JumpFinished(context); //if jumping, stop jumping
             StartCoroutine(BalloonsCoroutine());
         }
     }

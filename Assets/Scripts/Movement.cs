@@ -19,7 +19,7 @@ public class Movement : MonoBehaviour
     private InputAction jump;
     //private InputAction fire;
 
-    private bool jumping = false;
+    public bool jumping = false;
     private float original_gravity_scale = 0f;
 
     private GameObject GameLogic;
@@ -108,16 +108,11 @@ public class Movement : MonoBehaviour
     private void MoveSpecialFinished(InputAction.CallbackContext context)
     {
         //Debug.Log("Movespecialfinished " + context.control.name);
-        /*if (context.control.name == "w" || context.control.name == "space")
+        if (context.control.name == "w" || context.control.name == "space") //on w or space up, cancel jump
         {
             JumpFinished(context); //cancel jump
-        }*/
+        }
 
-    }
-    private void Fire(InputAction.CallbackContext context)
-    {
-        //Debug.Log("Losing health");
-        //GameLogic.GetComponent<GameLogic>().hurtPlayer(1);
     }
     private void Jump(InputAction.CallbackContext context)
     {
@@ -135,13 +130,17 @@ public class Movement : MonoBehaviour
             }
         }
         //make sure it is actually on the ground
-        RaycastHit2D hit = Physics2D.Raycast(transform.position, -Vector2.up);
+        float maxDistance = 100;
+        LayerMask mask = LayerMask.GetMask("Ground"); //only use ground layer
+        RaycastHit2D hit = Physics2D.Raycast(transform.position, -Vector2.up, maxDistance, mask);
         if (hit)
         {
             float distance = Mathf.Abs(hit.point.y - transform.position.y);
+            Debug.Log("Distance from ground " + distance);
             if (distance < .5f)
             {
                 jumping = true;
+                Debug.Log("Allowing jump");
                     
                 rb.linearVelocity += new Vector2(0, jumpSpeed); //small jump
                 yield return new WaitForSeconds(waitBetweenJumps);
@@ -161,7 +160,7 @@ public class Movement : MonoBehaviour
         }
     }
 
-    private void JumpFinished(InputAction.CallbackContext context)
+    public void JumpFinished(InputAction.CallbackContext context)
     {
         //Debug.Log("Jump Finished");
         if (jumping) // if currently jumping

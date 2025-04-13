@@ -111,8 +111,9 @@ public class BossScript : MonoBehaviour
         while (stage == 2 && stunned == false)
         {
             target = GameLogic.GetComponent<GameLogic>().current_player.transform.position;
+            yield return new WaitForSeconds(.5f);
             StartCoroutine(SmashAttack());
-            yield return new WaitForSeconds(UnityEngine.Random.Range(3f, 5f));
+            yield return new WaitForSeconds(UnityEngine.Random.Range(5f, 8f));
             if (bossHealth <= 0)
             {
                 GameLogic.GetComponent<GameLogic>().Victory();
