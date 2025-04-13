@@ -15,6 +15,11 @@ public class ClownPowers : MonoBehaviour
 
     private float original_gravity_scale = 2f;
 
+    private Vector3 original_scale;
+
+    public Sprite flying_sprite;
+    public Sprite walking_sprite;
+
     private void Awake() //gets called as game starts up
     {
         playerControls = new PlayerInputActions();
@@ -56,6 +61,12 @@ public class ClownPowers : MonoBehaviour
     private IEnumerator BalloonsCoroutine()
     {
         ballooning = true;
+
+        //change sprite
+        GetComponent<SpriteRenderer>().sprite = flying_sprite;
+        original_scale = transform.localScale;
+        transform.localScale = new Vector3(original_scale.x * .1f, original_scale.y * .1f, original_scale.z);
+
         original_gravity_scale = rb.gravityScale;
         rb.gravityScale = 0; //disable gravity
         rb.linearVelocity += new Vector2(0, balloonSpeed);
@@ -67,5 +78,7 @@ public class ClownPowers : MonoBehaviour
     {
         rb.gravityScale = original_gravity_scale; //re-enable gravity
         ballooning = false;
+        GetComponent<SpriteRenderer>().sprite = walking_sprite;
+        transform.localScale = original_scale;
     }
 }
