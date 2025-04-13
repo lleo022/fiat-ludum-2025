@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 7030650417199494681}
   - component: {fileID: 4213583297058187704}
+  - component: {fileID: 580712717847451686}
   m_Layer: 0
   m_Name: GameLogic
   m_TagString: Untagged
@@ -50,4 +51,36 @@ MonoBehaviour:
   clown: {fileID: 7127480705712683274, guid: a258ae19bc2d66c40832b0269204a647, type: 3}
   current_player: {fileID: 0}
   current_camera: {fileID: 0}
-  uiDocument: {fileID: 0}
+  is_clown: 0
+  healthBarUI: {fileID: 0}
+  gameOverUI: {fileID: 0}
+--- !u!114 &580712717847451686
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4052788381185180298}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 62899f850307741f2a39c98a8b639597, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Actions: {fileID: -944628639613478452, guid: f0509d2c39b1b914490a832b732f9692, type: 3}
+  m_NotificationBehavior: 0
+  m_UIInputModule: {fileID: 0}
+  m_DeviceLostEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  m_DeviceRegainedEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  m_ControlsChangedEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  m_ActionEvents: []
+  m_NeverAutoSwitchControlSchemes: 0
+  m_DefaultControlScheme: 
+  m_DefaultActionMap: Player
+  m_SplitScreenIndex: -1
+  m_Camera: {fileID: 0}

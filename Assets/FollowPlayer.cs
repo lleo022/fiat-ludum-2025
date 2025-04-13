@@ -6,7 +6,7 @@ public class FollowPlayer : MonoBehaviour
     public Vector3 offset;
     void Update()
     {
-        if (transform != null)
+        if (player != null && transform != null)
         {
             transform.position = new Vector3(player.position.x + offset.x, player.position.y + offset.y, offset.z); // Camera follows player
         }

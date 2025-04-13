@@ -4,6 +4,7 @@ using UnityEngine.InputSystem;
 using System.Collections.Generic;
 using static UnityEngine.GraphicsBuffer;
 using UnityEngine.SceneManagement;
+using Unity.VisualScripting;
 //using UnityEngine.UI;
 
 public class GameLogic : MonoBehaviour
@@ -20,14 +21,11 @@ public class GameLogic : MonoBehaviour
     public bool is_clown = false; // true = clown, false = businessman
 
     public PlayerInputActions playerControls;
-    //public int heart1, heart2, heart3;
 
     public UIDocument healthBarUI;
     private VisualElement healthbar;
 
-    public UIDocument gameOverUI;
-    public Button restartButton;
-    //private VisualElement currentHeart;
+    public GameObject gameOverUI;
 
     private InputAction switch_persona;
 
@@ -40,55 +38,31 @@ public class GameLogic : MonoBehaviour
         healthbar = healthBarUI.rootVisualElement.Q<VisualElement>("Healthbar");
         currentHearts = healthbar.Query("Heart").ToList();
 
-        restartButton = gameOverUI.rootVisualElement.Q<Button>();
-        Debug.Log("Restart button name: " + restartButton.name);
-
-        gameOverUI.enabled = false;
+        gameOverUI.SetActive(false);
 
         currentHearts.Reverse(); // it comes out in the wrong order
     }
     private void OnEnable()
     {
-        //playerControls.Enable();
         switch_persona = playerControls.Player.Switch;
 
         switch_persona.Enable();
         switch_persona.performed += SwitchCallback;
-
-        //restartButton.clickable.clicked += RestartGame;
-        restartButton.RegisterCallback<PointerDownEvent>(onClick);
-        //PointerDownEvent 
     }
 
     private void OnDisable()
     {
-        //playerControls.Disable();
         switch_persona.Disable();
-
-        //restartButton.Disable();
-    }
-
-    private void onClick(PointerDownEvent evt)
-    {
-        RestartGame();
-    }
-
-    private void RestartGame()
-    {
-        Debug.Log("Restarting game");
-        SceneManager.LoadScene(SceneManager.GetActiveScene().name); //reloads scene
-        gameOverUI.enabled = false;
-        //current_player.SetActive(true);
     }
     private void Death()
     {
         current_player.SetActive(false);
-        gameOverUI.enabled = true;
+        gameOverUI.SetActive(true);
     }
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-        
+        //restartButton.RegisterCallback<ClickEvent>(onClick);
         Switch();
     }
     private void SwitchCallback(InputAction.CallbackContext context)
@@ -98,7 +72,7 @@ public class GameLogic : MonoBehaviour
     private void Switch()
     {
         is_clown = !is_clown;
-        Debug.Log("Isclown: " + is_clown);
+        //Debug.Log("Isclown: " + is_clown);
         GameObject new_player;
         if (is_clown) //clown
         {
@@ -117,7 +91,7 @@ public class GameLogic : MonoBehaviour
         Debug.Log("Destroying : " + current_player.name + " Creating: " + current_player.name + " With transform: " + current_player.transform.position);
         Destroy(current_player);
         current_player = new_player;
-        Debug.Log("New current player: " + current_player);
+        //Debug.Log("New current player: " + current_player);
         current_camera.GetComponent<FollowPlayer>().player = current_player.transform;
     }
 
@@ -143,7 +117,7 @@ public class GameLogic : MonoBehaviour
         //List<VisualElement> currentHearts = healthbar.Query("Heart").ToList();//healthbar.Q<VisualElement>("Heart");
         foreach (VisualElement heart in currentHearts)
         {
-            Debug.Log("Heart display: " + heart + " | " + heart.style.opacity);
+            //Debug.Log("Heart display: " + heart + " | " + heart.style.opacity);
             // go until you find one that is still visible
             //if (heart.style.display == StyleKeyword.Null)
             if (heart.resolvedStyle.opacity == 1f)
@@ -173,6 +147,9 @@ public class GameLogic : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+        if (current_player.transform.position.y < -20)
+        {
+            Death();
+        }
     }
 }
