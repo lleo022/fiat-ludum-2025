@@ -81,7 +81,14 @@ public class GameLogic : MonoBehaviour
         {
             new_player = Instantiate(businessman, current_player.transform.position, Quaternion.identity);
         }
-        //Debug.Log("Destroying : " + current_player.name + " Creating: " + current_player.name + " With transform: " + current_player.transform.position);
+        SpriteRenderer oldSR = current_player.GetComponent<SpriteRenderer>();
+        SpriteRenderer newSR = new_player.GetComponent<SpriteRenderer>();
+        if (oldSR != null && newSR != null)
+        {
+            newSR.sortingLayerID = oldSR.sortingLayerID;
+            newSR.sortingOrder = oldSR.sortingOrder;
+        }
+        Debug.Log("Destroying : " + current_player.name + " Creating: " + current_player.name + " With transform: " + current_player.transform.position);
         Destroy(current_player);
         current_player = new_player;
         //Debug.Log("New current player: " + current_player);
