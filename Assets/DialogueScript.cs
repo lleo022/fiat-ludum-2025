@@ -22,6 +22,8 @@ public class DialogueScript : MonoBehaviour
     //private List<string> messages_list;
     private string[] messages_list = new string[0];
 
+    private bool currentlyTyping = false;
+
     public void dialogue(string [] messages, string name)
     {
         dialogueUI.SetActive(true);
@@ -39,13 +41,20 @@ public class DialogueScript : MonoBehaviour
     }
     private IEnumerator dialogueCoroutine(string message)
     {
+        currentlyTyping = true;
         string partial_message = "";
         foreach (char c in message)
         {
+            if (currentlyTyping == false) //if player hits enter midway
+            {
+                break;
+            }
             partial_message = partial_message + c;
             textBox.GetComponent<TextMeshProUGUI>().text = partial_message;
             yield return new WaitForSeconds(charDelay);
         }
+        textBox.GetComponent<TextMeshProUGUI>().text = message;
+        currentlyTyping = false;
     }
     private void Awake()
     {
@@ -71,6 +80,12 @@ public class DialogueScript : MonoBehaviour
 
     private void TurnOffDialogue(InputAction.CallbackContext context)
     {
+        if (currentlyTyping == true)
+        {
+            //interrupt for loop
+            currentlyTyping = false;
+            return;
+        }
         dialogueIndex += 1;
         if (dialogueIndex >= messages_list.Length)
         {
