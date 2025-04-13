@@ -103,7 +103,7 @@ public class GameLogic : MonoBehaviour
         }
     }
 
-    public void hurtBoss(float amount)
+    public void hurtBoss()
     {
         if (boss_obj)
         {

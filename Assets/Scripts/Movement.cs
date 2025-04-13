@@ -165,7 +165,7 @@ public class Movement : MonoBehaviour
     {
         if (col.collider.gameObject.layer == 8 && col.collider.gameObject.name == "MrBoss")
         {
-
+            GameLogic.GetComponent<GameLogic>().hurtBoss();
         }
     }
 
