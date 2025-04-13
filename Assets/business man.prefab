@@ -16,7 +16,7 @@ GameObject:
   - component: {fileID: 2629278460699421877}
   m_Layer: 9
   m_Name: business man
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -77,8 +77,8 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 1878563467
-  m_SortingLayer: 1
+  m_SortingLayerID: -1941195173
+  m_SortingLayer: 2
   m_SortingOrder: 0
   m_Sprite: {fileID: -6136248378936041853, guid: 9a393ec034ecc8a449af5309476c32d0, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -181,8 +181,6 @@ MonoBehaviour:
   maxJumpTime: 2
   waitBetweenJumps: 0.2
   goingRight: 1
-  flying_sprite: {fileID: 0}
-  walking_sprite: {fileID: 0}
 --- !u!114 &2629278460699421877
 MonoBehaviour:
   m_ObjectHideFlags: 0

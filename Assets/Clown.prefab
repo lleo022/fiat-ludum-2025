@@ -16,7 +16,7 @@ GameObject:
   - component: {fileID: 8010665515470249429}
   m_Layer: 9
   m_Name: Clown
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -77,8 +77,8 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 1878563467
-  m_SortingLayer: 1
+  m_SortingLayerID: -1941195173
+  m_SortingLayer: 2
   m_SortingOrder: 0
   m_Sprite: {fileID: -7078376115067969448, guid: 410523ced68f28a4e80acc14b54edef8, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}

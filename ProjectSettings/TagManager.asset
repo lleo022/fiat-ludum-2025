@@ -15,7 +15,7 @@ TagManager:
   - PlayerProjectile
   - Enemy
   - Player
-  - EnemyProjectile
+  - 
   - 
   - 
   - 
@@ -43,6 +43,9 @@ TagManager:
     locked: 0
   - name: Player
     uniqueID: 1878563467
+    locked: 0
+  - name: Dialogue
+    uniqueID: 2353772123
     locked: 0
   m_RenderingLayers:
   - Default

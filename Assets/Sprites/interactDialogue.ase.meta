@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 4db550118ed95e64b8eb68b10f75e595
+guid: fcf821dfa9465ce4484c95c52b618ac7
 ScriptedImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -98,7 +98,7 @@ ScriptedImporter:
     addSortingGroup: 1
     addShadowCasters: 0
   importFileNodeState: 1
-  platformSettingsDirtyTick: 638800674193233556
+  platformSettingsDirtyTick: 638800926573121348
   textureAssetName: 
   singleSpriteImportData:
   - name: 
@@ -123,9 +123,9 @@ ScriptedImporter:
     tessellationDetail: 0
     uvTransform: {x: 0, y: 0}
   animatedSpriteImportData:
-  - name: Furniture and Walls
+  - name: interactDialogue
     originalName: 
-    pivot: {x: 0.89855075, y: -0.07692308}
+    pivot: {x: 0.5405405, y: -0.33333334}
     alignment: 9
     border: {x: 0, y: 0, z: 0, w: 0}
     customData: 
@@ -133,9 +133,9 @@ ScriptedImporter:
       serializedVersion: 2
       x: 4
       y: 4
-      width: 69
-      height: 26
-    spriteID: 37782ef4c9083ed4993176f1e711b141
+      width: 37
+      height: 21
+    spriteID: 5a19bf1ce0d8bfa4d98ce84e31402bfd
     spriteBone: []
     spriteOutline: []
     vertices: []
@@ -145,7 +145,7 @@ ScriptedImporter:
     tessellationDetail: 0
     uvTransform: {x: 4, y: 4}
   spriteSheetImportData:
-  - name: Furniture and Walls_0
+  - name: interactDialogue_0
     originalName: 
     pivot: {x: 0.5, y: 0.5}
     alignment: 0
@@ -153,11 +153,11 @@ ScriptedImporter:
     customData: 
     rect:
       serializedVersion: 2
-      x: 5
-      y: 19
-      width: 7
-      height: 12
-    spriteID: bb50095f0d5254e44a1e90cfbd761efc
+      x: 4
+      y: 15
+      width: 9
+      height: 10
+    spriteID: 59de65b9fb8787a42a83cd1f52ef5f9c
     spriteBone: []
     spriteOutline: []
     vertices: []
@@ -166,7 +166,49 @@ ScriptedImporter:
     edges: []
     tessellationDetail: 0
     uvTransform: {x: 0, y: 0}
-  - name: Furniture and Walls_1
+  - name: interactDialogue_1
+    originalName: 
+    pivot: {x: 0.5, y: 0.5}
+    alignment: 0
+    border: {x: 0, y: 0, z: 0, w: 0}
+    customData: 
+    rect:
+      serializedVersion: 2
+      x: 13
+      y: 4
+      width: 10
+      height: 16
+    spriteID: f30a6a947ea16bd43ace13b082394553
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    uvTransform: {x: 0, y: 0}
+  - name: interactDialogue_2
+    originalName: 
+    pivot: {x: 0.5, y: 0.5}
+    alignment: 0
+    border: {x: 0, y: 0, z: 0, w: 0}
+    customData: 
+    rect:
+      serializedVersion: 2
+      x: 6
+      y: 4
+      width: 6
+      height: 7
+    spriteID: 924acd4825724aa4b819aab02802f90c
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    uvTransform: {x: 0, y: 0}
+  - name: interactDialogue_3
     originalName: 
     pivot: {x: 0.5, y: 0.5}
     alignment: 0
@@ -175,31 +217,10 @@ ScriptedImporter:
     rect:
       serializedVersion: 2
       x: 22
-      y: 21
-      width: 10
-      height: 8
-    spriteID: 28c796c9c01bce3438b8132ac53df687
-    spriteBone: []
-    spriteOutline: []
-    vertices: []
-    spritePhysicsOutline: []
-    indices: 
-    edges: []
-    tessellationDetail: 0
-    uvTransform: {x: 0, y: 0}
-  - name: Furniture and Walls_2
-    originalName: 
-    pivot: {x: 0.5, y: 0.5}
-    alignment: 0
-    border: {x: 0, y: 0, z: 0, w: 0}
-    customData: 
-    rect:
-      serializedVersion: 2
-      x: 38
-      y: 21
-      width: 8
+      y: 4
+      width: 4
       height: 5
-    spriteID: 27cd5905a5c02fc43aa4b768abba03b7
+    spriteID: 788b6cb84cfb0d74a83c731b9bf05dae
     spriteBone: []
     spriteOutline: []
     vertices: []
@@ -208,7 +229,7 @@ ScriptedImporter:
     edges: []
     tessellationDetail: 0
     uvTransform: {x: 0, y: 0}
-  - name: Furniture and Walls_3
+  - name: interactDialogue_4
     originalName: 
     pivot: {x: 0.5, y: 0.5}
     alignment: 0
@@ -216,11 +237,11 @@ ScriptedImporter:
     customData: 
     rect:
       serializedVersion: 2
-      x: 54
-      y: 6
-      width: 6
-      height: 22
-    spriteID: aa2ece2682cbb184baf04915fe1bbd9d
+      x: 27
+      y: 4
+      width: 5
+      height: 5
+    spriteID: b784a447a9124bb4089d7be2729d352e
     spriteBone: []
     spriteOutline: []
     vertices: []
@@ -229,7 +250,7 @@ ScriptedImporter:
     edges: []
     tessellationDetail: 0
     uvTransform: {x: 0, y: 0}
-  - name: Furniture and Walls_4
+  - name: interactDialogue_5
     originalName: 
     pivot: {x: 0.5, y: 0.5}
     alignment: 0
@@ -237,11 +258,11 @@ ScriptedImporter:
     customData: 
     rect:
       serializedVersion: 2
-      x: 71
-      y: 5
-      width: 3
-      height: 24
-    spriteID: 56c60bf6ac3bd504eb55a98b01113c0b
+      x: 33
+      y: 4
+      width: 8
+      height: 7
+    spriteID: 1560b7db404496343953293029c0f19f
     spriteBone: []
     spriteOutline: []
     vertices: []
@@ -250,7 +271,7 @@ ScriptedImporter:
     edges: []
     tessellationDetail: 0
     uvTransform: {x: 0, y: 0}
-  - name: Furniture and Walls_5
+  - name: interactDialogue_6
     originalName: 
     pivot: {x: 0.5, y: 0.5}
     alignment: 0
@@ -260,72 +281,9 @@ ScriptedImporter:
       serializedVersion: 2
       x: 4
       y: 4
-      width: 14
-      height: 14
-    spriteID: b8a8c4d8e2bada5409933b900c6f4ae1
-    spriteBone: []
-    spriteOutline: []
-    vertices: []
-    spritePhysicsOutline: []
-    indices: 
-    edges: []
-    tessellationDetail: 0
-    uvTransform: {x: 0, y: 0}
-  - name: Furniture and Walls_7
-    originalName: 
-    pivot: {x: 0.5, y: 0.5}
-    alignment: 0
-    border: {x: 0, y: 0, z: 0, w: 0}
-    customData: 
-    rect:
-      serializedVersion: 2
-      x: 78
-      y: 10
-      width: 20
-      height: 17
-    spriteID: a6eb3e7bf125c204bb22f3e9dfdc708c
-    spriteBone: []
-    spriteOutline: []
-    vertices: []
-    spritePhysicsOutline: []
-    indices: 
-    edges: []
-    tessellationDetail: 0
-    uvTransform: {x: 0, y: 0}
-  - name: Furniture and Walls_6
-    originalName: 
-    pivot: {x: 0.5, y: 0.5}
-    alignment: 0
-    border: {x: 0, y: 0, z: 0, w: 0}
-    customData: 
-    rect:
-      serializedVersion: 2
-      x: 104
-      y: 10
-      width: 21
-      height: 17
-    spriteID: 7c4803124d6624e4eb644553339b7496
-    spriteBone: []
-    spriteOutline: []
-    vertices: []
-    spritePhysicsOutline: []
-    indices: 
-    edges: []
-    tessellationDetail: 0
-    uvTransform: {x: 0, y: 0}
-  - name: Furniture and Walls_8
-    originalName: 
-    pivot: {x: 0.5, y: 0.5}
-    alignment: 0
-    border: {x: 0, y: 0, z: 0, w: 0}
-    customData: 
-    rect:
-      serializedVersion: 2
-      x: 73
-      y: 5
-      width: 1
-      height: 24
-    spriteID: 7d5ce00cb71804044b364d33ae1efd44
+      width: 37
+      height: 21
+    spriteID: 53c092606d6d3144989d4203e5ac2564
     spriteBone: []
     spriteOutline: []
     vertices: []
@@ -336,21 +294,21 @@ ScriptedImporter:
     uvTransform: {x: 0, y: 0}
   asepriteLayers:
   - layerIndex: 0
-    guid: -628908596
-    name: Furniture and Walls
+    guid: -346512350
+    name: interactDialogue
     layerFlags: 0
     layerType: 0
     blendMode: 0
     cells:
-    - name: Furniture and Walls
+    - name: interactDialogue
       frameIndex: 0
       additiveSortOrder: 0
       cellRect:
-        x: 1
-        y: 1
-        width: 121
-        height: 27
-      spriteId: 37782ef4c9083ed4993176f1e711b141
+        x: 6
+        y: 10
+        width: 34
+        height: 18
+      spriteId: 5a19bf1ce0d8bfa4d98ce84e31402bfd
     linkedCells: []
     parentIndex: -1
   platformSettings:
@@ -393,5 +351,5 @@ ScriptedImporter:
   generatePhysicsShape: 0
   secondarySpriteTextures: []
   spritePackingTag: 
-  canvasSize: {x: 128, y: 32}
-  previousTextureSize: {x: 256, y: 64}
+  canvasSize: {x: 48, y: 32}
+  previousTextureSize: {x: 64, y: 32}
