@@ -64,9 +64,14 @@ public class ClownPowers : MonoBehaviour
 
         //change sprite
         GetComponent<SpriteRenderer>().sprite = flying_sprite;
+<<<<<<< Updated upstream
 
         original_scale = transform.localScale;
         transform.localScale = new Vector3(original_scale.x * .1f, original_scale.y * .1f, original_scale.z);
+=======
+        original_scale = transform.localScale;
+        transform.localScale = new Vector3(original_scale.x * 1f, original_scale.y * 1f, original_scale.z);
+>>>>>>> Stashed changes
 
 
         original_gravity_scale = rb.gravityScale;
@@ -82,6 +87,9 @@ public class ClownPowers : MonoBehaviour
         ballooning = false;
         GetComponent<SpriteRenderer>().sprite = walking_sprite;
         transform.localScale = original_scale;
+<<<<<<< Updated upstream
 
+=======
+>>>>>>> Stashed changes
     }
 }
