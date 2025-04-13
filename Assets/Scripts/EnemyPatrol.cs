@@ -27,6 +27,11 @@ public class EnemyPatrol : MonoBehaviour
         initScale = enemy.localScale;
     }
 
+    private void OnDisable()
+    {
+        anim.SetBool("moving", false);
+    }
+
     private void Update()
     {
         if (movingLeft)
@@ -78,6 +83,4 @@ public class EnemyPatrol : MonoBehaviour
         enemy.position = new Vector3(enemy.position.x + Time.deltaTime * direction * speed, 
             enemy.position.y, enemy.position.z);
     }
-
-    
 }

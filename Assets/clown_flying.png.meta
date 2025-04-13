@@ -134,7 +134,8 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      clown_flying_0: -2286684558254154143
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
