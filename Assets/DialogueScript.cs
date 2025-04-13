@@ -2,6 +2,7 @@ using UnityEngine;
 using UnityEngine.InputSystem;
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 
 public class DialogueScript : MonoBehaviour
 {
@@ -19,12 +20,14 @@ public class DialogueScript : MonoBehaviour
 
     private int dialogueIndex = 0;
     //private List<string> messages_list;
-    private string[] messages_list;
+    private string[] messages_list = new string[0];
 
     public void dialogue(string [] messages, string name)
     {
+        dialogueUI.SetActive(true);
         Debug.Log("Called dialogue box" + messages[0] + messages.Length);
-        nameBox.GetComponent<TMPro.TextMeshPro>().text = name;
+        nameBox.GetComponent<TextMeshProUGUI>().text = name;
+        Debug.Log("Name box set");
         messages_list = new string[messages.Length];
         for (int i = 0; i < messages.Length; i++) //copy array
         {
@@ -36,12 +39,11 @@ public class DialogueScript : MonoBehaviour
     }
     private IEnumerator dialogueCoroutine(string message)
     {
-        dialogueUI.SetActive(true);
         string partial_message = "";
         foreach (char c in message)
         {
             partial_message = partial_message + c;
-            textBox.GetComponent<TMPro.TextMeshPro>().text = partial_message;
+            textBox.GetComponent<TextMeshProUGUI>().text = partial_message;
             yield return new WaitForSeconds(charDelay);
         }
     }
