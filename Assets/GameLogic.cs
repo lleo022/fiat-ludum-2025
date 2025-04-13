@@ -2,10 +2,7 @@ using UnityEngine;
 using UnityEngine.UIElements;
 using UnityEngine.InputSystem;
 using System.Collections.Generic;
-using static UnityEngine.GraphicsBuffer;
-using UnityEngine.SceneManagement;
-using Unity.VisualScripting;
-//using UnityEngine.UI;
+using System.Collections;
 
 public class GameLogic : MonoBehaviour
 {
@@ -15,21 +12,33 @@ public class GameLogic : MonoBehaviour
     public GameObject businessman;
     public GameObject clown;
     public GameObject current_player;
-
     public GameObject current_camera;
+
+    public GameObject boss;
 
     public bool is_clown = false; // true = clown, false = businessman
 
     public PlayerInputActions playerControls;
 
+    //three hearts
     public UIDocument healthBarUI;
     private VisualElement healthbar;
 
     public GameObject gameOverUI;
+    public GameObject victoryUI;
 
+    public GameObject bossFightUI;
+    public UnityEngine.UI.Slider bossFightSlider;
     private InputAction switch_persona;
 
     private List<VisualElement> currentHearts;
+
+    public Vector2 bossFightCameraOffset = new Vector2(0, 3);
+    public float bossFightCameraZoom = 6f;
+    private GameObject boss_obj;
+    public bool fightingBoss = false;
+
+    public bool CreativeMode = false;
 
     private void Awake() //gets called as game starts up
     {
@@ -38,7 +47,11 @@ public class GameLogic : MonoBehaviour
         healthbar = healthBarUI.rootVisualElement.Q<VisualElement>("Healthbar");
         currentHearts = healthbar.Query("Heart").ToList();
 
+        bossFightSlider = bossFightUI.GetComponent<UnityEngine.UI.Slider>();
+
         gameOverUI.SetActive(false);
+        victoryUI.SetActive(false);
+        bossFightUI.SetActive(false);
 
         currentHearts.Reverse(); // it comes out in the wrong order
     }
@@ -54,15 +67,64 @@ public class GameLogic : MonoBehaviour
     {
         switch_persona.Disable();
     }
+
+    public void Victory()
+    {
+        victoryUI.SetActive(true);
+        endBossFight();
+    }
     private void Death()
     {
         current_player.SetActive(false);
         gameOverUI.SetActive(true);
+        endBossFight();
+    }
+
+    public void StartBossFight()
+    {
+        StartCoroutine(BossFight());
+    }
+    public IEnumerator BossFight()
+    {
+        if (fightingBoss == false)
+        {
+            fightingBoss = true;
+
+            current_camera.GetComponent<FollowPlayer>().zoom = bossFightCameraZoom;
+            current_camera.GetComponent<FollowPlayer>().offset = bossFightCameraOffset;
+
+            yield return new WaitForSeconds(5); //5 second delay for testing purposes
+            bossFightUI.SetActive(true);
+            Debug.Log("Found slider: " + bossFightSlider);
+            boss_obj = Instantiate(boss, current_player.transform.position + new Vector3(-2f, 5f, 0f), Quaternion.identity);
+            boss_obj.name = "MrBoss";
+            boss.GetComponent<BossScript>().healthSlider = bossFightSlider;
+            Debug.Log("Set boss health slider: " + boss.GetComponent<BossScript>().healthSlider);
+        }
+    }
+
+    public void hurtBoss()
+    {
+        if (boss_obj)
+        {
+            boss_obj.GetComponent<BossScript>().hurtBoss(boss_obj.GetComponent<BossScript>().flowerDamage);
+        }
+    }
+
+    public void endBossFight()
+    { 
+        if (fightingBoss) {
+            fightingBoss = true;
+            bossFightUI.SetActive(false);
+            Destroy(boss_obj);  
+        }
     }
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
         //restartButton.RegisterCallback<ClickEvent>(onClick);
+
+        //Debug.Log("Got slider: " + bossFightSlider);
         Switch();
     }
     private void SwitchCallback(InputAction.CallbackContext context)
@@ -91,6 +153,8 @@ public class GameLogic : MonoBehaviour
         Debug.Log("Destroying : " + current_player.name + " Creating: " + current_player.name + " With transform: " + current_player.transform.position);
         Destroy(current_player);
         current_player = new_player;
+        current_player.GetComponent<Movement>().GameLogic = gameObject;
+        current_player.GetComponent<Movement>().playerControls = playerControls;
         //Debug.Log("New current player: " + current_player);
         current_camera.GetComponent<FollowPlayer>().player = current_player.transform;
     }
@@ -131,6 +195,10 @@ public class GameLogic : MonoBehaviour
     }
     public void hurtPlayer(int amount)
     {
+        if (CreativeMode) // for testing purposes, you can't get hurt
+        {
+            return;
+        }
         playerHealth -= amount;
         if (playerHealth <= 0)
         {

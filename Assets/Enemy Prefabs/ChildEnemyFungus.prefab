@@ -14,9 +14,9 @@ GameObject:
   - component: {fileID: 470352359014971629}
   - component: {fileID: 6079582255119960585}
   - component: {fileID: 2336003022536472300}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: ChildEnemyFungus
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -199,6 +199,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   attackCooldown: 2
+  range: 0
+  colliderDistance: 0
   damage: 1
   boxCollider: {fileID: 470352359014971629}
   playerLayer:

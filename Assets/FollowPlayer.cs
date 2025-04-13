@@ -1,14 +1,33 @@
+using System;
 using UnityEngine;
 
 public class FollowPlayer : MonoBehaviour
 {
     public Transform player;
-    public Vector3 offset;
+    public Vector2 offset;
+    public float zoom = 3.28f;
+
+    private Camera cam;
+    
+    private void Start()
+    {
+        cam = GetComponent<Camera>();
+    }
     void Update()
     {
         if (player != null && transform != null)
         {
-            transform.position = new Vector3(player.position.x + offset.x, player.position.y + offset.y, offset.z); // Camera follows player
+            float timing = .05f;
+            //transform.position = new Vector3(player.position.x + offset.x, player.position.y + offset.y, -10); // Camera follows
+            Vector3 initial_velocity = Vector3.zero;
+            Vector3 targetCamPosition = new Vector3(player.position.x + offset.x, player.position.y + offset.y, -10);
+            transform.position = Vector3.SmoothDamp(transform.position, targetCamPosition, ref initial_velocity, timing);
+
+            //Debug.Log("Changing zoom: " + cam.orthographicSize + " | " + zoom);
+            float initial_velocity2 = 0f;
+            float newSize = Mathf.SmoothDamp(cam.orthographicSize, zoom, ref initial_velocity2, timing);
+            cam.orthographicSize = newSize;
         }
+        
     }
 }

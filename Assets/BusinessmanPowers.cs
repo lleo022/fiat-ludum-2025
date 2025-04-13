@@ -14,12 +14,14 @@ public class BusinessmanPowers : MonoBehaviour
     //private GameObject GameLogic;
 
     public float documentSpawnOffset = 5;
+
+    public GameLogic GameLogic;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
 
     private void Awake()
     {
         playerControls = new PlayerInputActions();
-        //GameLogic = GameObject.Find("GameLogic");
+        GameLogic = GameObject.Find("GameLogic").GetComponent<GameLogic>();
     }
     private void OnEnable()
     {
@@ -43,12 +45,15 @@ public class BusinessmanPowers : MonoBehaviour
         Debug.Log("Pawn position: " + gameObject.transform.position + " | " + spawnPos);
         GameObject new_docs = Instantiate(legal_documents, spawnPos, Quaternion.identity);
         new_docs.GetComponent<Launch>().movement = GetComponent<Movement>();
+        new_docs.GetComponent<Launch>().boss_fight = GameLogic.fightingBoss;
         
        // new_docs.GetComponent<Launch>().faceDirection = facingDirection;
     }
 
     void Start()
     {
+        //playerControls = new PlayerInputActions();
+        
         rb = GetComponent<Rigidbody2D>();
     }
 

@@ -178,10 +178,10 @@ ScriptedImporter:
       frameIndex: 0
       additiveSortOrder: 0
       cellRect:
-        x: 0
-        y: 0
-        width: 736
-        height: 32
+        x: 7
+        y: 5
+        width: 728
+        height: 26
       spriteId: 15d274f7877a9e2488e1388037fe0878
     linkedCells: []
     parentIndex: -1

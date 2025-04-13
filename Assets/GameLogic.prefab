@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 7030650417199494681}
   - component: {fileID: 4213583297058187704}
   - component: {fileID: 580712717847451686}
+  - component: {fileID: 8641409482482034981}
   m_Layer: 0
   m_Name: GameLogic
   m_TagString: Untagged
@@ -51,9 +52,12 @@ MonoBehaviour:
   clown: {fileID: 7127480705712683274, guid: a258ae19bc2d66c40832b0269204a647, type: 3}
   current_player: {fileID: 0}
   current_camera: {fileID: 0}
-  is_clown: 0
+  boss: {fileID: 147822001598241998, guid: 0e0569a1991e2a947ba3ffae4024839e, type: 3}
+  is_clown: 1
   healthBarUI: {fileID: 0}
   gameOverUI: {fileID: 0}
+  victoryUI: {fileID: 0}
+  bossFightUI: {fileID: 0}
 --- !u!114 &580712717847451686
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -84,3 +88,19 @@ MonoBehaviour:
   m_DefaultActionMap: Player
   m_SplitScreenIndex: -1
   m_Camera: {fileID: 0}
+--- !u!114 &8641409482482034981
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4052788381185180298}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 292c83e1b8c0b344494ebfbba94f2a63, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  dialogueUI: {fileID: 0}
+  textBox: {fileID: 0}
+  nameBox: {fileID: 0}
+  charDelay: 0.1
