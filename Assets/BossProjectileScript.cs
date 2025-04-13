@@ -18,7 +18,7 @@ public class BossProjectileScript : MonoBehaviour
 
     private IEnumerator SelfDestruct()
     {
-        yield return new WaitForSeconds(2);
+        yield return new WaitForSeconds(4);
         Destroy(gameObject); // "gameObject" refers to itself
     }
 
@@ -28,11 +28,5 @@ public class BossProjectileScript : MonoBehaviour
         {
             GameLogic.GetComponent<GameLogic>().hurtPlayer(1);
         }
-    }
-
-        // Update is called once per frame
-        void Update()
-    {
-        
     }
 }

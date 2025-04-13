@@ -96,9 +96,9 @@ public class GameLogic : MonoBehaviour
             yield return new WaitForSeconds(5); //5 second delay for testing purposes
             bossFightUI.SetActive(true);
             Debug.Log("Found slider: " + bossFightSlider);
-            boss_obj = Instantiate(boss, current_player.transform.position + new Vector3(-2f, 5f, 0f), Quaternion.identity);
+            boss_obj = Instantiate(boss, current_player.transform.position + new Vector3(0f, 5f, 0f), Quaternion.identity);
             boss_obj.name = "MrBoss";
-            boss.GetComponent<BossScript>().healthSlider = bossFightSlider;
+            boss_obj.GetComponent<BossScript>().healthSlider = bossFightSlider;
             Debug.Log("Set boss health slider: " + boss.GetComponent<BossScript>().healthSlider);
         }
     }

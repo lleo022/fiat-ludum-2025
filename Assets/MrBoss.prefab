@@ -104,7 +104,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   maxBossHealth: 100
   bossMoveSpeed: 5
-  smashSpeed: 10
+  smashSpeed: 20
   timeBetweenDirections: 1
   attackPeriod: 1
   healthSlider: {fileID: 0}

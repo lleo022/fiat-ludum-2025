@@ -10,7 +10,7 @@ public class BossScript : MonoBehaviour
     private float bossHealth = 100f;
     public float maxBossHealth = 100f;
     public float bossMoveSpeed = 5f;
-    public float smashSpeed = 10f;
+    public float smashSpeed = 20f;
     public float timeBetweenDirections = 2f;
     public float attackPeriod = 1f;
     private GameObject GameLogic;
@@ -27,6 +27,7 @@ public class BossScript : MonoBehaviour
     private bool smashing = false;
     private bool smashing_moving = false;
     private bool move_back_to_original = false;
+    private Vector3 start_position;
     private Vector3 original_position;
     private Vector3 target = new Vector3(0f,0f,0f);
 
@@ -38,8 +39,11 @@ public class BossScript : MonoBehaviour
 
     public void hurtBoss(float amount)
     {
-        Debug.Log("HurtBoss");
-        bossHealth -= amount;
+        //Debug.Log("HurtBoss");
+        if (smashing == false)
+        {
+            bossHealth -= amount;
+        }
     }
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
@@ -48,6 +52,7 @@ public class BossScript : MonoBehaviour
         GameLogic = GameObject.Find("GameLogic");
         rb = GetComponent<Rigidbody2D>();
         original_position = transform.position;
+        start_position = transform.position;
         bossHealth = maxBossHealth;
         healthSlider.maxValue = maxBossHealth;
         healthSlider.value = bossHealth;
@@ -60,10 +65,7 @@ public class BossScript : MonoBehaviour
     {
         string[] dialoguearr = { "I am here to annihilate you", "Stupid clown" };
         GameLogic.GetComponent<DialogueScript>().dialogue(dialoguearr, "Mr. Boss");
-        while (GameLogic.GetComponent<DialogueScript>().dialogueUI.activeSelf == true)
-        {
-            yield return new WaitForSeconds(.1f);
-        }
+        yield return new WaitUntil(() => GameLogic.GetComponent<DialogueScript>().dialogueUI.activeSelf == false); //wait till dialogue box is closed
         returnToNormal();
     }
 
@@ -89,9 +91,14 @@ public class BossScript : MonoBehaviour
             while (smashing == false && stunned == false)
             {
                 rb.linearVelocity = new Vector3(1 * bossMoveSpeed, 0, 0);
-                yield return new WaitForSeconds(timeBetweenDirections);
+                yield return new WaitUntil(() => transform.position.x >= start_position.x + 4);
                 rb.linearVelocity = new Vector3(-1 * bossMoveSpeed, 0, 0);
-                yield return new WaitForSeconds(timeBetweenDirections);
+                yield return new WaitUntil(() => transform.position.x <= start_position.x - 4);
+                //yield return new WaitForSeconds(timeBetweenDirections / 2); //start from the middle
+                
+                //yield return new WaitForSeconds(timeBetweenDirections);
+                //rb.linearVelocity = new Vector3(1 * bossMoveSpeed, 0, 0);
+                //yield return new WaitForSeconds(timeBetweenDirections / 2);
             }
         }
         
@@ -121,9 +128,11 @@ public class BossScript : MonoBehaviour
         while (stage == 2 && stunned == false && smashing == false)
         {
             target = GameLogic.GetComponent<GameLogic>().current_player.transform.position;
-            yield return new WaitForSeconds(.5f);
+            stunned = true;
+            yield return new WaitForSeconds(1f);
+            stunned = false;
             StartCoroutine(SmashAttack());
-            yield return new WaitForSeconds(UnityEngine.Random.Range(5f, 8f));
+            yield return new WaitForSeconds(UnityEngine.Random.Range(5f, 10f));
             if (bossHealth <= 0)
             {
                 GameLogic.GetComponent<GameLogic>().Victory();
@@ -163,23 +172,17 @@ public class BossScript : MonoBehaviour
     {
         if (smashing == false && stunned == false)
         {
+            original_position = transform.position;
             smashing = true;
             smashing_moving = true;
             //rb.linearVelocity = new Vector3(0, -1 * smashSpeed, 0);
-            while (smashing_moving == true)
-            {
-                yield return new WaitForSeconds(.05f);
-
-            }
+            yield return new WaitUntil(() => smashing_moving == false);
             yield return new WaitForSeconds(1f);
             //change taregt back to original position
-            target = original_position;
-            smashing_moving = true;
-            while (smashing_moving == true)
-            {
-                yield return new WaitForSeconds(.1f);
-
-            }
+            /*target = original_position;
+            smashing_moving = true;*/
+            move_back_to_original = true;
+            yield return new WaitUntil(() => move_back_to_original == false);
             smashing = false;
             returnToNormal(); //go back to moving from side to side
         }
@@ -209,6 +212,7 @@ public class BossScript : MonoBehaviour
             stunned = true;
             rb.linearVelocity = Vector3.zero;
             yield return new WaitForSeconds(stunTime);
+            Debug.Log("Stun over");
             stunned = false;
             returnToNormal();
         }
@@ -217,7 +221,7 @@ public class BossScript : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D col)
     {
-        Debug.Log("Collision: " + col.gameObject.name + " | " + col.gameObject.layer);
+        //debugDebug.Log("Collision: " + col.gameObject.name + " | " + col.gameObject.layer);
         if (col.gameObject.layer == 10)
         {
             //if hit by player
