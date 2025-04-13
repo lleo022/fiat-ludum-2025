@@ -1,7 +1,6 @@
-using System.Xml.Serialization;
 using UnityEngine;
 
-public class DealCollisionDamage : MonoBehaviour
+public class TriggerBossFight : MonoBehaviour
 {
     private GameObject GameLogic;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
@@ -10,15 +9,9 @@ public class DealCollisionDamage : MonoBehaviour
         GameLogic = GameObject.Find("GameLogic");
     }
 
-    // Update is called once per frame
-    void Update()
+    private void OnTriggerEnter2D(Collider2D col)
     {
-        
-    }
-
-    private void OnCollisionEnter2D(Collision2D col)
-    {
-        if (col.collider.gameObject.layer == 9) //if hit player
+        if (col.gameObject.layer == 9) //if hit player
         {
             GameLogic.GetComponent<GameLogic>().StartBossFight();
         }

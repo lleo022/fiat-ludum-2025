@@ -24,12 +24,9 @@ public class BossProjectileScript : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D col)
     {
-        Debug.Log("Player collision: " + col.gameObject.layer);
         if (col.gameObject.layer == 9) 
-        {//if hit player
-            Debug.Log("Hit player: " + col);
+        {
             GameLogic.GetComponent<GameLogic>().hurtPlayer(1);
-            //Destroy(gameObject);
         }
     }
 

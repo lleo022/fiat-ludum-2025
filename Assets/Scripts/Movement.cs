@@ -33,8 +33,6 @@ public class Movement : MonoBehaviour
 
     private void OnEnable()
     {
-        //playerControls.Enable();
-        //fire = playerControls.Player.Fire;
         move = playerControls.Player.Move;
         jump = playerControls.Player.Jump;
         move.Enable();
@@ -44,16 +42,11 @@ public class Movement : MonoBehaviour
         jump.Enable();
         jump.performed += Jump;
         jump.canceled += JumpFinished;
-
-        //fire.Enable();
-        //fire.performed += Fire; //call the function Fire() on fire.performed event
     }
 
     private void OnDisable()
     {
-        //playerControls.Disable();
         move.Disable();
-        //fire.Disable();
         jump.Disable();
     }
 
@@ -134,11 +127,9 @@ public class Movement : MonoBehaviour
         if (hit)
         {
             float distance = Mathf.Abs(hit.point.y - transform.position.y);
-            Debug.Log("Distance from ground " + distance);
             if (distance < .5f)
             {
                 jumping = true;
-                Debug.Log("Allowing jump");
                     
                 rb.linearVelocity += new Vector2(0, jumpSpeed); //small jump
                 yield return new WaitForSeconds(waitBetweenJumps);
@@ -167,6 +158,14 @@ public class Movement : MonoBehaviour
             rb.gravityScale = original_gravity_scale;
             jumping = false;
             
+        }
+    }
+
+    private void OnCollisionEnter2D(Collision2D col)
+    {
+        if (col.collider.gameObject.layer == 8 && col.collider.gameObject.name == "MrBoss")
+        {
+
         }
     }
 

@@ -1,11 +1,13 @@
 using UnityEngine;
 using System.Collections;
+using System.Data;
 
 public class Launch : MonoBehaviour
 {
     //public Vector2 faceDirection = new Vector2(0,0);
     public Movement movement; //should be set by spawner
-    public int launchVelocity = 5;
+    public float launchVelocity = 5f;
+    private float selfDestructTime = 2f;
     private Rigidbody2D rb;
     public bool boss_fight;
 
@@ -19,7 +21,10 @@ public class Launch : MonoBehaviour
         Vector2 facingDirection = new Vector2(-1, 1); //left
         if (boss_fight)
         {
+            launchVelocity = launchVelocity * 1.5f;
             facingDirection = new Vector2(0, 1);
+            rb.gravityScale = 0;
+            selfDestructTime = 3f;
         }
         else
         {
@@ -38,7 +43,7 @@ public class Launch : MonoBehaviour
 
     private IEnumerator SelfDestruct()
     {
-        yield return new WaitForSeconds(2); // destroy projectile after 2 seconds
+        yield return new WaitForSeconds(selfDestructTime); // destroy projectile after 2 seconds
         Destroy(gameObject); // "gameObject" refers to itself
     }
 

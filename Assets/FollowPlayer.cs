@@ -28,10 +28,6 @@ public class FollowPlayer : MonoBehaviour
             float newSize = Mathf.SmoothDamp(cam.orthographicSize, zoom, ref initial_velocity2, timing);
             cam.orthographicSize = newSize;
         }
-        if (Mathf.Abs(cam.orthographicSize-zoom) > .1)
-        {
-            
-        }
         
     }
 }

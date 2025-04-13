@@ -26,6 +26,7 @@ public class BossScript : MonoBehaviour
 
     private bool smashing = false;
     private bool smashing_moving = false;
+    private bool move_back_to_original = false;
     private Vector3 original_position;
     private Vector3 target = new Vector3(0f,0f,0f);
 
@@ -35,20 +36,24 @@ public class BossScript : MonoBehaviour
 
     public float flowerDamage = 5;
 
+    public void hurtBoss(float amount)
+    {
+        Debug.Log("HurtBoss");
+        bossHealth -= amount;
+    }
+
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
         GameLogic = GameObject.Find("GameLogic");
         rb = GetComponent<Rigidbody2D>();
         original_position = transform.position;
-        //healthSlider.SetActive(true);
-
-        StartCoroutine(beginFight());
-
         bossHealth = maxBossHealth;
         healthSlider.maxValue = maxBossHealth;
         healthSlider.value = bossHealth;
-        
+        //healthSlider.SetActive(true);
+
+        StartCoroutine(beginFight());
     }
 
     private IEnumerator beginFight()
@@ -64,6 +69,8 @@ public class BossScript : MonoBehaviour
 
     private void returnToNormal()
     {
+        Debug.Log("returnToNormal called");
+        move_back_to_original = true;
         StartCoroutine(MoveSideToSide());
         if (stage == 1)
         {
@@ -76,15 +83,18 @@ public class BossScript : MonoBehaviour
 
     private IEnumerator MoveSideToSide()
     {
-        while (smashing == false && stunned == false)
+        if (stunned == false && smashing == false)
         {
-            rb.linearVelocity = new Vector3(1 * bossMoveSpeed, 0, 0);
-            yield return new WaitForSeconds(timeBetweenDirections);
-            rb.linearVelocity = new Vector3(-1 * bossMoveSpeed, 0, 0);
-            yield return new WaitForSeconds(timeBetweenDirections);
+            yield return new WaitUntil(() => move_back_to_original == false); //make sure boss is back at original position
+            while (smashing == false && stunned == false)
+            {
+                rb.linearVelocity = new Vector3(1 * bossMoveSpeed, 0, 0);
+                yield return new WaitForSeconds(timeBetweenDirections);
+                rb.linearVelocity = new Vector3(-1 * bossMoveSpeed, 0, 0);
+                yield return new WaitForSeconds(timeBetweenDirections);
+            }
         }
-
-
+        
     }
 
     private IEnumerator Stage1()
@@ -108,7 +118,7 @@ public class BossScript : MonoBehaviour
     {
         Debug.Log("Stage 2 start");
         // every random amount of second, it will smash
-        while (stage == 2 && stunned == false)
+        while (stage == 2 && stunned == false && smashing == false)
         {
             target = GameLogic.GetComponent<GameLogic>().current_player.transform.position;
             yield return new WaitForSeconds(.5f);
@@ -125,29 +135,33 @@ public class BossScript : MonoBehaviour
 
     private void ProjectileAttack()
     {
-        float angleStep = (Mathf.PI/2) / projectileCount; // 90 degrees/# projectiles --> shoot out of lower end
-        float initialAngle = (((3 * Mathf.PI / 2) - (Mathf.PI / 4))* Mathf.Rad2Deg + 10) * (1/ Mathf.Rad2Deg);
-        for (int i = 0; i < projectileCount; i++)
+        if (stunned == false)
         {
-            // Calculate the angle for the current item
-            float angle = initialAngle + angleStep * i;
+            float angleStep = (Mathf.PI / 2) / projectileCount; // 90 degrees/# projectiles --> shoot out of lower end
+            float initialAngle = (((3 * Mathf.PI / 2) - (Mathf.PI / 4)) * Mathf.Rad2Deg + 10) * (1 / Mathf.Rad2Deg);
+            for (int i = 0; i < projectileCount; i++)
+            {
+                // Calculate the angle for the current item
+                float angle = initialAngle + angleStep * i;
 
-            // Calculate the x and y coordinates based on the angle and radius
-            float x = radius * Mathf.Cos(angle);
-            float y = radius * Mathf.Sin(angle);
+                // Calculate the x and y coordinates based on the angle and radius
+                float x = radius * Mathf.Cos(angle);
+                float y = radius * Mathf.Sin(angle);
 
-            float rotation_angle = (Mathf.Atan2(x, y) + (Mathf.PI / 2)) * Mathf.Rad2Deg; //faces away from center
-            Quaternion rotation = Quaternion.Euler(0f, 0f, rotation_angle);
+                float rotation_angle = (Mathf.Atan2(x, y) + (Mathf.PI / 2)) * Mathf.Rad2Deg; //faces away from center
+                Quaternion rotation = Quaternion.Euler(0f, 0f, rotation_angle);
 
-            // Instantiate the item and set its position
-            GameObject newProjectile = Instantiate(projectile, new Vector3(transform.position.x + x, transform.position.y + y, 0), rotation);
-            newProjectile.GetComponent<BossProjectileScript>().GameLogic = GameLogic;
+                // Instantiate the item and set its position
+                GameObject newProjectile = Instantiate(projectile, new Vector3(transform.position.x + x, transform.position.y + y, 0), rotation);
+                newProjectile.GetComponent<BossProjectileScript>().GameLogic = GameLogic;
+            }
         }
+        
     }
 
     private IEnumerator SmashAttack()
     {
-        if (smashing == false)
+        if (smashing == false && stunned == false)
         {
             smashing = true;
             smashing_moving = true;
@@ -172,13 +186,13 @@ public class BossScript : MonoBehaviour
 
     }
 
-    private bool approachPosition()
+    private bool approachPosition(Vector3 target_)
     {
         var step = smashSpeed * Time.deltaTime; // calculate distance to move
-        transform.position = Vector3.MoveTowards(transform.position, target, step);
+        transform.position = Vector3.MoveTowards(transform.position, target_, step);
 
         // Check if the position of the cube and sphere are approximately equal.
-        if (Vector3.Distance(transform.position, target) < 0.001f)
+        if (Vector3.Distance(transform.position, target_) < 0.001f)
         {
             // Swap the position of the cylinder.
             return false;
@@ -190,10 +204,15 @@ public class BossScript : MonoBehaviour
 
     private IEnumerator stun()
     {
-        stunned = true;
-        yield return new WaitForSeconds(stunTime);
-        stunned = false;
-        returnToNormal();
+        if (stunned == false)
+        {
+            stunned = true;
+            rb.linearVelocity = Vector3.zero;
+            yield return new WaitForSeconds(stunTime);
+            stunned = false;
+            returnToNormal();
+        }
+        
     }
 
     private void OnTriggerEnter2D(Collider2D col)
@@ -204,25 +223,41 @@ public class BossScript : MonoBehaviour
             //if hit by player
             if (col.gameObject.name == "Flower(Copy)")
             {
-                bossHealth = bossHealth - flowerDamage;
+                hurtBoss(flowerDamage);
             } else if (col.gameObject.name == "LegalDocument(Copy)")
             {
                 StartCoroutine(stun());
             }
 
+        } else if (col.gameObject.layer == 9)
+        {
+            //hit by player themselves
+            hurtBoss(3 * flowerDamage);
+            //bossHealth = bossHealth - 3*flowerDamage; //more damage
         }
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (smashing_moving)
+        if (stunned == false)
         {
-            smashing_moving = approachPosition(); //will eventually become false
+            if (smashing_moving)
+            {
+                smashing_moving = approachPosition(target); //will eventually become false
+            }
+            else if (move_back_to_original)
+            {
+                move_back_to_original = approachPosition(original_position);
+            }
         }
+        
         if (bossHealth >= 0)
         {
-            healthSlider.value = bossHealth;
+            if (healthSlider != null)
+            {
+                healthSlider.value = bossHealth;
+            }
         }
         
     }

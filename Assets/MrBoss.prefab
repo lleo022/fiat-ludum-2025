@@ -107,12 +107,13 @@ MonoBehaviour:
   smashSpeed: 10
   timeBetweenDirections: 1
   attackPeriod: 1
-  healthSlider: {fileID: 2251235192122660365, guid: 768b935078f44fc408448a347c4503f1, type: 3}
+  healthSlider: {fileID: 0}
   projectile: {fileID: 7514985818184340166, guid: 4dc85ead2db03f148afdc43a90effdca, type: 3}
   projectileCount: 5
   radius: 0.5
   stage: 1
   stunTime: 3
+  flowerDamage: 5
 --- !u!50 &4048235491169897646
 Rigidbody2D:
   serializedVersion: 5
@@ -135,7 +136,7 @@ Rigidbody2D:
     m_Bits: 0
   m_ExcludeLayers:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 64
   m_Interpolate: 0
   m_SleepingMode: 1
   m_CollisionDetection: 0

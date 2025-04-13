@@ -28,7 +28,7 @@ public class GameLogic : MonoBehaviour
     public GameObject victoryUI;
 
     public GameObject bossFightUI;
-    //public UnityEngine.UI.Slider bossFightSlider;
+    public UnityEngine.UI.Slider bossFightSlider;
     private InputAction switch_persona;
 
     private List<VisualElement> currentHearts;
@@ -47,6 +47,7 @@ public class GameLogic : MonoBehaviour
         healthbar = healthBarUI.rootVisualElement.Q<VisualElement>("Healthbar");
         currentHearts = healthbar.Query("Heart").ToList();
 
+        bossFightSlider = bossFightUI.GetComponent<UnityEngine.UI.Slider>();
 
         gameOverUI.SetActive(false);
         victoryUI.SetActive(false);
@@ -85,17 +86,29 @@ public class GameLogic : MonoBehaviour
     }
     public IEnumerator BossFight()
     {
-        fightingBoss = true;
-        bossFightUI.SetActive(true);
-        UnityEngine.UI.Slider bossFightSlider = bossFightUI.GetComponent<UnityEngine.UI.Slider>();
-        Debug.Log("FOund slider: " + bossFightSlider);
-        current_camera.GetComponent<FollowPlayer>().zoom = bossFightCameraZoom;
-        current_camera.GetComponent<FollowPlayer>().offset = bossFightCameraOffset;
+        if (fightingBoss == false)
+        {
+            fightingBoss = true;
 
-        yield return new WaitForSeconds(5); //5 second delay for testing purposes
-        boss_obj = Instantiate(boss, current_player.transform.position + new Vector3(-2f, 5f, 0f), Quaternion.identity);
-        boss.GetComponent<BossScript>().healthSlider = bossFightSlider;
-        Debug.Log("Set boss health slider: " + boss.GetComponent<BossScript>().healthSlider);
+            current_camera.GetComponent<FollowPlayer>().zoom = bossFightCameraZoom;
+            current_camera.GetComponent<FollowPlayer>().offset = bossFightCameraOffset;
+
+            yield return new WaitForSeconds(5); //5 second delay for testing purposes
+            bossFightUI.SetActive(true);
+            Debug.Log("Found slider: " + bossFightSlider);
+            boss_obj = Instantiate(boss, current_player.transform.position + new Vector3(-2f, 5f, 0f), Quaternion.identity);
+            boss_obj.name = "MrBoss";
+            boss.GetComponent<BossScript>().healthSlider = bossFightSlider;
+            Debug.Log("Set boss health slider: " + boss.GetComponent<BossScript>().healthSlider);
+        }
+    }
+
+    public void hurtBoss(float amount)
+    {
+        if (boss_obj)
+        {
+            boss_obj.GetComponent<BossScript>().hurtBoss(boss_obj.GetComponent<BossScript>().flowerDamage);
+        }
     }
 
     public void endBossFight()
