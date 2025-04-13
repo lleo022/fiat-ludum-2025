@@ -22,7 +22,7 @@ public class Movement : MonoBehaviour
     public bool jumping = false;
     private float original_gravity_scale = 0f;
 
-    private GameObject GameLogic;
+    public GameObject GameLogic;
 
     public bool goingRight = true;
 
@@ -60,11 +60,9 @@ public class Movement : MonoBehaviour
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-        //Debug.Log("Instantiated new movement script");
         rb = GetComponent<Rigidbody2D>();
         original_gravity_scale = rb.gravityScale;
-        GameLogic = GameObject.Find("GameLogic");
-        
+
     }
 
     // Update is called once per frame

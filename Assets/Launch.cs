@@ -7,6 +7,7 @@ public class Launch : MonoBehaviour
     public Movement movement; //should be set by spawner
     public int launchVelocity = 5;
     private Rigidbody2D rb;
+    public bool boss_fight;
 
     [SerializeField] private LayerMask enemyLayer;
 
@@ -15,15 +16,22 @@ public class Launch : MonoBehaviour
     {
         gameObject.name = "LegalDocument(Copy)";
         rb = GetComponent<Rigidbody2D>();
-        Vector2 facingDirection = new Vector2(-1, 0); //left
-        if (movement.goingRight)
+        Vector2 facingDirection = new Vector2(-1, 1); //left
+        if (boss_fight)
         {
-            facingDirection = new Vector2(1, 0); //right
+            facingDirection = new Vector2(0, 1);
+        }
+        else
+        {
+            if (movement.goingRight)
+            {
+                facingDirection = new Vector2(1, 1); //right
+            }
         }
 
         Debug.Log("Legal document start");
 
-        rb.linearVelocity = new Vector2(facingDirection.x * launchVelocity, launchVelocity);
+        rb.linearVelocity = new Vector2(2 * facingDirection.x * launchVelocity, facingDirection.y * launchVelocity);
         StartCoroutine(SelfDestruct());
         
     }

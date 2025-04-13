@@ -28,13 +28,15 @@ public class GameLogic : MonoBehaviour
     public GameObject victoryUI;
 
     public GameObject bossFightUI;
-    public UnityEngine.UI.Slider bossFightSlider;
+    //public UnityEngine.UI.Slider bossFightSlider;
     private InputAction switch_persona;
 
     private List<VisualElement> currentHearts;
 
     public Vector2 bossFightCameraOffset = new Vector2(0, 3);
     public float bossFightCameraZoom = 6f;
+    private GameObject boss_obj;
+    public bool fightingBoss = false;
 
     public bool CreativeMode = false;
 
@@ -45,8 +47,6 @@ public class GameLogic : MonoBehaviour
         healthbar = healthBarUI.rootVisualElement.Q<VisualElement>("Healthbar");
         currentHearts = healthbar.Query("Heart").ToList();
 
-        bossFightSlider = bossFightUI.GetComponent<UnityEngine.UI.Slider>();
-        Debug.Log("Got slider: " + bossFightSlider);
 
         gameOverUI.SetActive(false);
         victoryUI.SetActive(false);
@@ -70,31 +70,49 @@ public class GameLogic : MonoBehaviour
     public void Victory()
     {
         victoryUI.SetActive(true);
+        endBossFight();
     }
     private void Death()
     {
         current_player.SetActive(false);
         gameOverUI.SetActive(true);
+        endBossFight();
     }
 
+    public void StartBossFight()
+    {
+        StartCoroutine(BossFight());
+    }
     public IEnumerator BossFight()
     {
+        fightingBoss = true;
+        bossFightUI.SetActive(true);
+        UnityEngine.UI.Slider bossFightSlider = bossFightUI.GetComponent<UnityEngine.UI.Slider>();
+        Debug.Log("FOund slider: " + bossFightSlider);
         current_camera.GetComponent<FollowPlayer>().zoom = bossFightCameraZoom;
         current_camera.GetComponent<FollowPlayer>().offset = bossFightCameraOffset;
-        
+
         yield return new WaitForSeconds(5); //5 second delay for testing purposes
-        Instantiate(boss, current_player.transform.position+ new Vector3(-2f,5f,0f), Quaternion.identity);
+        boss_obj = Instantiate(boss, current_player.transform.position + new Vector3(-2f, 5f, 0f), Quaternion.identity);
         boss.GetComponent<BossScript>().healthSlider = bossFightSlider;
         Debug.Log("Set boss health slider: " + boss.GetComponent<BossScript>().healthSlider);
+    }
 
-        bossFightUI.SetActive(true);
+    public void endBossFight()
+    { 
+        if (fightingBoss) {
+            fightingBoss = true;
+            bossFightUI.SetActive(false);
+            Destroy(boss_obj);  
+        }
     }
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
         //restartButton.RegisterCallback<ClickEvent>(onClick);
+
+        //Debug.Log("Got slider: " + bossFightSlider);
         Switch();
-        StartCoroutine(BossFight());
     }
     private void SwitchCallback(InputAction.CallbackContext context)
     {
@@ -122,6 +140,8 @@ public class GameLogic : MonoBehaviour
         Debug.Log("Destroying : " + current_player.name + " Creating: " + current_player.name + " With transform: " + current_player.transform.position);
         Destroy(current_player);
         current_player = new_player;
+        current_player.GetComponent<Movement>().GameLogic = gameObject;
+        current_player.GetComponent<Movement>().playerControls = playerControls;
         //Debug.Log("New current player: " + current_player);
         current_camera.GetComponent<FollowPlayer>().player = current_player.transform;
     }

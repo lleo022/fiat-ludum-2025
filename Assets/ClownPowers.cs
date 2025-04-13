@@ -30,7 +30,6 @@ public class ClownPowers : MonoBehaviour
     }
     private void OnEnable()
     {
-        //playerControls.Enable();
         balloons = playerControls.Player.Balloons;
         flowers = playerControls.Player.Flowers;
 
