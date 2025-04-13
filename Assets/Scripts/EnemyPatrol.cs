@@ -91,6 +91,7 @@ public class EnemyPatrol : MonoBehaviour
 
     public void EnemyDestroyed()
     {
+        anim.SetTrigger("defeat");
         enemy = null;
         this.enabled = false;
         Debug.Log("EnemyPatrol notified that enemy is destroyed");

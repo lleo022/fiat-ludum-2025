@@ -72,7 +72,7 @@ public class Enemy : MonoBehaviour
             boxCollider.bounds.size);
     }
 
-    private void damagePlayer()
+    private void DamagePlayer()
     {
         if (PlayerInSight())
         {
@@ -80,6 +80,15 @@ public class Enemy : MonoBehaviour
         }
     }
 
+    public void OnDefeat()
+    {
+        anim.SetTrigger("defeat");
+    }
 
+    private void Defeat()
+    {
+        Destroy(gameObject);
+        Debug.Log("Enemy destroyed: " + gameObject.name);
+    }
 }
 
