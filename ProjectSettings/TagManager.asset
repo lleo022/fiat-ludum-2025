@@ -42,10 +42,10 @@ TagManager:
   - name: Default
     uniqueID: 0
     locked: 0
-  - name: Player
+  - name: Dialogue
     uniqueID: 1878563467
     locked: 0
-  - name: Dialogue
+  - name: Player
     uniqueID: 2353772123
     locked: 0
   m_RenderingLayers:
