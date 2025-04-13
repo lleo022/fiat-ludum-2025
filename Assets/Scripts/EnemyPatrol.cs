@@ -1,3 +1,5 @@
+// ll
+
 using UnityEngine;
 
 public class EnemyPatrol : MonoBehaviour
@@ -34,6 +36,9 @@ public class EnemyPatrol : MonoBehaviour
 
     private void Update()
     {
+        if (enemy == null)
+            return;
+
         if (movingLeft)
         {
             if (enemy.position.x >= leftEdge.position.x)
@@ -82,5 +87,12 @@ public class EnemyPatrol : MonoBehaviour
         // Move in that direction
         enemy.position = new Vector3(enemy.position.x + Time.deltaTime * direction * speed, 
             enemy.position.y, enemy.position.z);
+    }
+
+    public void EnemyDestroyed()
+    {
+        enemy = null;
+        this.enabled = false;
+        Debug.Log("EnemyPatrol notified that enemy is destroyed");
     }
 }

@@ -29,7 +29,7 @@ Transform:
   m_GameObject: {fileID: 8542605250507991164}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.4582, y: 0.2963, z: 0.09026365}
+  m_LocalPosition: {x: -0.4582, y: 0.2963, z: 0}
   m_LocalScale: {x: 0.041921344, y: 0.041921344, z: 0.041921344}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -113,9 +113,9 @@ Rigidbody2D:
   m_ExcludeLayers:
     serializedVersion: 2
     m_Bits: 4294967295
-  m_Interpolate: 0
+  m_Interpolate: 1
   m_SleepingMode: 1
-  m_CollisionDetection: 0
+  m_CollisionDetection: 1
   m_Constraints: 0
 --- !u!61 &350091043932646194
 BoxCollider2D:
@@ -130,7 +130,7 @@ BoxCollider2D:
   m_Material: {fileID: 0}
   m_IncludeLayers:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 256
   m_ExcludeLayers:
     serializedVersion: 2
     m_Bits: 0
@@ -147,7 +147,7 @@ BoxCollider2D:
   m_CallbackLayers:
     serializedVersion: 2
     m_Bits: 4294967295
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_UsedByEffector: 0
   m_CompositeOperation: 0
   m_CompositeOrder: 0
@@ -177,3 +177,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   movement: {fileID: 0}
   launchVelocity: 2
+  enemyLayer:
+    serializedVersion: 2
+    m_Bits: 256
