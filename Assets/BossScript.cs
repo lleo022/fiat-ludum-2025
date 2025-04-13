@@ -33,6 +33,8 @@ public class BossScript : MonoBehaviour
 
     private bool stunned = false;
 
+    public float flowerDamage = 5;
+
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
@@ -198,12 +200,10 @@ public class BossScript : MonoBehaviour
         Debug.Log("Collision: " + col.gameObject.name + " | " + col.gameObject.layer);
         if (col.gameObject.layer == 10)
         {
-            Debug.Log("Collision is layer 10");
             //if hit by player
             if (col.gameObject.name == "Flower(Copy)")
             {
-                Debug.Log("Hit boss- boss script");
-                bossHealth = bossHealth - 10f;
+                bossHealth = bossHealth - flowerDamage;
             } else if (col.gameObject.name == "LegalDocument(Copy)")
             {
                 StartCoroutine(stun());

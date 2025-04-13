@@ -3,10 +3,6 @@ using UnityEngine.UIElements;
 using UnityEngine.InputSystem;
 using System.Collections.Generic;
 using System.Collections;
-using static UnityEngine.GraphicsBuffer;
-using UnityEngine.SceneManagement;
-using Unity.VisualScripting;
-//using UnityEngine.UI;
 
 public class GameLogic : MonoBehaviour
 {
@@ -32,10 +28,12 @@ public class GameLogic : MonoBehaviour
     public GameObject victoryUI;
 
     public GameObject bossFightUI;
-
+    public UnityEngine.UI.Slider bossFightFightSlider;
     private InputAction switch_persona;
 
     private List<VisualElement> currentHearts;
+
+    public bool CreativeMode = false;
 
     private void Awake() //gets called as game starts up
     {
@@ -43,6 +41,8 @@ public class GameLogic : MonoBehaviour
         playerHealth = maxPlayerHealth;
         healthbar = healthBarUI.rootVisualElement.Q<VisualElement>("Healthbar");
         currentHearts = healthbar.Query("Heart").ToList();
+
+        bossFightFightSlider = bossFightUI.GetComponent<UnityEngine.UI.Slider>();
 
         gameOverUI.SetActive(false);
         victoryUI.SetActive(false);
@@ -80,6 +80,7 @@ public class GameLogic : MonoBehaviour
         
         yield return new WaitForSeconds(5); //5 second delay for testing purposes
         Instantiate(boss, current_player.transform.position+ new Vector3(-2f,5f,0f), Quaternion.identity);
+        boss.GetComponent<BossScript>().healthSlider = bossFightFightSlider;
         bossFightUI.SetActive(true);
     }
     // Start is called once before the first execution of Update after the MonoBehaviour is created
@@ -155,6 +156,10 @@ public class GameLogic : MonoBehaviour
     }
     public void hurtPlayer(int amount)
     {
+        if (CreativeMode) // for testing purposes, you can't get hurt
+        {
+            return;
+        }
         playerHealth -= amount;
         if (playerHealth <= 0)
         {

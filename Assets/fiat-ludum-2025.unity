@@ -1082,6 +1082,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 2438339447918396103}
     - target: {fileID: 4213583297058187704, guid: 3cf6938bcb02cf94f85ef8f797d8b742, type: 3}
+      propertyPath: CreativeMode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4213583297058187704, guid: 3cf6938bcb02cf94f85ef8f797d8b742, type: 3}
       propertyPath: current_camera
       value: 
       objectReference: {fileID: 1122493182630784063}

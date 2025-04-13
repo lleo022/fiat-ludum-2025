@@ -1,11 +1,5 @@
 {
   "dependencies": {
-    "com.sarpersoher.ide.sublimetext": {
-      "version": "file:C:/Users/kaley/Downloads/com.sarpersoher.ide.sublimetext-main/com.sarpersoher.ide.sublimetext-main",
-      "depth": 0,
-      "source": "local",
-      "dependencies": {}
-    },
     "com.unity.2d.animation": {
       "version": "10.1.4",
       "depth": 1,

@@ -285,7 +285,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3458071166184147417}
-  - component: {fileID: 259775773503938644}
   - component: {fileID: 5728990064858684852}
   m_Layer: 5
   m_Name: VictoryScreen
@@ -312,20 +311,6 @@ Transform:
   - {fileID: 7340283640982563427}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &259775773503938644
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4519982695751256430}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9fbde67ea071daf4fa5e62b4c80452b4, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  restartButton: {fileID: 7810126289679966473}
-  GameLogic_: {fileID: 0}
 --- !u!114 &5728990064858684852
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -338,6 +323,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5100d0357611e654b9ee405790dca520, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  mainMenuButton: {fileID: 7810126289679966473}
 --- !u!1 &4780919096122905820
 GameObject:
   m_ObjectHideFlags: 0
