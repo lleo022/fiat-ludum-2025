@@ -8,7 +8,7 @@ public class GameWon : MonoBehaviour
     private void MainMenu()
     {
         Debug.Log("Main Menu");
-        SceneManager.LoadSceneAsync(0); //goes to main menu
+        SceneManager.LoadSceneAsync(3); //goes to main menu
     }
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
