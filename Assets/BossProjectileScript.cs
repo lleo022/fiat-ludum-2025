@@ -7,6 +7,8 @@ public class BossProjectileScript : MonoBehaviour
     private Rigidbody2D rb;
     public float projectileSpeed = 3f;
 
+    public BossScript boss_script;
+
     public GameObject GameLogic;
     void Start()
     {
@@ -27,6 +29,16 @@ public class BossProjectileScript : MonoBehaviour
         if (col.gameObject.layer == 9) 
         {
             GameLogic.GetComponent<GameLogic>().hurtPlayer(1);
+        }
+    }
+
+    private void Update()
+    {
+        if (boss_script) {
+            if (boss_script.stage != 1)
+            {
+                Destroy(gameObject);
+            }
         }
     }
 }

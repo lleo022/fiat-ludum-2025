@@ -101,7 +101,7 @@ public class Movement : MonoBehaviour
         //Debug.Log("Movespecialfinished " + context.control.name);
         if (context.control.name == "w" || context.control.name == "space") //on w or space up, cancel jump
         {
-            JumpFinished(context); //cancel jump
+            //JumpFinished(context); //cancel jump
         }
 
     }
@@ -163,6 +163,7 @@ public class Movement : MonoBehaviour
 
     private void OnCollisionEnter2D(Collision2D col)
     {
+        Debug.Log("Collision from player " + col);
         if (col.collider.gameObject.layer == 8 && col.collider.gameObject.name == "MrBoss")
         {
             GameLogic.GetComponent<GameLogic>().hurtBoss();

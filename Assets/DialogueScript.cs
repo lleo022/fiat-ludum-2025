@@ -26,6 +26,7 @@ public class DialogueScript : MonoBehaviour
 
     public void dialogue(string [] messages, string name)
     {
+        dialogueIndex = 0;
         dialogueUI.SetActive(true);
         Debug.Log("Called dialogue box" + messages[0] + messages.Length);
         nameBox.GetComponent<TextMeshProUGUI>().text = name;

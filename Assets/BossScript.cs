@@ -154,7 +154,7 @@ public class BossScript : MonoBehaviour
     {
         Debug.Log("Stage 2 start");
         // every random amount of second, it will smash
-        while (stage == 2 && stunned == false && smashing == false)
+        while (stage == 2 && stunned == false)
         {
             target = GameLogic.GetComponent<GameLogic>().current_player.transform.position;
             stunned = true;
@@ -192,6 +192,7 @@ public class BossScript : MonoBehaviour
                 // Instantiate the item and set its position
                 GameObject newProjectile = Instantiate(projectile, new Vector3(transform.position.x + x, transform.position.y + y, 0), rotation);
                 newProjectile.GetComponent<BossProjectileScript>().GameLogic = GameLogic;
+                newProjectile.GetComponent<BossProjectileScript>().boss_script = GetComponent<BossScript>();
             }
         }
         
@@ -245,21 +246,21 @@ public class BossScript : MonoBehaviour
         
     }
 
-    private void OnTriggerEnter2D(Collider2D col)
+    private void OnCollisionEnter2D(Collision2D col)
     {
         //debugDebug.Log("Collision: " + col.gameObject.name + " | " + col.gameObject.layer);
-        if (col.gameObject.layer == 10)
+        if (col.collider.gameObject.layer == 10)
         {
             //if hit by player
-            if (col.gameObject.name == "Flower(Copy)")
+            if (col.collider.gameObject.name == "Flower(Copy)")
             {
                 hurtBoss(flowerDamage);
-            } else if (col.gameObject.name == "LegalDocument(Copy)")
+            } else if (col.collider.gameObject.name == "LegalDocument(Copy)")
             {
                 StartCoroutine(stun());
             }
 
-        } else if (col.gameObject.layer == 9)
+        } else if (col.collider.gameObject.layer == 9)
         {
             //hit by player themselves
             hurtBoss(3 * flowerDamage);
