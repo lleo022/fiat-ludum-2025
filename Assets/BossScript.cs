@@ -74,11 +74,13 @@ public class BossScript : MonoBehaviour
         GameLogic.GetComponent<GameLogic>().current_player.GetComponent<Movement>().enabled = false;
         string[] dialogue_Player = { "Mr. Boss...", "I quit!" };
         string[] dialogue_Villain = { "Quit?", "...", "HAH HA HA", "You can't quit or else I'll FIRE YOU!!" };
-        string[] dialogue_Player2 = { "[ Press J to shoot pies. Your legal documents won't work on him. ]" };
+        string[] dialogue_Player2 = { "[Press J to shoot pies as Clown.]", "He has too many lawyers! My legal documents won't work on him." };
 
         GameLogic.GetComponent<DialogueScript>().dialogue(dialogue_Player, "You");
         yield return new WaitUntil(() => GameLogic.GetComponent<DialogueScript>().dialogueUI.activeSelf == false);
         GameLogic.GetComponent<DialogueScript>().dialogue(dialogue_Villain, "Mr. Boss");
+        yield return new WaitUntil(() => GameLogic.GetComponent<DialogueScript>().dialogueUI.activeSelf == false); //wait till dialogue box is closed
+        GameLogic.GetComponent<DialogueScript>().dialogue(dialogue_Player2, "You");
         yield return new WaitUntil(() => GameLogic.GetComponent<DialogueScript>().dialogueUI.activeSelf == false); //wait till dialogue box is closed
         invulnerable = false;
         GameLogic.GetComponent<GameLogic>().current_player.GetComponent<Movement>().enabled = true;
