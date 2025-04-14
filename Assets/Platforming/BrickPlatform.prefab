@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4803241470807474070}
   - component: {fileID: 5779095182512492041}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Top Of Platorm
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -88,7 +88,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6221303217383359284}
   - component: {fileID: 4010536100514447043}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: LeftSide (2)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -166,7 +166,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1245935264256159712}
   - component: {fileID: 8303768703192453205}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: LeftSide
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -244,7 +244,7 @@ GameObject:
   m_Component:
   - component: {fileID: 222782961765570699}
   - component: {fileID: 3121385660865906391}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: BrickPlatform
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -333,7 +333,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8148100553849431487}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Sides
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -367,7 +367,7 @@ GameObject:
   m_Component:
   - component: {fileID: 7210898295673283502}
   - component: {fileID: 4661962573486474475}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Bottom
   m_TagString: Untagged
   m_Icon: {fileID: 0}
