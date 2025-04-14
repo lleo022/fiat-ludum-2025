@@ -8,7 +8,7 @@ public class GameLogic : MonoBehaviour
 {
     public int maxPlayerHealth = 3;
     public int playerHealth;
-    private int coinCount;
+    private int coinCount = 3;
 
     public GameObject businessman;
     public GameObject clown;
@@ -64,7 +64,7 @@ public class GameLogic : MonoBehaviour
     {
         var root = coinUI.GetComponent<UIDocument>().rootVisualElement;
         coinLabel = root.Q<Label>("coinLabel");
-
+        UpdateCoinCount(coinCount);
 
         switch_persona = playerControls.Player.Switch;
 
@@ -101,7 +101,6 @@ public class GameLogic : MonoBehaviour
     }
     public void addCoin()
     {
-        Debug.Log($"Updating coin count to: {coinCount + 1}");
         coinCount++;
         UpdateCoinCount(coinCount);
     }

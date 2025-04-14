@@ -74,7 +74,6 @@ public class ClownPowers : MonoBehaviour
         {
             gameLogic.loseCoin();
             GetComponent<Movement>().JumpFinished(context); //if jumping, stop jumping
-            gameLogic.loseCoin();
             StartCoroutine(BalloonsCoroutine());
         }
     }
