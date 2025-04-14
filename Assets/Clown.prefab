@@ -196,7 +196,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   ballooning: 0
-  balloonTimer: 3
+  balloonTimer: 4
   balloonSpeed: 1
   flowers_obj: {fileID: 2723775802625070449, guid: 70e24de6efa6dda40b0b0df9c0c3158b, type: 3}
   flowersSpawnOffset: 0.3

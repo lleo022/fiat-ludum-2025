@@ -11,7 +11,7 @@ public class BossScript : MonoBehaviour
     public float maxBossHealth = 100f;
     public float bossMoveSpeed = 5f;
     public float smashSpeed = 20f;
-    public float timeBetweenDirections = 2f;
+    public float xRange = 4f;
     public float attackPeriod = 1f;
     private GameObject GameLogic;
 
@@ -34,13 +34,18 @@ public class BossScript : MonoBehaviour
     public float stunTime = 3f;
 
     private bool stunned = false;
+    private bool sideToSide = false;
+    private bool invulnerable = false;
 
     public float flowerDamage = 5;
+
+    private Vector2 point1;
+    private Vector2 point2;
 
     public void hurtBoss(float amount)
     {
         //Debug.Log("HurtBoss");
-        if (smashing == false)
+        if (smashing == false && invulnerable == false)
         {
             bossHealth -= amount;
         }
@@ -53,6 +58,9 @@ public class BossScript : MonoBehaviour
         rb = GetComponent<Rigidbody2D>();
         original_position = transform.position;
         start_position = transform.position;
+        point1 = new Vector2(start_position.x + xRange, start_position.y);
+        point2 = new Vector2(start_position.x - xRange, start_position.y);
+
         bossHealth = maxBossHealth;
         healthSlider.maxValue = maxBossHealth;
         healthSlider.value = bossHealth;
@@ -63,8 +71,12 @@ public class BossScript : MonoBehaviour
 
     private IEnumerator beginFight()
     {
-        string[] dialoguearr = { "I am here to annihilate you", "Stupid clown" };
-        GameLogic.GetComponent<DialogueScript>().dialogue(dialoguearr, "Mr. Boss");
+        string[] dialogue_Player = { "Mr. Boss...", "I quit!" };
+        string[] dialogue_Villain = { "Quit?", "...", "HAH HA HA", "You can't quit or else I'll FIRE YOU!!" };
+
+        GameLogic.GetComponent<DialogueScript>().dialogue(dialogue_Player, "You");
+        yield return new WaitUntil(() => GameLogic.GetComponent<DialogueScript>().dialogueUI.activeSelf == false);
+        GameLogic.GetComponent<DialogueScript>().dialogue(dialogue_Villain, "Mr. Boss");
         yield return new WaitUntil(() => GameLogic.GetComponent<DialogueScript>().dialogueUI.activeSelf == false); //wait till dialogue box is closed
         returnToNormal();
     }
@@ -88,20 +100,36 @@ public class BossScript : MonoBehaviour
         if (stunned == false && smashing == false)
         {
             yield return new WaitUntil(() => move_back_to_original == false); //make sure boss is back at original position
+            sideToSide = true;
             while (smashing == false && stunned == false)
             {
-                rb.linearVelocity = new Vector3(1 * bossMoveSpeed, 0, 0);
-                yield return new WaitUntil(() => transform.position.x >= start_position.x + 4);
-                rb.linearVelocity = new Vector3(-1 * bossMoveSpeed, 0, 0);
-                yield return new WaitUntil(() => transform.position.x <= start_position.x - 4);
-                //yield return new WaitForSeconds(timeBetweenDirections / 2); //start from the middle
-                
-                //yield return new WaitForSeconds(timeBetweenDirections);
-                //rb.linearVelocity = new Vector3(1 * bossMoveSpeed, 0, 0);
-                //yield return new WaitForSeconds(timeBetweenDirections / 2);
+                target = point1;
+                sideToSide = true;
+                yield return new WaitUntil(() => sideToSide == false);
+                target = point2;
+                sideToSide = true;
+                yield return new WaitUntil(() => sideToSide == false);
             }
+        } else
+        {
+            Debug.Log("Cant't return to normal: " + stunned + smashing);
         }
         
+    }
+
+    private IEnumerator Stage2Custcene()
+    {
+        stunned = true;
+        invulnerable = true;
+
+        string[] dialogue_Villain = { "Your attire is so... unprofessional." };
+        GameLogic.GetComponent<DialogueScript>().dialogue(dialogue_Villain, "Mr. Boss");
+        yield return new WaitUntil(() => GameLogic.GetComponent<DialogueScript>().dialogueUI.activeSelf == false); //wait till dialogue box is closed
+
+        stunned = false;
+        invulnerable = false;
+        returnToNormal();
+
     }
 
     private IEnumerator Stage1()
@@ -113,12 +141,10 @@ public class BossScript : MonoBehaviour
             if ((bossHealth <= 50f) && (stage == 1))
             {
                 stage = 2;
-                StartCoroutine(Stage2());
+                StartCoroutine(Stage2Custcene());
                 break;
             }
         }
-
-
     }
 
     private IEnumerator Stage2()
@@ -129,10 +155,10 @@ public class BossScript : MonoBehaviour
         {
             target = GameLogic.GetComponent<GameLogic>().current_player.transform.position;
             stunned = true;
-            yield return new WaitForSeconds(1f);
+            yield return new WaitForSeconds(.5f);
             stunned = false;
             StartCoroutine(SmashAttack());
-            yield return new WaitForSeconds(UnityEngine.Random.Range(5f, 10f));
+            yield return new WaitForSeconds(UnityEngine.Random.Range(2f, 5f));
             if (bossHealth <= 0)
             {
                 GameLogic.GetComponent<GameLogic>().Victory();
@@ -178,20 +204,17 @@ public class BossScript : MonoBehaviour
             //rb.linearVelocity = new Vector3(0, -1 * smashSpeed, 0);
             yield return new WaitUntil(() => smashing_moving == false);
             yield return new WaitForSeconds(1f);
-            //change taregt back to original position
-            /*target = original_position;
-            smashing_moving = true;*/
             move_back_to_original = true;
             yield return new WaitUntil(() => move_back_to_original == false);
             smashing = false;
-            returnToNormal(); //go back to moving from side to side
+            StartCoroutine(MoveSideToSide()); //go back to moving from side to side
         }
 
     }
 
-    private bool approachPosition(Vector3 target_)
+    private bool approachPosition(Vector3 target_, float speed_)
     {
-        var step = smashSpeed * Time.deltaTime; // calculate distance to move
+        var step = speed_ * Time.deltaTime; // calculate distance to move
         transform.position = Vector3.MoveTowards(transform.position, target_, step);
 
         // Check if the position of the cube and sphere are approximately equal.
@@ -248,11 +271,14 @@ public class BossScript : MonoBehaviour
         {
             if (smashing_moving)
             {
-                smashing_moving = approachPosition(target); //will eventually become false
+                smashing_moving = approachPosition(target, smashSpeed); //will eventually become false
             }
             else if (move_back_to_original)
             {
-                move_back_to_original = approachPosition(original_position);
+                move_back_to_original = approachPosition(original_position, bossMoveSpeed);
+            } else if (sideToSide)
+            {
+                sideToSide = approachPosition(target, bossMoveSpeed);
             }
         }
         
