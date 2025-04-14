@@ -134,7 +134,8 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      baldguymain_0: 3281141802590296530
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
