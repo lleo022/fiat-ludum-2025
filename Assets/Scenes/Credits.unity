@@ -176,8 +176,8 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: "Mushroom Sprite: MonoPixelArt\r\nChild sprite: https://totuslotus.itch.io/small-platformer-pack
-    \r\nCity bg: https://free-game-assets.itch.io/free-city-backgrounds-pixel-art\r\nClown
+  m_text: "\rChild sprite: https://totuslotus.itch.io/small-platformer-pack \r\nCity
+    bg: https://free-game-assets.itch.io/free-city-backgrounds-pixel-art\r\nClown
     sprite: https://iamzacard.itch.io/2d-pixel-clown-spritesheet\nLegal document
     sprite: https://www.flaticon.com/free-icon/legal-document_3207629\r\n"
   m_isRightToLeft: 0
