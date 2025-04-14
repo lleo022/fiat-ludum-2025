@@ -8,6 +8,7 @@ public class GameLogic : MonoBehaviour
 {
     public int maxPlayerHealth = 3;
     public int playerHealth;
+    int coinCount;
 
     public GameObject businessman;
     public GameObject clown;
@@ -21,6 +22,8 @@ public class GameLogic : MonoBehaviour
     public PlayerInputActions playerControls;
 
     //three hearts
+    [SerializeField] UIDocument coinUI;
+    private Label coinLabel;
     public UIDocument healthBarUI;
     private VisualElement healthbar;
 
@@ -57,6 +60,10 @@ public class GameLogic : MonoBehaviour
     }
     private void OnEnable()
     {
+        var root = coinUI.GetComponent<UIDocument>().rootVisualElement;
+        coinLabel = root.Q<Label>("coinLabel");
+
+
         switch_persona = playerControls.Player.Switch;
 
         switch_persona.Enable();
@@ -80,6 +87,20 @@ public class GameLogic : MonoBehaviour
         endBossFight();
     }
 
+    public int showCoins()
+    {
+        return coinCount;
+    }
+    public void loseCoin()
+    {
+        if(coinCount > 0) coinCount--;
+        UpdateCoinCount(coinCount);
+    }
+    public void addCoin()
+    {
+        coinCount++;
+        UpdateCoinCount(coinCount);
+    }
     public void StartBossFight()
     {
         StartCoroutine(BossFight());
@@ -218,6 +239,14 @@ public class GameLogic : MonoBehaviour
         if (current_player.transform.position.y < -20)
         {
             Death();
+        }
+    }
+
+    public void UpdateCoinCount(int newCount)
+    {
+        if (coinLabel != null)
+        {
+            coinLabel.text = $"Coins: {newCount}";
         }
     }
 }

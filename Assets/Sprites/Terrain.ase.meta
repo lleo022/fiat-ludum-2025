@@ -271,6 +271,27 @@ ScriptedImporter:
     edges: []
     tessellationDetail: 0
     uvTransform: {x: 0, y: 0}
+  - name: Terrain_6
+    originalName: 
+    pivot: {x: 0.5, y: 0.5}
+    alignment: 0
+    border: {x: 0, y: 0, z: 0, w: 0}
+    customData: 
+    rect:
+      serializedVersion: 2
+      x: 99
+      y: 21
+      width: 9
+      height: 9
+    spriteID: 0d86b7511cb49374e8ccd3465ed18d44
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    uvTransform: {x: 0, y: 0}
   asepriteLayers:
   - layerIndex: 0
     guid: -176797261
@@ -285,7 +306,7 @@ ScriptedImporter:
       cellRect:
         x: 1
         y: 2
-        width: 89
+        width: 104
         height: 27
       spriteId: 57fd0227f1d8ccc42a1aa79313adbcd9
     linkedCells: []

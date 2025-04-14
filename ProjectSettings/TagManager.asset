@@ -35,3 +35,18 @@ TagManager:
   - 
   - 
   - 
+  - 
+  - 
+  - 
+  m_SortingLayers:
+  - name: Default
+    uniqueID: 0
+    locked: 0
+  - name: Dialogue
+    uniqueID: 2813993523
+    locked: 0
+  - name: Player
+    uniqueID: 2690864577
+    locked: 0
+  m_RenderingLayers:
+  - Default
