@@ -45,6 +45,9 @@ TagManager:
   - name: Dialogue
     uniqueID: 2813993523
     locked: 0
+  - name: Projectile
+    uniqueID: 29017597
+    locked: 0
   - name: Player
     uniqueID: 2690864577
     locked: 0
