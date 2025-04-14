@@ -29,10 +29,12 @@ public class GameLogic : MonoBehaviour
 
     public GameObject gameOverUI;
     public GameObject victoryUI;
+    public GameObject pauseMenuUI;
 
     public GameObject bossFightUI;
     public UnityEngine.UI.Slider bossFightSlider;
     private InputAction switch_persona;
+    private InputAction pause_menu;
 
     private List<VisualElement> currentHearts;
 
@@ -57,6 +59,7 @@ public class GameLogic : MonoBehaviour
         gameOverUI.SetActive(false);
         victoryUI.SetActive(false);
         bossFightUI.SetActive(false);
+        pauseMenuUI.SetActive(false);
 
         currentHearts.Reverse(); // it comes out in the wrong order
     }
@@ -67,14 +70,19 @@ public class GameLogic : MonoBehaviour
         UpdateCoinCount(coinCount);
 
         switch_persona = playerControls.Player.Switch;
+        pause_menu = playerControls.Player.PauseScreen;
 
         switch_persona.Enable();
         switch_persona.performed += SwitchCallback;
+
+        pause_menu.Enable();
+        pause_menu.performed += PauseMenu;
     }
 
     private void OnDisable()
     {
         switch_persona.Disable();
+        pause_menu?.Disable();
     }
 
     public void Victory()
@@ -154,6 +162,11 @@ public class GameLogic : MonoBehaviour
 
         //Debug.Log("Got slider: " + bossFightSlider);
         Switch();
+    }
+
+    public void PauseMenu(InputAction.CallbackContext context)
+    {
+        pauseMenuUI.SetActive(!pauseMenuUI.activeSelf);
     }
     private void SwitchCallback(InputAction.CallbackContext context)
     {

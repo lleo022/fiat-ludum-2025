@@ -12,7 +12,8 @@ GameObject:
   - component: {fileID: 4213583297058187704}
   - component: {fileID: 580712717847451686}
   - component: {fileID: 8641409482482034981}
-  m_Layer: 0
+  - component: {fileID: 1323422695301987895}
+  m_Layer: 7
   m_Name: GameLogic
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -54,10 +55,19 @@ MonoBehaviour:
   current_camera: {fileID: 0}
   boss: {fileID: 147822001598241998, guid: 0e0569a1991e2a947ba3ffae4024839e, type: 3}
   is_clown: 1
+  coinUI: {fileID: 0}
   healthBarUI: {fileID: 0}
   gameOverUI: {fileID: 0}
   victoryUI: {fileID: 0}
+  pauseMenuUI: {fileID: 0}
   bossFightUI: {fileID: 0}
+  bossFightSlider: {fileID: 0}
+  bossFightCameraOffset: {x: 0, y: 3}
+  bossFightCameraZoom: 6
+  fightingBoss: 0
+  bossStartPos: {x: 0, y: 6.5, z: 0}
+  bossCameraCenter: {x: 0, y: 0, z: 0}
+  CreativeMode: 0
 --- !u!114 &580712717847451686
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -104,3 +114,15 @@ MonoBehaviour:
   textBox: {fileID: 0}
   nameBox: {fileID: 0}
   charDelay: 0.1
+--- !u!114 &1323422695301987895
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4052788381185180298}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 19105, guid: 0000000000000000e000000000000000, type: 0}
+  m_Name: 
+  m_EditorClassIdentifier: 
