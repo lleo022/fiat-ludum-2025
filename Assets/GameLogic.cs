@@ -8,7 +8,7 @@ public class GameLogic : MonoBehaviour
 {
     public int maxPlayerHealth = 3;
     public int playerHealth;
-    int coinCount;
+    private int coinCount;
 
     public GameObject businessman;
     public GameObject clown;
@@ -22,7 +22,7 @@ public class GameLogic : MonoBehaviour
     public PlayerInputActions playerControls;
 
     //three hearts
-    [SerializeField] UIDocument coinUI;
+    public UIDocument coinUI;
     private Label coinLabel;
     public UIDocument healthBarUI;
     private VisualElement healthbar;
@@ -89,6 +89,7 @@ public class GameLogic : MonoBehaviour
         endBossFight();
     }
 
+    //COINS
     public int showCoins()
     {
         return coinCount;
@@ -103,6 +104,7 @@ public class GameLogic : MonoBehaviour
         coinCount++;
         UpdateCoinCount(coinCount);
     }
+    //END COINS
     public void StartBossFight()
     {
         StartCoroutine(BossFight());
