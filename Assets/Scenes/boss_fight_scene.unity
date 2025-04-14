@@ -374,7 +374,7 @@ PrefabInstance:
       objectReference: {fileID: 9207981378639147554}
     - target: {fileID: 4213583297058187704, guid: 3cf6938bcb02cf94f85ef8f797d8b742, type: 3}
       propertyPath: CreativeMode
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4213583297058187704, guid: 3cf6938bcb02cf94f85ef8f797d8b742, type: 3}
       propertyPath: bossStartPos.y
