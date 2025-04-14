@@ -253,7 +253,7 @@ public class GameLogic : MonoBehaviour
     {
         if (coinLabel != null)
         {
-            coinLabel.text = $"Coins: {newCount}";
+            coinLabel.text = $"Balloons: {newCount}";
         }
     }
 }
