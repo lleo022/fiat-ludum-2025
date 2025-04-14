@@ -22,7 +22,7 @@ public class GameLogic : MonoBehaviour
     public PlayerInputActions playerControls;
 
     //three hearts
-    public UIDocument coinUI;
+    [SerializeField] UIDocument coinUI;
     private Label coinLabel;
     public UIDocument healthBarUI;
     private VisualElement healthbar;
