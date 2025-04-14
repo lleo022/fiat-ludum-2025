@@ -3,7 +3,8 @@ using static UnityEngine.GraphicsBuffer;
 
 public class coin : MonoBehaviour
 {
-    [SerializeField] GameLogic gameLogic;
+    private GameLogic gameLogic;
+
     private void OnTriggerEnter2D(Collider2D other)
     {
         if (other.CompareTag("Player"))
@@ -23,7 +24,8 @@ public class coin : MonoBehaviour
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-        
+        gameLogic = GameObject.Find("GameLogic").GetComponent<GameLogic>();
+        Debug.Log("Found gameLogic " + gameLogic);
     }
     
     // Update is called once per frame
