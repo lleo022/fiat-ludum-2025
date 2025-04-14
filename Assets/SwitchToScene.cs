@@ -8,6 +8,11 @@ public class SwitchToScene : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D col)
     {
-        SceneManager.LoadSceneAsync(Scene);
+        if (col.gameObject.layer == 9)
+        {
+            //player went through
+            SceneManager.LoadSceneAsync(Scene);
+        }
+        
     }
 }
