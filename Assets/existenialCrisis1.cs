@@ -33,7 +33,7 @@ public class existentialCrisis1 : MonoBehaviour
             gameLogic.current_player.GetComponent<Rigidbody2D>().linearVelocity = Vector3.zero;
             gameLogic.current_player.GetComponent<Movement>().enabled = false;
 
-            dialogueScript.dialogue(monologue, "Statue");
+            dialogueScript.dialogue(monologue, "You");
             yield return new WaitUntil(() => gameLogic.GetComponent<DialogueScript>().dialogueUI.activeSelf == false);
             gameLogic.GetComponent<GameLogic>().current_player.GetComponent<Movement>().enabled = true;
         }
