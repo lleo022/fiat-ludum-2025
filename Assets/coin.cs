@@ -4,12 +4,10 @@ using static UnityEngine.GraphicsBuffer;
 public class coin : MonoBehaviour
 {
     [SerializeField] GameLogic gameLogic;
-    bool playerInRange = false;
     private void OnTriggerEnter2D(Collider2D other)
     {
         if (other.CompareTag("Player"))
         {
-            playerInRange = true;
             gameLogic.addCoin();
             Destroy(gameObject);
         }
@@ -19,7 +17,6 @@ public class coin : MonoBehaviour
     {
         if (other.CompareTag("Player"))
         {
-            playerInRange = false;
         }
     }
 

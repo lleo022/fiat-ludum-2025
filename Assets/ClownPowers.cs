@@ -24,8 +24,13 @@ public class ClownPowers : MonoBehaviour
     public Sprite flying_sprite;
     public Sprite walking_sprite;
 
+<<<<<<< Updated upstream
     private GameLogic GameLogic;
 
+=======
+    //tying clown balloon usage to coins
+    [SerializeField] GameLogic gameLogic; 
+>>>>>>> Stashed changes
     private void Awake() //gets called as game starts up
     {
         playerControls = new PlayerInputActions();
@@ -70,10 +75,15 @@ public class ClownPowers : MonoBehaviour
 
     private void Balloons(InputAction.CallbackContext context)
     {
+<<<<<<< Updated upstream
         if (ballooning == false && GameLogic.showCoins() > 0)
+=======
+        if (ballooning == false && gameLogic.showCoins() > 0)
+>>>>>>> Stashed changes
         {
             GameLogic.loseCoin();
             GetComponent<Movement>().JumpFinished(context); //if jumping, stop jumping
+            gameLogic.loseCoin();
             StartCoroutine(BalloonsCoroutine());
         }
     }

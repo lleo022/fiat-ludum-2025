@@ -101,6 +101,7 @@ public class GameLogic : MonoBehaviour
     }
     public void addCoin()
     {
+        Debug.Log($"Updating coin count to: {coinCount + 1}");
         coinCount++;
         UpdateCoinCount(coinCount);
     }
