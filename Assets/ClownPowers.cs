@@ -26,8 +26,13 @@ public class ClownPowers : MonoBehaviour
 
 <<<<<<< Updated upstream
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
     private GameLogic GameLogic;
 
+=======
+    //tying clown balloon usage to coins
+    [SerializeField] GameLogic gameLogic; 
+>>>>>>> Stashed changes
 =======
     //tying clown balloon usage to coins
     [SerializeField] GameLogic gameLogic; 
@@ -82,7 +87,11 @@ public class ClownPowers : MonoBehaviour
     {
 <<<<<<< Updated upstream
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
         if (ballooning == false && GameLogic.showCoins() > 0)
+=======
+        if (ballooning == false && gameLogic.showCoins() > 0)
+>>>>>>> Stashed changes
 =======
         if (ballooning == false && gameLogic.showCoins() > 0)
 >>>>>>> Stashed changes
