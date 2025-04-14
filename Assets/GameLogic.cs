@@ -40,6 +40,8 @@ public class GameLogic : MonoBehaviour
     public float bossFightCameraZoom = 6f;
     private GameObject boss_obj;
     public bool fightingBoss = false;
+    public Vector3 bossStartPos = new Vector3(0,6.5f,0);
+    public Vector3 bossCameraCenter = Vector3.zero;
 
     public bool CreativeMode = false;
 
@@ -113,11 +115,13 @@ public class GameLogic : MonoBehaviour
 
             current_camera.GetComponent<FollowPlayer>().zoom = bossFightCameraZoom;
             current_camera.GetComponent<FollowPlayer>().offset = bossFightCameraOffset;
+            current_camera.GetComponent<FollowPlayer>().central_point = bossCameraCenter;
 
-            yield return new WaitForSeconds(5); //5 second delay for testing purposes
+            yield return new WaitForSeconds(4); //5 second delay for testing purposes
             bossFightUI.SetActive(true);
             Debug.Log("Found slider: " + bossFightSlider);
-            boss_obj = Instantiate(boss, current_player.transform.position + new Vector3(0f, 5f, 0f), Quaternion.identity);
+            //boss_obj = Instantiate(boss, current_player.transform.position + new Vector3(0f, 5f, 0f), Quaternion.identity
+            boss_obj = Instantiate(boss, bossStartPos, Quaternion.identity);
             boss_obj.name = "MrBoss";
             boss_obj.GetComponent<BossScript>().healthSlider = bossFightSlider;
             Debug.Log("Set boss health slider: " + boss.GetComponent<BossScript>().healthSlider);
@@ -137,7 +141,8 @@ public class GameLogic : MonoBehaviour
         if (fightingBoss) {
             fightingBoss = true;
             bossFightUI.SetActive(false);
-            Destroy(boss_obj);  
+            Destroy(boss_obj);
+            current_camera.GetComponent<FollowPlayer>().central_point = new Vector3(0,0,-1000);
         }
     }
     // Start is called once before the first execution of Update after the MonoBehaviour is created
