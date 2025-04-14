@@ -2,7 +2,7 @@ using UnityEngine;
 using System.Collections;
 using static UnityEngine.GraphicsBuffer;
 
-public class trophyDialogue : MonoBehaviour
+public class clownDialogue : MonoBehaviour
 {
     [SerializeField] GameLogic gameLogic;
     [SerializeField] GameObject popUp;
@@ -56,10 +56,10 @@ public class trophyDialogue : MonoBehaviour
         var dialogueScript = gameLogic.GetComponent<DialogueScript>();
 
         gameLogic.current_player.GetComponent<Movement>().enabled = false;
-        string[] dialogue_Trophy = { "20XX Junior National Clown Championship: 1st" };
-        string[] dialogue_Player = { "That was a long time ago." };
+        string[] dialogue_Trophy = { "20XX Junior Jester League MVP" };
+        string[] dialogue_Player = { "Sure, I’ve got clown powers. But these days I mostly just use them to skip the traffic.","It all went downhill after my funnybone injury.",  "Ha.", "Ha."};
 
-        dialogueScript.dialogue(dialogue_Trophy, "Trophy");
+        dialogueScript.dialogue(dialogue_Trophy, "Statue");
         yield return new WaitUntil(() => gameLogic.GetComponent<DialogueScript>().dialogueUI.activeSelf == false);
         dialogueScript.dialogue(dialogue_Player, "Player");
         yield return new WaitUntil(() => gameLogic.GetComponent<DialogueScript>().dialogueUI.activeSelf == false); //wait till dialogue box is closed
