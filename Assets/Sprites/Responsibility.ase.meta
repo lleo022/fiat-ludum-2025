@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 4312ae9691b19cf48a7a48506eeeedea
+guid: 68846078c3d9e6b4788312f5361b8f5e
 ScriptedImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -98,7 +98,7 @@ ScriptedImporter:
     addSortingGroup: 1
     addShadowCasters: 0
   importFileNodeState: 1
-  platformSettingsDirtyTick: 638800632439498104
+  platformSettingsDirtyTick: 638801782497386508
   textureAssetName: 
   singleSpriteImportData:
   - name: 
@@ -123,9 +123,9 @@ ScriptedImporter:
     tessellationDetail: 0
     uvTransform: {x: 0, y: 0}
   animatedSpriteImportData:
-  - name: Terrain
+  - name: Responsibility
     originalName: 
-    pivot: {x: 0.7078652, y: -0.074074075}
+    pivot: {x: 0.4814815, y: -0.13513513}
     alignment: 9
     border: {x: 0, y: 0, z: 0, w: 0}
     customData: 
@@ -133,9 +133,9 @@ ScriptedImporter:
       serializedVersion: 2
       x: 4
       y: 4
-      width: 89
-      height: 27
-    spriteID: 57fd0227f1d8ccc42a1aa79313adbcd9
+      width: 54
+      height: 37
+    spriteID: b46e2711dd9936b4f9d809e5d6eec4e6
     spriteBone: []
     spriteOutline: []
     vertices: []
@@ -145,7 +145,7 @@ ScriptedImporter:
     tessellationDetail: 0
     uvTransform: {x: 4, y: 4}
   spriteSheetImportData:
-  - name: Terrain_0
+  - name: Responsibility_0
     originalName: 
     pivot: {x: 0.5, y: 0.5}
     alignment: 0
@@ -154,94 +154,10 @@ ScriptedImporter:
     rect:
       serializedVersion: 2
       x: 4
-      y: 19
-      width: 30
-      height: 12
-    spriteID: 750f61074e4ab714e9c1b0ab83634c37
-    spriteBone: []
-    spriteOutline: []
-    vertices: []
-    spritePhysicsOutline: []
-    indices: 
-    edges: []
-    tessellationDetail: 0
-    uvTransform: {x: 0, y: 0}
-  - name: Terrain_2
-    originalName: 
-    pivot: {x: 0.5, y: 0.5}
-    alignment: 0
-    border: {x: 0, y: 0, z: 0, w: 0}
-    customData: 
-    rect:
-      serializedVersion: 2
-      x: 75
-      y: 26
-      width: 18
-      height: 5
-    spriteID: 5cbfa20379fa9754cafd6293ebedef4b
-    spriteBone: []
-    spriteOutline: []
-    vertices: []
-    spritePhysicsOutline: []
-    indices: 
-    edges: []
-    tessellationDetail: 0
-    uvTransform: {x: 0, y: 0}
-  - name: Terrain_3
-    originalName: 
-    pivot: {x: 0.5, y: 0.5}
-    alignment: 0
-    border: {x: 0, y: 0, z: 0, w: 0}
-    customData: 
-    rect:
-      serializedVersion: 2
-      x: 4
-      y: 10
-      width: 31
-      height: 6
-    spriteID: 1c0951f7bd6ec9b4da7b287566363593
-    spriteBone: []
-    spriteOutline: []
-    vertices: []
-    spritePhysicsOutline: []
-    indices: 
-    edges: []
-    tessellationDetail: 0
-    uvTransform: {x: 0, y: 0}
-  - name: Terrain_4
-    originalName: 
-    pivot: {x: 0.5, y: 0.5}
-    alignment: 0
-    border: {x: 0, y: 0, z: 0, w: 0}
-    customData: 
-    rect:
-      serializedVersion: 2
-      x: 75
-      y: 8
-      width: 18
-      height: 16
-    spriteID: 6de9b65aa866475408a9c5a59f263aaf
-    spriteBone: []
-    spriteOutline: []
-    vertices: []
-    spritePhysicsOutline: []
-    indices: 
-    edges: []
-    tessellationDetail: 0
-    uvTransform: {x: 0, y: 0}
-  - name: Terrain_5
-    originalName: 
-    pivot: {x: 0.5, y: 0.5}
-    alignment: 0
-    border: {x: 0, y: 0, z: 0, w: 0}
-    customData: 
-    rect:
-      serializedVersion: 2
-      x: 55
       y: 4
-      width: 18
-      height: 25
-    spriteID: ca68d91bf23e9e140829e8aad29f66b7
+      width: 54
+      height: 37
+    spriteID: b4ca3d28e3d81bb4ba5f90aae8441111
     spriteBone: []
     spriteOutline: []
     vertices: []
@@ -250,7 +166,7 @@ ScriptedImporter:
     edges: []
     tessellationDetail: 0
     uvTransform: {x: 0, y: 0}
-  - name: Terrain_1
+  - name: Responsibility_1
     originalName: 
     pivot: {x: 0.5, y: 0.5}
     alignment: 0
@@ -258,53 +174,11 @@ ScriptedImporter:
     customData: 
     rect:
       serializedVersion: 2
-      x: 36
-      y: 28
-      width: 17
-      height: 2
-    spriteID: 17f88172b93845e429dd4c0c1ea01623
-    spriteBone: []
-    spriteOutline: []
-    vertices: []
-    spritePhysicsOutline: []
-    indices: 
-    edges: []
-    tessellationDetail: 0
-    uvTransform: {x: 0, y: 0}
-  - name: Terrain_6
-    originalName: 
-    pivot: {x: 0.5, y: 0.5}
-    alignment: 0
-    border: {x: 0, y: 0, z: 0, w: 0}
-    customData: 
-    rect:
-      serializedVersion: 2
-      x: 100
-      y: 15
-      width: 18
-      height: 18
-    spriteID: 0d86b7511cb49374e8ccd3465ed18d44
-    spriteBone: []
-    spriteOutline: []
-    vertices: []
-    spritePhysicsOutline: []
-    indices: 
-    edges: []
-    tessellationDetail: 0
-    uvTransform: {x: 0, y: 0}
-  - name: Terrain_7
-    originalName: 
-    pivot: {x: 0.5, y: 0.5}
-    alignment: 0
-    border: {x: 0, y: 0, z: 0, w: 0}
-    customData: 
-    rect:
-      serializedVersion: 2
-      x: 4
-      y: 25
-      width: 30
-      height: 6
-    spriteID: b12fd8229683375469fa154675c04514
+      x: 65
+      y: 17
+      width: 19
+      height: 23
+    spriteID: 6cf75ac6aad149641ae4812083c450f6
     spriteBone: []
     spriteOutline: []
     vertices: []
@@ -315,21 +189,21 @@ ScriptedImporter:
     uvTransform: {x: 0, y: 0}
   asepriteLayers:
   - layerIndex: 0
-    guid: -176797261
-    name: Terrain
+    guid: 1299136808
+    name: Responsibility
     layerFlags: 0
     layerType: 0
     blendMode: 0
     cells:
-    - name: Terrain
+    - name: Responsibility
       frameIndex: 0
       additiveSortOrder: 0
       cellRect:
-        x: 1
-        y: 2
-        width: 114
-        height: 29
-      spriteId: 57fd0227f1d8ccc42a1aa79313adbcd9
+        x: 38
+        y: 5
+        width: 80
+        height: 37
+      spriteId: b46e2711dd9936b4f9d809e5d6eec4e6
     linkedCells: []
     parentIndex: -1
   platformSettings:
@@ -372,5 +246,5 @@ ScriptedImporter:
   generatePhysicsShape: 0
   secondarySpriteTextures: []
   spritePackingTag: 
-  canvasSize: {x: 128, y: 32}
+  canvasSize: {x: 128, y: 48}
   previousTextureSize: {x: 128, y: 64}
