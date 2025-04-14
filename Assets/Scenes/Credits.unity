@@ -131,7 +131,7 @@ GameObject:
   - component: {fileID: 19658529}
   - component: {fileID: 19658528}
   m_Layer: 5
-  m_Name: Names (2)
+  m_Name: Link
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -603,7 +603,7 @@ GameObject:
   - component: {fileID: 694195922}
   - component: {fileID: 694195921}
   m_Layer: 5
-  m_Name: Names (1)
+  m_Name: Sources
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1087,7 +1087,7 @@ MonoBehaviour:
     m_NormalColor: {r: 0.8156863, g: 0.81960785, b: 0.7176471, a: 1}
     m_HighlightedColor: {r: 0.8156863, g: 0.81960785, b: 0.7176471, a: 1}
     m_PressedColor: {r: 0.8156863, g: 0.81960785, b: 0.7176471, a: 1}
-    m_SelectedColor: {r: 0.8156863, g: 0.81960785, b: 0.7176471, a: 1}
+    m_SelectedColor: {r: 0.4392157, g: 0.44313726, b: 0.38431373, a: 1}
     m_DisabledColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 0.5019608}
     m_ColorMultiplier: 1
     m_FadeDuration: 0.1
