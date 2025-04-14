@@ -179,7 +179,9 @@ MonoBehaviour:
   m_text: "\rChild sprite: https://totuslotus.itch.io/small-platformer-pack \r\nCity
     bg: https://free-game-assets.itch.io/free-city-backgrounds-pixel-art\r\nClown
     sprite: https://iamzacard.itch.io/2d-pixel-clown-spritesheet\nLegal document
-    sprite: https://www.flaticon.com/free-icon/legal-document_3207629\r\n"
+    sprite: https://www.flaticon.com/free-icon/legal-document_3207629\nBald guy:
+    https://media.gettyimages.com/id/a0007-000168/photo/balding-businessman.jpg?s=1024x1024&w=gi&k=20&c=0ysulUn_WA93XbpWv6wZ2vDVRRQuExzjjoQdkZu8Rjk=
+    \r\nClown irl: https://c8.alamy.com/comp/HRNAD5/funny-clown-face-HRNAD5.jpg \r\n"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -206,8 +208,8 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 40
-  m_fontSizeBase: 40
+  m_fontSize: 33
+  m_fontSizeBase: 33
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
