@@ -12,8 +12,8 @@ GameObject:
   - component: {fileID: 1689428658163980708}
   - component: {fileID: 4436105089436598108}
   - component: {fileID: 5597395130323412638}
-  - component: {fileID: 5111927998990758323}
   - component: {fileID: 8010665515470249429}
+  - component: {fileID: 1010435829488937798}
   m_Layer: 9
   m_Name: Clown
   m_TagString: Player
@@ -137,7 +137,27 @@ MonoBehaviour:
   jumping: 0
   GameLogic: {fileID: 0}
   goingRight: 1
---- !u!61 &5111927998990758323
+--- !u!114 &8010665515470249429
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7127480705712683274}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 753efa658f07358469e901600734481d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ballooning: 0
+  balloonTimer: 4
+  balloonSpeed: 1
+  flowers_obj: {fileID: 2723775802625070449, guid: 70e24de6efa6dda40b0b0df9c0c3158b, type: 3}
+  flowersSpawnOffset: 0.3
+  flying_sprite: {fileID: -2853595319269796747, guid: ec08fabde21b7a74b9326831624c6904, type: 3}
+  walking_sprite: {fileID: -7078376115067969448, guid: 410523ced68f28a4e80acc14b54edef8, type: 3}
+  gameLogic: {fileID: 0}
+--- !u!61 &1010435829488937798
 BoxCollider2D:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -171,7 +191,7 @@ BoxCollider2D:
   m_UsedByEffector: 0
   m_CompositeOperation: 0
   m_CompositeOrder: 0
-  m_Offset: {x: -0.0011794418, y: -0.004966829}
+  m_Offset: {x: 0, y: 0}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
@@ -181,24 +201,5 @@ BoxCollider2D:
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
-  m_Size: {x: 0.11715372, y: 0.1992059}
+  m_Size: {x: 0.18, y: 0.21}
   m_EdgeRadius: 0
---- !u!114 &8010665515470249429
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7127480705712683274}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 753efa658f07358469e901600734481d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  ballooning: 0
-  balloonTimer: 4
-  balloonSpeed: 1
-  flowers_obj: {fileID: 2723775802625070449, guid: 70e24de6efa6dda40b0b0df9c0c3158b, type: 3}
-  flowersSpawnOffset: 0.3
-  flying_sprite: {fileID: -2853595319269796747, guid: ec08fabde21b7a74b9326831624c6904, type: 3}
-  walking_sprite: {fileID: -7078376115067969448, guid: 410523ced68f28a4e80acc14b54edef8, type: 3}
