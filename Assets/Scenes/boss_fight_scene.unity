@@ -357,6 +357,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 147822001598241998, guid: 0e0569a1991e2a947ba3ffae4024839e, type: 3}
     - target: {fileID: 4213583297058187704, guid: 3cf6938bcb02cf94f85ef8f797d8b742, type: 3}
+      propertyPath: coinUI
+      value: 
+      objectReference: {fileID: 1288380378}
+    - target: {fileID: 4213583297058187704, guid: 3cf6938bcb02cf94f85ef8f797d8b742, type: 3}
       propertyPath: victoryUI
       value: 
       objectReference: {fileID: 897704705}
@@ -378,7 +382,7 @@ PrefabInstance:
       objectReference: {fileID: 2119234314}
     - target: {fileID: 4213583297058187704, guid: 3cf6938bcb02cf94f85ef8f797d8b742, type: 3}
       propertyPath: CreativeMode
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4213583297058187704, guid: 3cf6938bcb02cf94f85ef8f797d8b742, type: 3}
       propertyPath: current_camera
@@ -1267,6 +1271,7 @@ MonoBehaviour:
   player: {fileID: 1940310525}
   offset: {x: 0, y: 1.7}
   zoom: 4
+  central_point: {x: 0, y: 0, z: -1000}
 --- !u!114 &1226456249
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1590,10 +1595,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 5816849693573154927, guid: 3151a01319755c948a661a0dd45d928d, type: 3}
-      propertyPath: m_Value
-      value: 64
-      objectReference: {fileID: 0}
     - target: {fileID: 8022057491858786099, guid: 3151a01319755c948a661a0dd45d928d, type: 3}
       propertyPath: m_AnchorMax.x
       value: 0
@@ -1607,6 +1608,17 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 3151a01319755c948a661a0dd45d928d, type: 3}
+--- !u!114 &1288380378 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 5624275907927208846, guid: 3151a01319755c948a661a0dd45d928d, type: 3}
+  m_PrefabInstance: {fileID: 1288380377}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 19102, guid: 0000000000000000e000000000000000, type: 0}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1297037107
 GameObject:
   m_ObjectHideFlags: 0
