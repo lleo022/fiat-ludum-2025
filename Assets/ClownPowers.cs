@@ -29,7 +29,7 @@ public class ClownPowers : MonoBehaviour
     private void Awake() //gets called as game starts up
     {
         playerControls = new PlayerInputActions();
-        GameLogic = GameObject.Find("GameLogic").GetComponent<GameLogic>();
+        gameLogic = GameObject.Find("GameLogic").GetComponent<GameLogic>();
     }
     private void OnEnable()
     {
