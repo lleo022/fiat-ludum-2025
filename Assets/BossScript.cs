@@ -65,12 +65,13 @@ public class BossScript : MonoBehaviour
         healthSlider.maxValue = maxBossHealth;
         healthSlider.value = bossHealth;
         //healthSlider.SetActive(true);
-
+        invulnerable = true;
         StartCoroutine(beginFight());
     }
 
     private IEnumerator beginFight()
     {
+        GameLogic.GetComponent<GameLogic>().current_player.GetComponent<Movement>().enabled = false;
         string[] dialogue_Player = { "Mr. Boss...", "I quit!" };
         string[] dialogue_Villain = { "Quit?", "...", "HAH HA HA", "You can't quit or else I'll FIRE YOU!!" };
 
@@ -78,6 +79,8 @@ public class BossScript : MonoBehaviour
         yield return new WaitUntil(() => GameLogic.GetComponent<DialogueScript>().dialogueUI.activeSelf == false);
         GameLogic.GetComponent<DialogueScript>().dialogue(dialogue_Villain, "Mr. Boss");
         yield return new WaitUntil(() => GameLogic.GetComponent<DialogueScript>().dialogueUI.activeSelf == false); //wait till dialogue box is closed
+        invulnerable = false;
+        GameLogic.GetComponent<GameLogic>().current_player.GetComponent<Movement>().enabled = true;
         returnToNormal();
     }
 
