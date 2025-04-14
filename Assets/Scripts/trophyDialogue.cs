@@ -24,7 +24,7 @@ public class trophyDialogue : MonoBehaviour
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-        var dialogueScript = gameLogic.GetComponent<DialogueScript>();
+        DialogueScript dialogueScript = gameLogic.GetComponent<DialogueScript>();
         if (dialogueScript == null)
         {
             Debug.LogError("DialogueScript component not found on GameLogic!");
