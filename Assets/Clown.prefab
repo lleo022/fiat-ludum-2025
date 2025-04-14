@@ -78,7 +78,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: -1604102719
-  m_SortingLayer: 2
+  m_SortingLayer: 3
   m_SortingOrder: 0
   m_Sprite: {fileID: -7078376115067969448, guid: 410523ced68f28a4e80acc14b54edef8, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -150,8 +150,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   ballooning: 0
-  balloonTimer: 4
-  balloonSpeed: 1
+  balloonTimer: 2
+  balloonSpeed: 2
   flowers_obj: {fileID: 2723775802625070449, guid: 70e24de6efa6dda40b0b0df9c0c3158b, type: 3}
   flowersSpawnOffset: 0.3
   flying_sprite: {fileID: -2853595319269796747, guid: ec08fabde21b7a74b9326831624c6904, type: 3}
