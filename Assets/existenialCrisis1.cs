@@ -8,7 +8,6 @@ public class existentialCrisis1 : MonoBehaviour
     [SerializeField] string[] monologue;
     private bool done = false;
 
-    bool playerInRange = false;
     private void OnTriggerEnter2D(Collider2D other)
     {
         StartCoroutine(interact());

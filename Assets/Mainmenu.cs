@@ -17,7 +17,7 @@ public class Mainmenu : MonoBehaviour
 
     public void Credits()
     {
-        SceneManager.LoadSceneAsync(3);
+        SceneManager.LoadSceneAsync("Credits");
     }
 
     public void Back()
@@ -30,7 +30,7 @@ public class Mainmenu : MonoBehaviour
         Application.Quit();
     }
 
-    private void Awake()
+    private void Start()
     {
         if (PlayGame_)
         {
